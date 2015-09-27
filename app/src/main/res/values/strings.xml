@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_result">Tulemused</string>
+
+    <string name="id">Kirjuta id (nt 1)</string>
+    <string name="button_submit">Edasi</string>
 </resources>
