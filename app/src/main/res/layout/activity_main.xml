@@ -5,20 +5,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="#fff">
 
-    <EditText android:id="@+id/id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:hint="@string/id"
-        />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="verifyUrl"
+        <EditText
+            android:background="@drawable/border"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/nameId"
+            android:hint="Kasutajanimi"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textColor="#ff269024"
+            android:textColorHint="#ffd8d8d8" />
 
-        android:text="@string/button_submit" />
+        <EditText
+            android:background="@drawable/border"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordId"
+            android:hint="Parool"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:password="true"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="#ff269024"
+            android:textSize="24dp"
+            android:textColorHint="#ffd8d8d8" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="verifyUrl"
+            android:text="@string/button_login"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_registration"
+            android:id="@+id/button"
+            android:onClick="registration"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
 </LinearLayout>

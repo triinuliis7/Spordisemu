@@ -1,13 +1,18 @@
 package spordisemu.spordisemu;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,19 +23,32 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 
 public class Main extends ActionBarActivity {
 
-    public final static String apiURL = "http://jsonplaceholder.typicode.com";
-    public final static String EXTRA_MESSAGE = "com.example.webapitutorial.MESSAGE";
+    public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
+    public final static String EXTRA_MESSAGE = "";
+    public static boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       /* Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int height = size.y;
+
+        EditText nameEditText = (EditText) findViewById(R.id.nameId);
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)nameEditText.getLayoutParams();
+        params.setMargins(nameEditText.getLeft(), 0, height / 4, 0); //left, top, right, bottom
+        nameEditText.setLayoutParams(params);*/
     }
 
     @Override
@@ -57,15 +75,26 @@ public class Main extends ActionBarActivity {
 
     public void verifyUrl(View view) {
 
-        EditText idEditText = (EditText) findViewById(R.id.id);
-        String id = idEditText.getText().toString();
+        loggedIn = false;
 
-        if( id != null && !id.isEmpty()) {
+        EditText nameEditText = (EditText) findViewById(R.id.nameId);
+        String name = nameEditText.getText().toString();
 
-            String urlString = apiURL + "/posts/" + id;
-            new CallAPI().execute(urlString);
+        EditText passwordEditText = (EditText) findViewById(R.id.passwordId);
+        String password = passwordEditText.getText().toString();
+
+        if( name != null && !name.isEmpty()) {
+
+            String urlString = apiURL + "/users/?name=" + name;
+            new CallAPI().execute(urlString, password);
 
         }
+    }
+
+    public void registration (View view) {
+
+        Intent registrationIntent = new Intent(getApplicationContext(), Registration.class);
+        startActivity(registrationIntent);
 
     }
 
@@ -73,12 +102,13 @@ public class Main extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            String urlString=params[0];
-            String resultToDisplay;
-            InputStream in = null;
+            String urlString = params[0];
+            String password = params[1];
+            String response = "Sisselogimine eba\u00f5nnestus";
+            InputStream in;
 
             String strFileContents = null;
-            JSONObject json = new JSONObject();
+            JSONObject json;
 
             // HTTP Get
             try {
@@ -99,19 +129,23 @@ public class Main extends ActionBarActivity {
 
             try {
                 json = new JSONObject(strFileContents);
-                return json.getString("body");
+                if (json.getString("password").equals(password)) {
+                    loggedIn = true;
+                    response = "Sisselogimine \u00f5nnestus";
+                }
+                else {
+                    response = "Sisselogimine eba\u00f5nnestus";
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-            return null;
+            return response;
         }
 
         protected void onPostExecute(String result) {
-            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-            intent.putExtra(EXTRA_MESSAGE, result);
-            startActivity(intent);
+            Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
+            resultIntent.putExtra(EXTRA_MESSAGE, result);
+            startActivity(resultIntent);
         }
-
     }
 }

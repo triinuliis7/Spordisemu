@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Kasutajanimi"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:background="@drawable/border"
+        android:textSize="24dp"
+        android:textColor="#ff269024"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:textColorHint="#ffd8d8d8" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:hint="Nimi"
+        android:background="@drawable/border"
+        android:textColor="#ff269024"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="24dp"
+        android:textColorHint="#ffd8d8d8" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Parool"
+        android:id="@+id/editText3"
+        android:background="@drawable/border"
+        android:textColor="#ff269024"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="24dp"
+        android:textColorHint="#ffd8d8d8" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Parool"
+        android:id="@+id/editText4"
+        android:background="@drawable/border"
+        android:textColor="#ff269024"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:textSize="24dp"
+        android:textColorHint="#ffd8d8d8" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_registration"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+</LinearLayout>

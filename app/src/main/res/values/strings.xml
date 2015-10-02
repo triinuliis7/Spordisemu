@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Spordisemu</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Seaded</string>
     <string name="title_activity_result">Tulemused</string>
 
-    <string name="id">Kirjuta id (nt 1)</string>
-    <string name="button_submit">Edasi</string>
+    <string name="name">Kasutajatunnus</string>
+    <string name="button_login">Logi sisse</string>
+    <string name="button_registration">Registreeru</string>
 </resources>
