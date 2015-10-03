@@ -3,7 +3,7 @@ HOST: http://spordisemu.apiblueprint.org/
 
 # spordisemu
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Spordisemu is an Android app for finding people to do sports together.
 
 ## Users collection [/users]
 
@@ -36,10 +36,6 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 ### Create a new user [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
 + Request (application/json)
 
         {
@@ -52,7 +48,7 @@ form of choices.
 
     + Headers
 
-            Location: /users/uus
+            Location: /users/5
 
     + Body
 
@@ -63,12 +59,12 @@ form of choices.
             }
 
 
-## One user collection [/users/?name]
+## One user collection [/users/?username]
 
 ### Show one user [GET]
 
 + Parameters
-    + name (number) - name of a user
+    + username (text) - username of a user
 
 + Response 200 (application/json)
 
@@ -77,3 +73,230 @@ form of choices.
             "username": "test",
             "password": "test"
         }
+
+## User profile collection [/profiles/?username]
+
+### Show user's profile [GET]
+
++ Parameters
+    + username (text) - username of a user
+    
++ Response 200 (application/json)
+
+        {
+            "id": 1,
+            "firstname": "Paul",
+            "lastname": "Cabbage",
+            "birthday": "29.02.1992",
+            "gender": "m",
+            "location": "Narnia",
+            "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
+        }
+        
+### Create new profile [POST]
+
++ Parameters
+    + username (text) - username of a user
+    
++ Request (application/json)
+
+        {
+            "id": 1,
+            "firstname": "Paul",
+            "lastname": "Cabbage",
+            "birthday": "29.02.1992",
+            "gender": "m",
+            "location": "Hogwarts",
+            "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /profiles/1
+
+    + Body
+
+            {
+                "id": 1,
+                "firstname": "Paul",
+                "lastname": "Cabbage",
+                "birthday": "29.02.1992",
+                "gender": "m",
+                "location": "Hogwarts",
+                "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
+            }
+        
+## Ratings collection [/users/?username/ratings]
+
+### Show all ratings of a user [GET]
+
++ Parameters
+    + username (text) - username of a user
+    
++ Response 200 (application/json)
+
+        {
+            "rating_id": 1,
+            "user_id": 1,
+            "commenter_id": 2,
+            "rating": 1,
+            "comment": "You're not a cabbage"
+        }
+        
+### Create a new rating [POST]
+
++ Request (application/json)
+
+        {
+                "rating_id": 2,
+                "user_id": 1,
+                "commenter_id": 3,
+                "rating": 5,
+                "comment": "I like cabbages"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /users/?username/ratings/2
+
+    + Body
+
+            {
+                "rating_id": 2,
+                "user_id": 1,
+                "commenter_id": 3,
+                "rating": 5,
+                "comment": "I like cabbages"
+            }
+            
+## Practices collection [/practices]
+
+### Show all practices [GET]
+
++ Response 200 (application/json)
+
+        {
+            "practice_id": 1,
+            "type": "Quidditch",
+            "timestamp": "2016-09-01 14:00:00",
+            "location": "Hogwarts",
+            "level": "novice",
+            "user_id": 1
+        }
+        
+### Create new practice [POST]
+  
++ Request (application/json)
+
+        {
+            "practice_id": 2,
+            "type": "Wizard chess",
+            "timestamp": "2016-09-15 15:00:00",
+            "location": "Hogwarts",
+            "level": "expert",
+            "user_id": 1
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /practices/2
+
+    + Body
+
+            {
+                "practice_id": 2,
+                "type": "Wizard chess",
+                "timestamp": "2016-09-15 15:00:00",
+                "location": "Hogwarts",
+                "level": "expert",
+                "user_id": 1
+            }
+            
+## Comments collection [/practices/?practice_id/comments]
+
+### Show all practices [GET]
+
++ Parameters
+    + practice_id (number) - id of a practice
+
++ Response 200 (application/json)
+
+        {
+            "comment_id": 1,
+            "user_id": 2,
+            "practice_id": 1,
+            "comment": "Quidditch is not a real game"
+        }
+        
+### Create new comment [POST]
+  
++ Request (application/json)
+
+        {
+            "comment_id": 2,
+            "user_id": 1,
+            "practice_id": 1,
+            "comment": "Yes it is (HP 4 life)"
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /practices/1/comments/2
+
+    + Body
+
+            {
+                "comment_id": 2,
+                "user_id": 1,
+                "practice_id": 1,
+                "comment": "Yes it is (HP 4 life)"
+            }
+           
+## Attend collection [/practices/?practice_id/attend]
+
+### Show all attends [GET]
+
++ Parameters
+    + practice_id (number) - id of a practice
+
++ Response 200 (application/json)
+
+        {
+            "attend_id": 1,
+            "user_id": 2,
+            "practice_id": 1
+        }
+        
+### Create new attend [POST]
+  
++ Request (application/json)
+
+        {
+            "attend_id": 2,
+            "user_id": 3,
+            "practice_id": 1
+        }
+        
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /practices/1/attend/2
+
+    + Body
+
+            {
+                "attend_id": 2,
+                "user_id": 3,
+                "practice_id": 1
+            }
+
+        
