@@ -1,10 +1,13 @@
 package spordisemu.spordisemu;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,18 +39,31 @@ public class Main extends ActionBarActivity {
     public final static String EXTRA_MESSAGE = "";
     public static boolean loggedIn = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       /* Display display = getWindowManager().getDefaultDisplay();
+        Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int height = size.y;
 
-        EditText nameEditText = (EditText) findViewById(R.id.nameId);
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)nameEditText.getLayoutParams();
+        TextView title = (TextView) findViewById(R.id.textView);
+        ViewGroup.MarginLayoutParams titleParams = (ViewGroup.MarginLayoutParams) title.getLayoutParams();
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            titleParams.topMargin = height / 10;
+        }
+        else {
+            titleParams.topMargin = height / 5;
+        }
+
+        EditText editText = (EditText) findViewById(R.id.nameId);
+        ViewGroup.MarginLayoutParams editTextParams = (ViewGroup.MarginLayoutParams) editText.getLayoutParams();
+        editTextParams.topMargin = height / 15;
+
+        /*LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)nameEditText.getLayoutParams();
         params.setMargins(nameEditText.getLeft(), 0, height / 4, 0); //left, top, right, bottom
         nameEditText.setLayoutParams(params);*/
     }
@@ -77,11 +94,14 @@ public class Main extends ActionBarActivity {
 
         loggedIn = false;
 
+
         EditText nameEditText = (EditText) findViewById(R.id.nameId);
         String name = nameEditText.getText().toString();
+        nameEditText.setTypeface(Typeface.SANS_SERIF);
 
         EditText passwordEditText = (EditText) findViewById(R.id.passwordId);
         String password = passwordEditText.getText().toString();
+        passwordEditText.setTypeface(Typeface.SANS_SERIF);
 
         if( name != null && !name.isEmpty()) {
 

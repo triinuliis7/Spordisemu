@@ -6,32 +6,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#fff">
+    android:background="#ff039069">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:background="@drawable/border"
-            android:layout_width="200dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/nameId"
-            android:hint="Kasutajanimi"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Spordisemu"
+            android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="150dp"
-            android:gravity="center"
-            android:singleLine="true"
-            android:textAlignment="center"
-            android:textSize="24dp"
-            android:textColor="#ff269024"
-            android:textColorHint="#ffd8d8d8" />
+            android:layout_marginTop="100dp"
+            android:textColor="#fff"
+            android:textSize="32dp" />
 
         <EditText
-            android:background="@drawable/border"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:background="#ffffffff"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:id="@+id/nameId"
+            android:hint="Email"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:gravity="left|center"
+            android:singleLine="true"
+            android:textSize="18dp"
+            android:fontFamily="sans-serif"
+            android:textColor="#fff"
+            android:textColorHint="#ff9b9b9b"
+            android:paddingStart="10dp" />
+
+        <EditText
+            android:background="#ffffffff"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordId"
@@ -39,27 +51,37 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:password="true"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:textColor="#ff269024"
-            android:textSize="24dp"
-            android:textColorHint="#ffd8d8d8" />
+            android:gravity="left|center"
+            android:fontFamily="sans-serif"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:textColorHint="#FF9B9B9B"
+            android:paddingStart="10dp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:onClick="verifyUrl"
             android:text="@string/button_login"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:background="#fff1f1f1"
+            android:textSize="16dp"
+            android:stateListAnimator="@null"
+            android:textColor="#ff41815b" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:text="@string/button_registration"
             android:id="@+id/button"
             android:onClick="registration"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:background="#fff1f1f1"
+            android:layout_marginTop="5dp"
+            android:textSize="16dp"
+            android:stateListAnimator="@null"
+            android:textColor="#ff41815b" />
 
     </LinearLayout>
 
