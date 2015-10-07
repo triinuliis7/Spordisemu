@@ -2,11 +2,10 @@ package spordisemu.spordisemu;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,11 +17,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class Registration extends ActionBarActivity{
+public class Registration extends AppCompatActivity{
 
     private DatePicker datePicker;
     private Calendar calendar;

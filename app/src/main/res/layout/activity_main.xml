@@ -36,7 +36,7 @@
             android:singleLine="true"
             android:textSize="18dp"
             android:fontFamily="sans-serif"
-            android:textColor="#fff"
+            android:textColor="#ff41815b"
             android:textColorHint="#ff9b9b9b"
             android:paddingStart="10dp" />
 
@@ -53,7 +53,7 @@
             android:password="true"
             android:gravity="left|center"
             android:fontFamily="sans-serif"
-            android:textColor="#fff"
+            android:textColor="#ff41815b"
             android:textSize="18dp"
             android:textColorHint="#FF9B9B9B"
             android:paddingStart="10dp" />
