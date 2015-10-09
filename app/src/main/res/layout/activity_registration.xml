@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Registreeru"
+        android:text="@string/registrateText"
         android:id="@+id/signUpText"
         android:textColor="#ff41815b"
         android:layout_gravity="center_horizontal"
@@ -19,7 +19,7 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:inputType="textCapWords|textPersonName"
-        android:hint="Nimi"
+        android:hint="@string/eesnimi"
         android:ems="10"
         android:id="@+id/signUpNameEdit"
         android:background="#fff1f1f1"
@@ -30,19 +30,33 @@
         android:textColorHint="#ff939393"
         android:paddingStart="10dp"/>
 
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:inputType="textCapWords|textPersonName"
+        android:hint="@string/perekonnanimi"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:background="#fff1f1f1"
+        android:textSize="18dp"
+        android:textColor="#ff41815b"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:textColorHint="#ff939393"
+        android:paddingStart="10dp" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:id="@+id/layout1"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp">
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Sugu:"
+            android:text="@string/sugu"
             android:id="@+id/textView2"
             android:paddingStart="10dp"
             android:textColor="#ff41815b"
@@ -61,7 +75,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mees"
+                android:text="@string/mees"
                 android:id="@+id/radioButton"
                 android:textColor="#ff41815b"
                 android:textSize="18dp"
@@ -72,7 +86,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Naine"
+                android:text="@string/naine"
                 android:id="@+id/radioButton2"
                 android:textColor="#ff41815b"
                 android:textSize="18dp"
@@ -83,52 +97,11 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:id="@+id/layout2"
-        android:layout_gravity="center_horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Sünniaeg:"
-            android:id="@+id/textView3"
-            android:paddingStart="10dp"
-            android:textColor="#ff41815b"
-            android:textSize="18dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="10dp" />
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="01.01.1990"
-            android:id="@+id/textView4"
-            android:paddingStart="10dp"
-            android:textColor="#ff41815b"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp" />
-
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:src="@drawable/calendar"
-            android:id="@+id/button2"
-            android:onClick="setDate"
-            android:background="#ff039069"
-            android:stateListAnimator="@null" />
-
-    </LinearLayout>
-
     <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:id="@+id/signUpMailEdit"
-        android:hint="Email"
+        android:hint="@string/email"
         android:background="#fff1f1f1"
         android:textColor="#ff41815b"
         android:layout_gravity="center_horizontal"
@@ -136,15 +109,14 @@
         android:textSize="18dp"
         android:textColorHint="#ff939393"
         android:paddingStart="10dp"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="5dp" />
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:hint="Parool"
+        android:hint="@string/parool1"
         android:id="@+id/signUpPwEdit1"
         android:background="#fff1f1f1"
         android:textColor="#ff41815b"
@@ -160,7 +132,7 @@
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:hint="Parool uuesti"
+        android:hint="@string/parool2"
         android:fontFamily="sans-serif"
         android:id="@+id/signUpPwEdit2"
         android:background="#fff1f1f1"
@@ -174,7 +146,7 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:text="@string/button_registration"
+        android:text="@string/registrateText"
         android:textColor="#fff"
         android:id="@+id/signUpBtn"
         android:layout_gravity="center_horizontal"

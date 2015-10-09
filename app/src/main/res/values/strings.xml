@@ -6,5 +6,14 @@
 
     <string name="name">Kasutajatunnus</string>
     <string name="button_login">Logi sisse</string>
-    <string name="button_registration">Registreeru</string>
+    <string name="registrateText">Registreeru</string>
+    <string name="email">Email</string>
+    <string name="eesnimi">Eesnimi</string>
+    <string name="perekonnanimi">Perekonnanimi</string>
+    <string name="sugu">Sugu:</string>
+    <string name="mees">Mees</string>
+    <string name="naine">Naine</string>
+    <string name="parool1">Parool</string>
+    <string name="parool2">Parool uuesti</string>
+
 </resources>
