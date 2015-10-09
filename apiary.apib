@@ -14,22 +14,34 @@ Spordisemu is an Android app for finding people to do sports together.
         [
             {
                 "id": 1,
-                "username": "test",
+                "firstname": "Test",
+                "lastname": "Test",
+                "gender": 0,
+                "email": "test@mail.ee",
                 "password": "test"
             },
             {
                 "id": 2,
-                "username": "kalle123",
+                "firstname": "Kalle", 
+                "lastname": "Blomkvist", 
+                "gender": 1, 
+                "username": "kalle123@mail.ee",
                 "password": "vanaema"
             },
             {
                 "id": 3,
-                "username": "flamingo_9",
+                "firstname": "Peeter",
+                "lastname": "Paan",
+                "gender": 1,
+                "email": "flamingo_9@mail.ee",
                 "password": "linnud"
             },
             {
                 "id": 4,
-                "username": "bemmikummid",
+                "firstname": "Bemm",
+                "lastname": "Kumm",
+                "gender": 0,
+                "email": "bemmikummid@mail.ee",
                 "password": "mul_on123"
             }
         ]
@@ -40,7 +52,10 @@ Spordisemu is an Android app for finding people to do sports together.
 
         {
                 "id": 5,
-                "username": "uus",
+                "firstname": "Uus",
+                "lastname": "Uus",
+                "gender": 1,
+                "e-mail": "uusTuus@tuus.ee",
                 "password": "tuttuus"
         }
 
@@ -54,41 +69,42 @@ Spordisemu is an Android app for finding people to do sports together.
 
             {
                 "id": 5,
-                "username": "uus",
+                "name": "Uus Uus"
+                "gender": 1
+                "e-mail": "uusTuus@tuus.ee"
                 "password": "tuttuus"
             }
 
 
-## One user collection [/users/?username]
+## One user collection [/users/email]
 
 ### Show one user [GET]
 
 + Parameters
-    + username (text) - username of a user
+    + email (text) - email of a user
 
 + Response 200 (application/json)
 
         {
             "id": 1,
-            "username": "test",
+            "firstname": "Test",
+            "lastname": "Test",
+            "gender": 0,
+            "email": "test@mail.ee",
             "password": "test"
         }
 
-## User profile collection [/profiles/?username]
+## User profile collection [/profiles/email]
 
 ### Show user's profile [GET]
 
 + Parameters
-    + username (text) - username of a user
+    + email (text) - email of a user
     
 + Response 200 (application/json)
 
         {
             "id": 1,
-            "firstname": "Paul",
-            "lastname": "Cabbage",
-            "birthday": "29.02.1992",
-            "gender": "m",
             "location": "Narnia",
             "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
         }
@@ -96,16 +112,12 @@ Spordisemu is an Android app for finding people to do sports together.
 ### Create new profile [POST]
 
 + Parameters
-    + username (text) - username of a user
+    + email (text) - email of a user
     
 + Request (application/json)
 
         {
-            "id": 1,
-            "firstname": "Paul",
-            "lastname": "Cabbage",
-            "birthday": "29.02.1992",
-            "gender": "m",
+            "id": 2,
             "location": "Hogwarts",
             "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
         }
@@ -119,21 +131,17 @@ Spordisemu is an Android app for finding people to do sports together.
     + Body
 
             {
-                "id": 1,
-                "firstname": "Paul",
-                "lastname": "Cabbage",
-                "birthday": "29.02.1992",
-                "gender": "m",
+                "id": 2,
                 "location": "Hogwarts",
                 "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
             }
         
-## Ratings collection [/users/?username/ratings]
+## Ratings collection [/users/email/ratings]
 
 ### Show all ratings of a user [GET]
 
 + Parameters
-    + username (text) - username of a user
+    + email (text) - email of a user
     
 + Response 200 (application/json)
 
@@ -161,7 +169,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /users/?username/ratings/2
+            Location: /users/username/ratings/2
 
     + Body
 
@@ -218,7 +226,7 @@ Spordisemu is an Android app for finding people to do sports together.
                 "user_id": 1
             }
             
-## Comments collection [/practices/?practice_id/comments]
+## Comments collection [/practices/practice_id/comments]
 
 ### Show all practices [GET]
 
@@ -260,7 +268,7 @@ Spordisemu is an Android app for finding people to do sports together.
                 "comment": "Yes it is (HP 4 life)"
             }
            
-## Attend collection [/practices/?practice_id/attend]
+## Attend collection [/practices/practice_id/attend]
 
 ### Show all attends [GET]
 
