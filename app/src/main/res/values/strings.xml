@@ -18,5 +18,8 @@
     <string name="lisa_spordialad">Lisa spordialad</string>
     <string name="lisa">Lisa</string>
     <string name="edasi">Edasi</string>
+    <string name="lisapilt">Lisa pilt</string>
+    <string name="lisauuspilt">Lisa uus pilt</string>
+    <string name="jatavahele">Jäta vahele</string>
 
 </resources>
