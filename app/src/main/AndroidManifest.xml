@@ -25,6 +25,13 @@
         <activity
             android:name=".Registration">
         </activity>
+        <activity
+            android:name=".CreateProfileLocation">
+        </activity><activity
+            android:name=".CreateProfilePicture">
+        </activity><activity
+            android:name=".CreateProfileSports">
+        </activity>
     </application>
 
 </manifest>
