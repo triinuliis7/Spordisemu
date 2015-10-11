@@ -152,5 +152,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="#ff039069"
-        android:stateListAnimator="@null"/>
+        android:stateListAnimator="@null"
+        android:onClick="createProfile"/>
 </LinearLayout>

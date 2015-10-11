@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 /**
@@ -19,6 +20,13 @@ public class CreateProfilePicture extends AppCompatActivity{
         setContentView(R.layout.activity_create_profile_picture);
 
         Intent intent = getIntent();
+    }
+
+    public void createSports (View view) {
+
+        Intent createProfileSportsIntent = new Intent(getApplicationContext(), CreateProfileSports.class);
+        startActivity(createProfileSportsIntent);
+
     }
 
     @Override

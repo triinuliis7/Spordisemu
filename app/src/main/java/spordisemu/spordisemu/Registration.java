@@ -73,8 +73,8 @@ public class Registration extends AppCompatActivity{
 
     public void createProfile (View view) {
 
-        Intent createProfileLocationIntent = new Intent(getApplicationContext(), CreateProfileLocation.class);
-        startActivity(createProfileLocationIntent);
+        Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
+        startActivity(createProfilePictureIntent);
 
     }
 

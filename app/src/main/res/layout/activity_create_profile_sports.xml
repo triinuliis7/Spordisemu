@@ -17,21 +17,19 @@
         android:autoText="false" />
 
     <Spinner
-        android:id="@+id/spinner1"
+        android:id="@+id/sport"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:spinnerMode="dropdown"
         android:layout_gravity="center_horizontal"
         android:textColor="#ff41815b"
         android:layout_marginTop="80dp"
         android:background="#ff41815b" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/raskustase"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:background="#ff41815b"
-        android:spinnerMode="dropdown"
         android:layout_gravity="center_horizontal"
         android:textColor="#ff41815b"
         android:layout_marginTop="20dp" />
@@ -54,6 +52,7 @@
         android:background="#ff41815b"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
-        android:layout_marginLeft="60dp" />
+        android:layout_marginLeft="60dp"
+        android:onClick="createLocation"/>
 
 </LinearLayout>

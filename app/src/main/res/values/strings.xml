@@ -23,5 +23,21 @@
     <string name="lisauuspilt">Lisa uus pilt</string>
     <string name="jatavahele">Jäta vahele</string>
     <string name="lisa_asukoht">Lisa asukoht</string>
+    
+    <string-array name="sportList">
+        <item>Spordialad</item>
+        <item>Korvpall</item>
+        <item>Jalgpall</item>
+        <item>Sulgpall</item>
+    </string-array>
+
+    <string-array name="raskustaseList">
+        <item>Tasemed</item>
+        <item>Algaja</item>
+        <item>Kerge</item>
+        <item>Keskmine</item>
+        <item>Raske</item>
+        <item>Ekspert</item>
+    </string-array>
 
 </resources>
