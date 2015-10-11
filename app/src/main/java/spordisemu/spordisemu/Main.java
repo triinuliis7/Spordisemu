@@ -87,16 +87,16 @@ public class Main extends AppCompatActivity {
 
 
         EditText nameEditText = (EditText) findViewById(R.id.nameId);
-        String name = nameEditText.getText().toString();
+        String username = nameEditText.getText().toString();
         nameEditText.setTypeface(Typeface.SANS_SERIF);
 
         EditText passwordEditText = (EditText) findViewById(R.id.passwordId);
         String password = passwordEditText.getText().toString();
         passwordEditText.setTypeface(Typeface.SANS_SERIF);
 
-        if( name != null && !name.isEmpty()) {
+        if( username != null && !username.isEmpty()) {
 
-            String urlString = apiURL + "/users/?" + name;
+            String urlString = apiURL + "/users/" + username;
             new CallAPI().execute(urlString, password);
 
         }

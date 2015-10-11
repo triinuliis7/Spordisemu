@@ -100,6 +100,20 @@
     <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:id="@+id/signUpUserEdit"
+        android:layout_gravity="center_horizontal"
+        android:background="#fff1f1f1"
+        android:fontFamily="sans-serif"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:textColor="#ff41815b"
+        android:textColorHint="#ff939393"
+        android:textSize="18dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:id="@+id/signUpMailEdit"
         android:hint="@string/email"
         android:background="#fff1f1f1"
