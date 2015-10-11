@@ -36,7 +36,7 @@
         android:inputType="textCapWords|textPersonName"
         android:hint="@string/perekonnanimi"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/SignUpLastEdit"
         android:background="#fff1f1f1"
         android:textSize="18dp"
         android:textColor="#ff41815b"
@@ -100,7 +100,7 @@
     <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:id="@+id/signUpUserEdit"
+        android:id="@+id/SignUpUserEdit"
         android:layout_gravity="center_horizontal"
         android:background="#fff1f1f1"
         android:fontFamily="sans-serif"

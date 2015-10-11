@@ -23,7 +23,8 @@ import java.util.Calendar;
 public class Registration extends AppCompatActivity {
 
     static EditText signUpNameEdit;
-    static EditText editText;
+    static EditText signUpLastEdit;
+    static EditText signUpUserEdit;
     static EditText signUpMailEdit;
     static EditText signUpPwEdit1;
     static EditText signUpPwEdit2;
@@ -45,11 +46,14 @@ public class Registration extends AppCompatActivity {
         signUpNameEdit = (EditText) findViewById(R.id.signUpNameEdit);
         ViewGroup.MarginLayoutParams signUpNameEditParams = (ViewGroup.MarginLayoutParams) signUpNameEdit.getLayoutParams();
 
+        signUpLastEdit = (EditText) findViewById(R.id.SignUpLastEdit);
+        ViewGroup.MarginLayoutParams signUpLastEditParams = (ViewGroup.MarginLayoutParams) signUpLastEdit.getLayoutParams();
+
+        signUpUserEdit = (EditText) findViewById(R.id.SignUpUserEdit);
+        ViewGroup.MarginLayoutParams signUpUserEditParams = (ViewGroup.MarginLayoutParams) signUpUserEdit.getLayoutParams();
+
         signUpMailEdit = (EditText) findViewById(R.id.signUpMailEdit);
         ViewGroup.MarginLayoutParams signUpMailParams = (ViewGroup.MarginLayoutParams) signUpMailEdit.getLayoutParams();
-
-        editText = (EditText) findViewById(R.id.editText);
-        ViewGroup.MarginLayoutParams editTextParams = (ViewGroup.MarginLayoutParams) editText.getLayoutParams();
 
         signUpPwEdit1 = (EditText) findViewById(R.id.signUpPwEdit1);
         ViewGroup.MarginLayoutParams signUpPwEdit1Params = (ViewGroup.MarginLayoutParams) signUpPwEdit1.getLayoutParams();
@@ -84,8 +88,10 @@ public class Registration extends AppCompatActivity {
     public void createProfile (View view) {
 
         if (checkIfFilled()) {
-            Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
-            startActivity(createProfilePictureIntent);
+            if(checkIfPasswordsMatch()) {
+                Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
+                startActivity(createProfilePictureIntent);
+            }
         }
 
     }
@@ -93,45 +99,68 @@ public class Registration extends AppCompatActivity {
     public boolean checkIfFilled() {
         boolean done = true;
         if (signUpNameEdit.getText().length() == 0) {
-            signUpNameEdit.setBackgroundColor(Color.parseColor("#255e0b00"));
+            signUpNameEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
         else {
-            signUpNameEdit.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            signUpNameEdit.setHintTextColor(Color.parseColor("#ff939393"));
             done = true;
         }
-        if (editText.getText().length() == 0) {
-            editText.setBackgroundColor(Color.parseColor("#255e0b00"));
+        if (signUpLastEdit.getText().length() == 0) {
+            signUpLastEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
         else {
-            editText.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            signUpLastEdit.setHintTextColor(Color.parseColor("#ff939393"));
+            done = true;
+        }
+        if (signUpUserEdit.getText().length() == 0 ){
+            signUpUserEdit.setHintTextColor(Color.parseColor("#c52512"));
+            done = false;
+        }
+        else {
+            signUpUserEdit.setHintTextColor(Color.parseColor("#ff939393"));
             done = true;
         }
         if (signUpMailEdit.getText().length() == 0) {
-            signUpMailEdit.setBackgroundColor(Color.parseColor("#255e0b00"));
+            signUpMailEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
         else {
-            signUpMailEdit.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            signUpMailEdit.setHintTextColor(Color.parseColor("#ff939393"));
             done = true;
         }
         if (signUpPwEdit1.getText().length() == 0) {
-            signUpPwEdit1.setBackgroundColor(Color.parseColor("#255e0b00"));
+            signUpPwEdit1.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
         else {
-            signUpPwEdit1.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            signUpPwEdit1.setHintTextColor(Color.parseColor("#ff939393"));
             done = true;
         }
         if (signUpPwEdit2.getText().length() == 0) {
-            signUpPwEdit2.setBackgroundColor(Color.parseColor("#255e0b00"));
+            signUpPwEdit2.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
         else {
-            signUpPwEdit2.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            signUpPwEdit2.setHintTextColor(Color.parseColor("#ff939393"));
             done = true;
         }
+        return done;
+    }
+
+
+    public boolean checkIfPasswordsMatch() {
+        boolean done = true;
+
+        if(signUpPwEdit1.getText().toString().equals(signUpPwEdit2.getText().toString())) {
+            done = true;
+        } else {
+            signUpPwEdit1.setText("");
+            signUpPwEdit2.setText("");
+            done = false;
+        }
+
         return done;
     }
 
