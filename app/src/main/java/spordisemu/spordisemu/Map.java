@@ -1,12 +1,18 @@
 package spordisemu.spordisemu;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,6 +31,7 @@ public class Map extends android.support.v4.app.FragmentActivity{
 
     private GoogleMap mMap;
     private boolean chooseMarker = false;
+    private Address address;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,6 +40,9 @@ public class Map extends android.support.v4.app.FragmentActivity{
         setContentView(R.layout.activity_map);
 
         Intent intent = getIntent();
+
+
+
         setUpMapIfNeeded();
 
     }
@@ -47,8 +57,21 @@ public class Map extends android.support.v4.app.FragmentActivity{
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+
+            SupportMapFragment mMapFragment = (SupportMapFragment) (getSupportFragmentManager()
+                    .findFragmentById(R.id.map));
+
+            mMap = mMapFragment.getMap();
+
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int height = size.y;
+            int width = size.x;
+
+            ViewGroup.LayoutParams params = mMapFragment.getView().getLayoutParams();
+            params.height = height - 130;
+            mMapFragment.getView().setLayoutParams(params);
             mMap.setMyLocationEnabled(true);
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
@@ -61,12 +84,13 @@ public class Map extends android.support.v4.app.FragmentActivity{
 
         Location myLocation = mMap.getMyLocation();
 
-        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(58.653895, 25.532339), 6) );
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(58.653895, 25.532339), 6));
 
         if (myLocation != null) {
             mMap.clear();
-            mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(myLocation.getLatitude(), myLocation.getLongitude()), 14.0f) );
-            mMap.addMarker(new MarkerOptions().position(new LatLng(myLocation.getLatitude(), myLocation.getLongitude())).title(""));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(myLocation.getLatitude(), myLocation.getLongitude()), 14.0f));
+            mMap.addMarker(new MarkerOptions().position(new LatLng(myLocation.getLatitude(), myLocation.getLongitude())).title(getAddress(myLocation).getAddressLine(0)));
+            address = getAddress(myLocation);
         }
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -74,7 +98,8 @@ public class Map extends android.support.v4.app.FragmentActivity{
             public void onMapClick(LatLng latLng) {
                 chooseMarker = true;
                 mMap.clear();
-                mMap.addMarker(new MarkerOptions().position(latLng).title(""));
+                mMap.addMarker(new MarkerOptions().position(latLng).title(getAddress(latLng).getAddressLine(0)));
+                address = getAddress(latLng);
             }
         });
 
@@ -85,7 +110,8 @@ public class Map extends android.support.v4.app.FragmentActivity{
                 // TODO Auto-generated method stub
                 if (!chooseMarker) {
                     mMap.clear();
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title(""));
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title(getAddress(arg0).getAddressLine(0)));
+                    address = getAddress(arg0);
                 }
             }
 
@@ -93,7 +119,8 @@ public class Map extends android.support.v4.app.FragmentActivity{
                 chooseMarker = false;
                 mMap.clear();
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(arg0.getLatitude(), arg0.getLongitude()), 14.0f));
-                mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title(""));
+                mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title(getAddress(arg0).getAddressLine(0)));
+                address = getAddress(arg0);
             }
         });
 
@@ -105,16 +132,38 @@ public class Map extends android.support.v4.app.FragmentActivity{
                 chooseMarker = false;
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title(getAddress(arg0).getAddressLine(0)));
+                address = getAddress(arg0);
                 return false;
             }
 
         });
     }
 
+    public void setLocation (View view) {
+        if (address.getAddressLine(0).toString() != null) {
+            finish();
+            CreateProfileLocation.setText(address.getAddressLine(0).toString());
+            CreateProfileLocation.location.setText(address.getAddressLine(0).toString());
+        }
+
+    }
+
     public Address getAddress (Location latLng) {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(latLng.getLatitude(),latLng.getLongitude(), 1);
+            Address address = addresses.get(0);
+            return address;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Address(null);
+    }
+
+    public Address getAddress (LatLng latLng) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude, 1);
             Address address = addresses.get(0);
             return address;
         } catch (IOException e) {

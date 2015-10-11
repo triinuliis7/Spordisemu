@@ -25,7 +25,9 @@
     <string name="lisa_asukoht">Lisa asukoht</string>
     <string name="vali_linn">Vali linn</string>
     <string name="täpne_asukoht">Vali täpne asukoht</string>
-    
+    <string name="kinnita">Kinnita</string>
+    <string name="pealeht">Pealeht</string>
+
     <string-array name="sportList">
         <item>Spordialad</item>
         <item>Korvpall</item>

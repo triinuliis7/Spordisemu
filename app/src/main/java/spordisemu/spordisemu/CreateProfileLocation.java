@@ -1,22 +1,33 @@
 package spordisemu.spordisemu;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.w3c.dom.Text;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 /**
  * Created by Triinu Liis on 09/10/2015.
  */
 public class CreateProfileLocation extends AppCompatActivity  {
 
     private GoogleMap mMap;
+    public static TextView location;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,6 +37,12 @@ public class CreateProfileLocation extends AppCompatActivity  {
 
         Intent intent = getIntent();
 
+        location = (TextView) findViewById(R.id.textView4);
+        location.setText("Eesti");
+    }
+
+    public static void setText(String text) {
+        location.setText(text);
     }
 
     @Override
@@ -37,6 +54,13 @@ public class CreateProfileLocation extends AppCompatActivity  {
 
         Intent mapIntent = new Intent(getApplicationContext(), Map.class);
         startActivity(mapIntent);
+
+    }
+
+    public void createHome (View view) {
+
+        Intent homeIntent = new Intent(getApplicationContext(), Home.class);
+        startActivity(homeIntent);
 
     }
 

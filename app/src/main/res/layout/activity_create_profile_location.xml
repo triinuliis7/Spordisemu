@@ -16,27 +16,58 @@
         android:textColor="#ff41815b"
         android:textSize="32dp" />
 
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:inputType="textPostalAddress"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center_horizontal"
-        android:hint="@string/vali_linn"
-        android:textColorHint="#ff939393"/>
-
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="@string/täpne_asukoht"
         android:textColor="#fff"
         android:id="@+id/button5"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:background="#ff039069"
         android:stateListAnimator="@null"
         android:onClick="openMap"
         android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="asukoht"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff41815b"
+        android:textSize="24dp"
+        android:layout_marginTop="20dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/jatavahele"
+            android:id="@+id/button4"
+            android:background="#fff"
+            android:textColor="#ff039069"
+            android:stateListAnimator="@null"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="20dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/edasi"
+            android:textColor="#fff"
+            android:id="@+id/button3"
+            android:layout_marginTop="180dp"
+            android:background="#ff039069"
+            android:stateListAnimator="@null"
+            android:layout_marginLeft="170dp"
+            android:onClick="createHome"
+            android:layout_marginRight="20dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

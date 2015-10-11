@@ -40,6 +40,8 @@
             android:name=".CreateProfileSports">
         </activity><activity
             android:name=".Map">
+        </activity><activity
+            android:name=".Home">
         </activity>
     </application>
 

@@ -6,11 +6,20 @@
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:id="@+id/map"
         tools:context=".CreateProfileLocation"
         android:layout_gravity="center_horizontal"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="@string/kinnita"
+        android:id="@+id/button6"
+        android:layout_gravity="center_horizontal"
+        android:background="#ff039069"
+        android:onClick="setLocation"/>
 
 
 </LinearLayout>
