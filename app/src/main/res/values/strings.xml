@@ -23,6 +23,8 @@
     <string name="lisauuspilt">Lisa uus pilt</string>
     <string name="jatavahele">Jäta vahele</string>
     <string name="lisa_asukoht">Lisa asukoht</string>
+    <string name="vali_linn">Vali linn</string>
+    <string name="täpne_asukoht">Vali täpne asukoht</string>
     
     <string-array name="sportList">
         <item>Spordialad</item>
