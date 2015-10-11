@@ -1,5 +1,6 @@
 package spordisemu.spordisemu;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -66,6 +68,13 @@ public class Registration extends AppCompatActivity{
         titleParams.topMargin = height / 6;
 
         ViewGroup.MarginLayoutParams radioGroupParams = (ViewGroup.MarginLayoutParams) radioGroup.getLayoutParams();
+
+    }
+
+    public void createProfile (View view) {
+
+        Intent createProfileLocationIntent = new Intent(getApplicationContext(), CreateProfileLocation.class);
+        startActivity(createProfileLocationIntent);
 
     }
 
