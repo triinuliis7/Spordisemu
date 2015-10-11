@@ -76,9 +76,12 @@ Spordisemu is an Android app for finding people to do sports together.
             }
 
 
-## One user collection [/users/?email]
+## One user collection [/users/{email}]
 
 ### Show one user [GET]
+
++ Parameters
+    + email (text) - email of a user
 
 + Response 200 (application/json)
 
@@ -91,7 +94,7 @@ Spordisemu is an Android app for finding people to do sports together.
             "password": "test"
         }
 
-## User profile collection [/profiles/?email]
+## User profile collection [/profiles/{email}]
 
 ### Show user's profile [GET]
 
