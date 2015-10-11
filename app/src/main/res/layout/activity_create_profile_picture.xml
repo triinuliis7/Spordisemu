@@ -31,7 +31,6 @@
         android:layout_gravity="center_horizontal"
         android:background="#fff"
         android:textColor="#ff039069"
-        android:contextClickable="true"
         android:stateListAnimator="@null"/>
 
     <LinearLayout
@@ -46,7 +45,6 @@
             android:id="@+id/button4"
             android:background="#fff"
             android:textColor="#ff039069"
-            android:contextClickable="true"
             android:stateListAnimator="@null"
             android:layout_marginTop="100dp"
             android:layout_marginLeft="20dp" />

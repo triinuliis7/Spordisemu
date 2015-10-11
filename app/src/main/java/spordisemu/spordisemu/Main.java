@@ -96,7 +96,7 @@ public class Main extends AppCompatActivity {
 
         if( name != null && !name.isEmpty()) {
 
-            String urlString = apiURL + "/users/?name=" + name;
+            String urlString = apiURL + "/users/" + name;
             new CallAPI().execute(urlString, password);
 
         }
