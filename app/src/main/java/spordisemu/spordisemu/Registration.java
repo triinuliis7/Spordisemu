@@ -2,6 +2,7 @@ package spordisemu.spordisemu;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,13 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-public class Registration extends AppCompatActivity{
+public class Registration extends AppCompatActivity {
+
+    static EditText signUpNameEdit;
+    static EditText editText;
+    static EditText signUpMailEdit;
+    static EditText signUpPwEdit1;
+    static EditText signUpPwEdit2;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,16 +42,19 @@ public class Registration extends AppCompatActivity{
         TextView title = (TextView) findViewById(R.id.signUpText);
         ViewGroup.MarginLayoutParams titleParams = (ViewGroup.MarginLayoutParams) title.getLayoutParams();
 
-        EditText signUpText = (EditText) findViewById(R.id.signUpNameEdit);
-        ViewGroup.MarginLayoutParams signUpTextParams = (ViewGroup.MarginLayoutParams) signUpText.getLayoutParams();
+        signUpNameEdit = (EditText) findViewById(R.id.signUpNameEdit);
+        ViewGroup.MarginLayoutParams signUpNameEditParams = (ViewGroup.MarginLayoutParams) signUpNameEdit.getLayoutParams();
 
-        EditText signUpMailEdit = (EditText) findViewById(R.id.signUpMailEdit);
+        signUpMailEdit = (EditText) findViewById(R.id.signUpMailEdit);
         ViewGroup.MarginLayoutParams signUpMailParams = (ViewGroup.MarginLayoutParams) signUpMailEdit.getLayoutParams();
 
-        EditText signUpPwEdit1 = (EditText) findViewById(R.id.signUpPwEdit1);
+        editText = (EditText) findViewById(R.id.editText);
+        ViewGroup.MarginLayoutParams editTextParams = (ViewGroup.MarginLayoutParams) editText.getLayoutParams();
+
+        signUpPwEdit1 = (EditText) findViewById(R.id.signUpPwEdit1);
         ViewGroup.MarginLayoutParams signUpPwEdit1Params = (ViewGroup.MarginLayoutParams) signUpPwEdit1.getLayoutParams();
 
-        EditText signUpPwEdit2 = (EditText) findViewById(R.id.signUpPwEdit2);
+        signUpPwEdit2 = (EditText) findViewById(R.id.signUpPwEdit2);
         ViewGroup.MarginLayoutParams signUpPwEdit2Params = (ViewGroup.MarginLayoutParams) signUpPwEdit2.getLayoutParams();
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -73,9 +83,56 @@ public class Registration extends AppCompatActivity{
 
     public void createProfile (View view) {
 
-        Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
-        startActivity(createProfilePictureIntent);
+        if (checkIfFilled()) {
+            Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
+            startActivity(createProfilePictureIntent);
+        }
 
+    }
+
+    public boolean checkIfFilled() {
+        boolean done = true;
+        if (signUpNameEdit.getText().length() == 0) {
+            signUpNameEdit.setBackgroundColor(Color.parseColor("#255e0b00"));
+            done = false;
+        }
+        else {
+            signUpNameEdit.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            done = true;
+        }
+        if (editText.getText().length() == 0) {
+            editText.setBackgroundColor(Color.parseColor("#255e0b00"));
+            done = false;
+        }
+        else {
+            editText.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            done = true;
+        }
+        if (signUpMailEdit.getText().length() == 0) {
+            signUpMailEdit.setBackgroundColor(Color.parseColor("#255e0b00"));
+            done = false;
+        }
+        else {
+            signUpMailEdit.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            done = true;
+        }
+        if (signUpPwEdit1.getText().length() == 0) {
+            signUpPwEdit1.setBackgroundColor(Color.parseColor("#255e0b00"));
+            done = false;
+        }
+        else {
+            signUpPwEdit1.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            done = true;
+        }
+        if (signUpPwEdit2.getText().length() == 0) {
+            signUpPwEdit2.setBackgroundColor(Color.parseColor("#255e0b00"));
+            done = false;
+        }
+        else {
+            signUpPwEdit2.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+            done = true;
+        }
+        return done;
     }
 
     @Override
