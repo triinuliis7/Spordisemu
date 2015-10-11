@@ -133,7 +133,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /profiles/1
+            Location: /profiles/kalle123
 
     + Body
 
@@ -143,12 +143,12 @@ Spordisemu is an Android app for finding people to do sports together.
                 "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
             }
         
-## Ratings collection [/users/?email/ratings]
+## Ratings collection [/users/{username}/ratings]
 
 ### Show all ratings of a user [GET]
 
 + Parameters
-    + email (text) - email of a user
+    + username (text) - username of a user
     
 + Response 200 (application/json)
 
@@ -176,7 +176,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /users/?email/ratings/2
+            Location: /users/{username}/ratings/2
 
     + Body
 
