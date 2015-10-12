@@ -18,6 +18,21 @@
     <EditText
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:id="@+id/SignUpUserEdit"
+        android:layout_gravity="center_horizontal"
+        android:background="#fff1f1f1"
+        android:fontFamily="sans-serif"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textColor="#ff41815b"
+        android:textColorHint="#ff939393"
+        android:textSize="18dp"
+        android:paddingStart="10dp"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:inputType="textCapWords|textPersonName"
         android:hint="@string/eesnimi"
         android:ems="10"
@@ -25,7 +40,7 @@
         android:background="#fff1f1f1"
         android:textSize="18dp"
         android:textColor="#ff41815b"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
         android:textColorHint="#ff939393"
         android:paddingStart="10dp"/>
@@ -96,20 +111,6 @@
         </RadioGroup>
 
     </LinearLayout>
-
-    <EditText
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:id="@+id/SignUpUserEdit"
-        android:layout_gravity="center_horizontal"
-        android:background="#fff1f1f1"
-        android:fontFamily="sans-serif"
-        android:hint="@string/username"
-        android:inputType="text"
-        android:paddingStart="10dp"
-        android:textColor="#ff41815b"
-        android:textColorHint="#ff939393"
-        android:textSize="18dp" />
 
     <EditText
         android:layout_width="250dp"

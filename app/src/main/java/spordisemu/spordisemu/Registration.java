@@ -1,5 +1,8 @@
 package spordisemu.spordisemu;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -15,12 +18,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import java.util.Calendar;
+import org.w3c.dom.Text;
+
 
 public class Registration extends AppCompatActivity {
+
+    public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
 
     static EditText signUpNameEdit;
     static EditText signUpLastEdit;
@@ -61,13 +68,14 @@ public class Registration extends AppCompatActivity {
         signUpPwEdit2 = (EditText) findViewById(R.id.signUpPwEdit2);
         ViewGroup.MarginLayoutParams signUpPwEdit2Params = (ViewGroup.MarginLayoutParams) signUpPwEdit2.getLayoutParams();
 
+
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         TextView suguText = (TextView) findViewById(R.id.textView2);
 
         Button signUpBtn = (Button) findViewById(R.id.signUpBtn);
         ViewGroup.MarginLayoutParams signUpBtnParams = (ViewGroup.MarginLayoutParams) signUpBtn.getLayoutParams();
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             LinearLayout layout1 = (LinearLayout) findViewById(R.id.linearLayout1);
             ViewGroup.MarginLayoutParams layout1Params = (ViewGroup.MarginLayoutParams) layout1.getLayoutParams();
 
@@ -85,83 +93,71 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    public void createProfile (View view) {
+    public void createProfile(View view) {
 
-        if (checkIfFilled()) {
-            if(checkIfPasswordsMatch()) {
+        if (checkIfDataCorrect()) {
+            if (checkIfPWCorrect()) {
                 Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
                 startActivity(createProfilePictureIntent);
             }
         }
-
     }
 
-    public boolean checkIfFilled() {
+    public boolean checkIfDataCorrect() {
         boolean done = true;
+
         if (signUpNameEdit.getText().length() == 0) {
             signUpNameEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
-        else {
-            signUpNameEdit.setHintTextColor(Color.parseColor("#ff939393"));
-            done = true;
-        }
+
         if (signUpLastEdit.getText().length() == 0) {
             signUpLastEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
-        else {
-            signUpLastEdit.setHintTextColor(Color.parseColor("#ff939393"));
-            done = true;
-        }
-        if (signUpUserEdit.getText().length() == 0 ){
+
+        if (signUpUserEdit.getText().length() == 0) {
             signUpUserEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
-        else {
-            signUpUserEdit.setHintTextColor(Color.parseColor("#ff939393"));
-            done = true;
-        }
+
         if (signUpMailEdit.getText().length() == 0) {
             signUpMailEdit.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
-        else {
-            signUpMailEdit.setHintTextColor(Color.parseColor("#ff939393"));
-            done = true;
-        }
+
         if (signUpPwEdit1.getText().length() == 0) {
             signUpPwEdit1.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
-        else {
-            signUpPwEdit1.setHintTextColor(Color.parseColor("#ff939393"));
-            done = true;
-        }
+
         if (signUpPwEdit2.getText().length() == 0) {
             signUpPwEdit2.setHintTextColor(Color.parseColor("#c52512"));
             done = false;
         }
-        else {
-            signUpPwEdit2.setHintTextColor(Color.parseColor("#ff939393"));
-            done = true;
-        }
+
         return done;
     }
 
-
-    public boolean checkIfPasswordsMatch() {
+    public boolean checkIfPWCorrect() {
         boolean done = true;
-
-        if(signUpPwEdit1.getText().toString().equals(signUpPwEdit2.getText().toString())) {
-            done = true;
-        } else {
+        if (!signUpPwEdit1.getText().toString().equals(signUpPwEdit2.getText().toString())) {
             signUpPwEdit1.setText("");
             signUpPwEdit2.setText("");
             done = false;
         }
-
         return done;
+    }
+
+    public boolean nameNotCorrect(String name, String pat) {
+        Pattern p = Pattern.compile(pat, Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(name);
+        boolean b = m.find();
+        if (b) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
