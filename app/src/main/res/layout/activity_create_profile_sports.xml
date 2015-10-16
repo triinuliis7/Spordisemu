@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/lisa_spordialad"
+        android:text="@string/lisa_spordiala"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
@@ -53,12 +53,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/jatavahele"
             android:id="@+id/button4"
             android:background="#fff"
-            android:textColor="#ff039069"
+            android:textColor="#fff"
             android:stateListAnimator="@null"
-            android:onClick="createLocation"
             android:layout_marginTop="120dp"
             android:layout_marginLeft="20dp" />
 
