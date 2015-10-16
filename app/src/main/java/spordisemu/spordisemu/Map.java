@@ -1,6 +1,5 @@
 package spordisemu.spordisemu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.location.Address;
@@ -12,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -142,8 +140,8 @@ public class Map extends android.support.v4.app.FragmentActivity{
     public void setLocation (View view) {
         if (address.getAddressLine(0).toString() != null) {
             finish();
-            CreateProfileLocation.setText(address.getAddressLine(0).toString());
-            CreateProfileLocation.location.setText(address.getAddressLine(0).toString());
+            Activity_CreateOptionsLocation.setText(address.getAddressLine(0).toString());
+            Activity_CreateOptionsLocation.location.setText(address.getAddressLine(0).toString());
         }
 
     }

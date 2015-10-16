@@ -16,17 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
-
-public class Registration extends AppCompatActivity {
+public class Activity_Registration extends AppCompatActivity {
 
     public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
 
@@ -100,8 +96,8 @@ public class Registration extends AppCompatActivity {
         view.startAnimation(buttonClick);
         if (checkIfDataCorrect()) {
             if (checkIfPWCorrect()) {
-                Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);
-                startActivity(createProfilePictureIntent);
+                Intent createOptionsPictureIntent = new Intent(getApplicationContext(), Activity_CreateOptionsPicture.class);
+                startActivity(createOptionsPictureIntent);
             }
         }
     }

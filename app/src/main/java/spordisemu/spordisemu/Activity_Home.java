@@ -6,31 +6,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.widget.TextView;
 
 /**
- * Created by Kelian on 09/10/2015.
+ * Created by Triinu Liis on 11/10/2015.
  */
-public class CreateProfilePicture extends AppCompatActivity{
-
-
-    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
+public class Activity_Home extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_create_profile_picture);
+        setContentView(R.layout.activity_home);
 
         Intent intent = getIntent();
     }
 
     public void createSports (View view) {
 
-        view.startAnimation(buttonClick);
-        Intent createProfileSportsIntent = new Intent(getApplicationContext(), CreateProfileSports.class);
-        startActivity(createProfileSportsIntent);
+        Intent createOptionsSportsIntent = new Intent(getApplicationContext(), Activity_CreateOptionsSports.class);
+        startActivity(createOptionsSportsIntent);
 
     }
 
@@ -55,5 +49,6 @@ public class CreateProfilePicture extends AppCompatActivity{
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

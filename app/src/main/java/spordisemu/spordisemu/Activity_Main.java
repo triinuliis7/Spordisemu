@@ -2,7 +2,6 @@ package spordisemu.spordisemu;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -14,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,7 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class Main extends AppCompatActivity {
+public class Activity_Main extends AppCompatActivity {
 
     public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
     public final static String EXTRA_MESSAGE = "";
@@ -112,7 +110,7 @@ public class Main extends AppCompatActivity {
     public void registration (View view) {
 
         view.startAnimation(buttonClick);
-        Intent registrationIntent = new Intent(getApplicationContext(), Registration.class);
+        Intent registrationIntent = new Intent(getApplicationContext(), Activity_Registration.class);
         startActivity(registrationIntent);
 
     }
@@ -164,7 +162,7 @@ public class Main extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
+            Intent resultIntent = new Intent(getApplicationContext(), Activity_Result.class);
             resultIntent.putExtra(EXTRA_MESSAGE, result);
             startActivity(resultIntent);
         }

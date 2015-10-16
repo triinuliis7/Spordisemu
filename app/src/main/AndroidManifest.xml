@@ -17,7 +17,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
         <activity
-            android:name=".Main"
+            android:name=".Activity_Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,22 +26,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultActivity"
+            android:name=".Activity_Result"
             android:label="@string/title_activity_result" >
         </activity>
         <activity
-            android:name=".Registration">
+            android:name=".Activity_Registration">
         </activity>
         <activity
-            android:name=".CreateProfileLocation">
+            android:name=".Activity_CreateOptionsLocation">
         </activity><activity
-            android:name=".CreateProfilePicture">
+            android:name=".Activity_CreateOptionsPicture">
         </activity><activity
-            android:name=".CreateProfileSports">
+            android:name=".Activity_CreateOptionsSports">
         </activity><activity
             android:name=".Map">
         </activity><activity
-            android:name=".Home">
+            android:name=".Activity_Home">
         </activity>
     </application>
 

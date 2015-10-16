@@ -5,27 +5,54 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
 
-public class ResultActivity extends AppCompatActivity {
+/**
+ * Created by Triinu Liis on 09/10/2015.
+ */
+public class Activity_CreateOptionsLocation extends AppCompatActivity  {
 
+    private GoogleMap mMap;
+    public static TextView location;
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_create_options_location);
 
         Intent intent = getIntent();
 
-        String message = intent.getStringExtra(Main.EXTRA_MESSAGE);
+        location = (TextView) findViewById(R.id.textView4);
+        location.setText("Eesti");
+    }
 
-        TextView textView = new TextView(this);
-        textView.setTextSize(24);
-        textView.setText(message);
+    public static void setText(String text) {
+        location.setText(text);
+    }
 
-        setContentView(textView);
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    public void openMap (View view) {
+        view.startAnimation(buttonClick);
+        Intent mapIntent = new Intent(getApplicationContext(), Map.class);
+        startActivity(mapIntent);
+
+    }
+
+    public void createHome (View view) {
+        view.startAnimation(buttonClick);
+        Intent homeIntent = new Intent(getApplicationContext(), Activity_Home.class);
+        startActivity(homeIntent);
 
     }
 
@@ -50,4 +77,5 @@ public class ResultActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
