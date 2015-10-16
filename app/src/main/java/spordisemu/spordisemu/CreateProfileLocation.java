@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -28,6 +29,8 @@ public class CreateProfileLocation extends AppCompatActivity  {
 
     private GoogleMap mMap;
     public static TextView location;
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,7 +61,7 @@ public class CreateProfileLocation extends AppCompatActivity  {
     }
 
     public void createHome (View view) {
-
+        view.startAnimation(buttonClick);
         Intent homeIntent = new Intent(getApplicationContext(), Home.class);
         startActivity(homeIntent);
 

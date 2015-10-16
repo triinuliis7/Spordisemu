@@ -6,12 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
 /**
  * Created by Kelian on 09/10/2015.
  */
 public class CreateProfilePicture extends AppCompatActivity{
+
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -24,6 +28,7 @@ public class CreateProfilePicture extends AppCompatActivity{
 
     public void createSports (View view) {
 
+        view.startAnimation(buttonClick);
         Intent createProfileSportsIntent = new Intent(getApplicationContext(), CreateProfileSports.class);
         startActivity(createProfileSportsIntent);
 

@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -35,6 +36,8 @@ public class Registration extends AppCompatActivity {
     static EditText signUpMailEdit;
     static EditText signUpPwEdit1;
     static EditText signUpPwEdit2;
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -94,7 +97,7 @@ public class Registration extends AppCompatActivity {
     }
 
     public void createProfile(View view) {
-
+        view.startAnimation(buttonClick);
         if (checkIfDataCorrect()) {
             if (checkIfPWCorrect()) {
                 Intent createProfilePictureIntent = new Intent(getApplicationContext(), CreateProfilePicture.class);

@@ -2,6 +2,7 @@ package spordisemu.spordisemu;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -12,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,6 +33,7 @@ public class Main extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "";
     public static boolean loggedIn = false;
 
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +87,11 @@ public class Main extends AppCompatActivity {
 
     public void verifyUrl(View view) {
 
+        view.startAnimation(buttonClick);
         loggedIn = false;
 
+        //Button login = (Button) findViewById(R.id.login);
+        //login.setBackgroundColor(Color.parseColor("#c7c7c7"));
 
         EditText nameEditText = (EditText) findViewById(R.id.nameId);
         String username = nameEditText.getText().toString();
@@ -104,6 +111,7 @@ public class Main extends AppCompatActivity {
 
     public void registration (View view) {
 
+        view.startAnimation(buttonClick);
         Intent registrationIntent = new Intent(getApplicationContext(), Registration.class);
         startActivity(registrationIntent);
 
@@ -142,7 +150,9 @@ public class Main extends AppCompatActivity {
                 json = new JSONObject(strFileContents);
                 if (json.getString("password").equals(password)) {
                     loggedIn = true;
+
                     response = "Sisselogimine \u00f5nnestus";
+
                 }
                 else {
                     response = "Sisselogimine eba\u00f5nnestus";

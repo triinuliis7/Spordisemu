@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -16,6 +17,9 @@ import java.lang.reflect.Array;
  * Created by ingrid on 10/9/15.
  */
 public class CreateProfileSports extends AppCompatActivity {
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -43,7 +47,7 @@ public class CreateProfileSports extends AppCompatActivity {
 
 
     public void createLocation (View view) {
-
+        view.startAnimation(buttonClick);
         Intent createProfileLocationIntent = new Intent(getApplicationContext(), CreateProfileLocation.class);
         startActivity(createProfileLocationIntent);
 
