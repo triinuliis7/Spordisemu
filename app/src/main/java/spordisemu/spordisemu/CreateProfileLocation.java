@@ -54,7 +54,7 @@ public class CreateProfileLocation extends AppCompatActivity  {
     }
 
     public void openMap (View view) {
-
+        view.startAnimation(buttonClick);
         Intent mapIntent = new Intent(getApplicationContext(), Map.class);
         startActivity(mapIntent);
 
