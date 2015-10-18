@@ -37,15 +37,21 @@
             android:name=".Activity_Registration">
         </activity>
         <activity
+            android:theme="@style/AppThemeAction"
             android:screenOrientation="portrait"
+            android:label=""
             android:name=".Activity_CreateOptionsLocation">
         </activity>
         <activity
+            android:theme="@style/AppThemeAction"
             android:screenOrientation="portrait"
+            android:label=""
             android:name=".Activity_CreateOptionsPicture">
         </activity>
         <activity
+            android:theme="@style/AppThemeAction"
             android:screenOrientation="portrait"
+            android:label=""
             android:name=".Activity_CreateOptionsSports">
         </activity>
         <activity
@@ -53,7 +59,9 @@
             android:name=".Map">
         </activity>
         <activity
+            android:theme="@style/AppThemeAction"
             android:screenOrientation="portrait"
+            android:label=""
             android:name=".Activity_Home">
         </activity>
     </application>

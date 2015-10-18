@@ -25,7 +25,6 @@ public class Activity_CreateOptionsSports extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-
         //Spordialade dropdown
         Spinner sportSpinner = (Spinner) findViewById(R.id.sport);
         ArrayAdapter<CharSequence> sportItems = ArrayAdapter.createFromResource(this, R.array.sportList,
@@ -52,9 +51,7 @@ public class Activity_CreateOptionsSports extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_result, menu);
-        return true;
+        return false;
     }
 
     @Override

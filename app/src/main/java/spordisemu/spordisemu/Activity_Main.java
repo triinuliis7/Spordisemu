@@ -1,5 +1,7 @@
 package spordisemu.spordisemu;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -29,6 +31,9 @@ public class Activity_Main extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "";
     public static boolean loggedIn = false;
+
+    public static final int DIALOG_DOWNLOAD_PROGRESS = 0;
+    private ProgressDialog mProgressDialog;
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
@@ -118,6 +123,16 @@ public class Activity_Main extends AppCompatActivity {
     private class CallAPI extends AsyncTask<String, String, String> {
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showDialog(DIALOG_DOWNLOAD_PROGRESS);
+        }
+
+        protected void onProgressUpdate(String... progress) {
+            mProgressDialog.setProgress(Integer.parseInt(progress[0]));
+        }
+
+        @Override
         protected String doInBackground(String... params) {
             String urlString = params[0];
             String password = params[1];
@@ -162,9 +177,25 @@ public class Activity_Main extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
+            dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
             Intent resultIntent = new Intent(getApplicationContext(), Activity_Result.class);
             resultIntent.putExtra(EXTRA_MESSAGE, result);
             startActivity(resultIntent);
+        }
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+            case DIALOG_DOWNLOAD_PROGRESS:
+                mProgressDialog = new ProgressDialog(this);
+                mProgressDialog.setMessage("waiting 5 minutes..");
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.show();
+                return mProgressDialog;
+            default:
+                return null;
         }
     }
 }

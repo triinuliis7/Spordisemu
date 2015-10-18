@@ -2,7 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#ff039069</item>
+        <item name="colorPrimaryDark">#FF026A4D</item>
     </style>
 
+    <style name="AppThemeAction" parent="Theme.AppCompat">
+        <item name="colorPrimary">#ff039069</item>
+        <item name="colorPrimaryDark">#FF026A4D</item>
+    </style>
+
+    <style name="green">
+        <item name="android:color">#ff039069</item>
+    </style>
 </resources>

@@ -5,32 +5,16 @@
     android:background="#fff"
     android:weightSum="1">
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:background="#ff039069">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="@string/esimene_andmed"
-            android:id="@+id/textView6"
-            android:textColor="#fff"
-            android:textSize="25sp"
-            android:textAlignment="center"
-            android:gravity="fill_vertical"
-            android:layout_marginLeft="10dp" />
-    </TableRow>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textView3"
-        android:textColor="#ff41815b"
+        android:textColor="#ff039069"
         android:textSize="32dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/lisapilt" />
 
     <ImageView
         android:layout_width="200dp"
@@ -62,7 +46,7 @@
             android:background="#fff"
             android:textColor="#ff039069"
             android:stateListAnimator="@null"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="90dp"
             android:onClick="createSports"
             android:layout_marginLeft="20dp" />
 
@@ -72,7 +56,7 @@
             android:text="@string/edasi"
             android:textColor="#fff"
             android:id="@+id/button3"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="90dp"
             android:background="#ff039069"
             android:stateListAnimator="@null"
             android:layout_marginLeft="170dp"
