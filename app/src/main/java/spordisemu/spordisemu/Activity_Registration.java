@@ -1,5 +1,12 @@
 package spordisemu.spordisemu;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,8 +14,10 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.Menu;
@@ -17,10 +26,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class Activity_Registration extends AppCompatActivity {
@@ -33,6 +47,10 @@ public class Activity_Registration extends AppCompatActivity {
     static EditText signUpMailEdit;
     static EditText signUpPwEdit1;
     static EditText signUpPwEdit2;
+    static RadioButton signUpGenderM;
+
+    public final static String EXTRA_MESSAGE = "";
+    public static boolean loggedIn = false;
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
@@ -59,6 +77,8 @@ public class Activity_Registration extends AppCompatActivity {
         signUpUserEdit = (EditText) findViewById(R.id.SignUpUserEdit);
         ViewGroup.MarginLayoutParams signUpUserEditParams = (ViewGroup.MarginLayoutParams) signUpUserEdit.getLayoutParams();
 
+        signUpGenderM = (RadioButton) findViewById(R.id.r1);
+
         signUpMailEdit = (EditText) findViewById(R.id.signUpMailEdit);
         ViewGroup.MarginLayoutParams signUpMailParams = (ViewGroup.MarginLayoutParams) signUpMailEdit.getLayoutParams();
 
@@ -83,9 +103,25 @@ public class Activity_Registration extends AppCompatActivity {
 
     public void createProfile(View view) {
         view.startAnimation(buttonClick);
+        int gender;
+        if (signUpGenderM.isChecked()) {
+            gender = 1;
+        } else {
+            gender = 0;
+        }
         if (checkIfDataCorrect()) {
-            Intent createOptionsPictureIntent = new Intent(getApplicationContext(), Activity_CreateOptionsPicture.class);
-            startActivity(createOptionsPictureIntent);
+            JSONObject json = new JSONObject();
+            try {
+                json.put("firstname", signUpNameEdit.getText().toString());
+                json.put("lastname", signUpLastEdit.getText().toString());
+                json.put("username", signUpUserEdit.getText().toString());
+                json.put("gender", gender);
+                json.put("e-mail", signUpMailEdit.getText().toString());
+                json.put("password", signUpPwEdit1.getText().toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            postJson(json);
         }
     }
 
@@ -180,6 +216,12 @@ public class Activity_Registration extends AppCompatActivity {
         return done;
     }
 
+    public void postJson(JSONObject json) {
+        String apiURL = getResources().getString(R.string.apiUrl);
+        String urlString = apiURL + "/users";
+        new CallAPI().execute(urlString, json.toString());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -200,6 +242,51 @@ public class Activity_Registration extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class CallAPI extends AsyncTask<String, String, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            String urlString = params[0];
+            String request = params[1];
+            String response;
+
+            StringBuffer jsonResponse = new StringBuffer();
+
+            // HTTP POST
+            try {
+                String line;
+                URL url = new URL(urlString);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
+                writer.write(request);
+                writer.close();
+                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                while ((line = br.readLine()) != null) {
+                    jsonResponse.append(line);
+                }
+                br.close();
+                urlConnection.disconnect();
+            } catch (Exception e ) {
+                System.out.println(e.getMessage());
+                return e.getMessage();
+            }
+
+            response = jsonResponse.toString();
+            return response;
+        }
+
+        protected void onPostExecute(String result) {
+            Intent createOptionsPictureIntent = new Intent(getApplicationContext(), Activity_CreateOptionsPicture.class);
+            startActivity(createOptionsPictureIntent);
+        }
     }
 
 }

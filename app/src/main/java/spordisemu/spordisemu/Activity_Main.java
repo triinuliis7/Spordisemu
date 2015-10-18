@@ -27,7 +27,6 @@ import java.net.URL;
 
 public class Activity_Main extends AppCompatActivity {
 
-    public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
     public final static String EXTRA_MESSAGE = "";
     public static boolean loggedIn = false;
 
@@ -101,6 +100,7 @@ public class Activity_Main extends AppCompatActivity {
 
         if( username != null && !username.isEmpty()) {
 
+            String apiURL = getResources().getString(R.string.apiUrl);
             String urlString = apiURL + "/users/" + username;
             new CallAPI().execute(urlString, password);
 
