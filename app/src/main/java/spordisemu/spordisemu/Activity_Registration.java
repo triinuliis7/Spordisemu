@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -74,19 +75,7 @@ public class Activity_Registration extends AppCompatActivity {
         Button signUpBtn = (Button) findViewById(R.id.signUpBtn);
         ViewGroup.MarginLayoutParams signUpBtnParams = (ViewGroup.MarginLayoutParams) signUpBtn.getLayoutParams();
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            LinearLayout layout1 = (LinearLayout) findViewById(R.id.linearLayout1);
-            ViewGroup.MarginLayoutParams layout1Params = (ViewGroup.MarginLayoutParams) layout1.getLayoutParams();
-
-            layout1Params.width = width / 2;
-
-            LinearLayout layout2 = (LinearLayout) findViewById(R.id.linearLayout2);
-            ViewGroup.MarginLayoutParams layout2Params = (ViewGroup.MarginLayoutParams) layout2.getLayoutParams();
-
-            layout2Params.width = width / 2;
-        }
-
-        titleParams.topMargin = height / 6;
+        titleParams.topMargin = height / 8;
 
         ViewGroup.MarginLayoutParams radioGroupParams = (ViewGroup.MarginLayoutParams) radioGroup.getLayoutParams();
 
@@ -95,68 +84,100 @@ public class Activity_Registration extends AppCompatActivity {
     public void createProfile(View view) {
         view.startAnimation(buttonClick);
         if (checkIfDataCorrect()) {
-            if (checkIfPWCorrect()) {
-                Intent createOptionsPictureIntent = new Intent(getApplicationContext(), Activity_CreateOptionsPicture.class);
-                startActivity(createOptionsPictureIntent);
-            }
+            Intent createOptionsPictureIntent = new Intent(getApplicationContext(), Activity_CreateOptionsPicture.class);
+            startActivity(createOptionsPictureIntent);
         }
     }
 
     public boolean checkIfDataCorrect() {
         boolean done = true;
-
-        if (signUpNameEdit.getText().length() == 0) {
-            signUpNameEdit.setHintTextColor(Color.parseColor("#c52512"));
+        if (checkIfEmpty(signUpUserEdit)) {
             done = false;
         }
-
-        if (signUpLastEdit.getText().length() == 0) {
-            signUpLastEdit.setHintTextColor(Color.parseColor("#c52512"));
+        if (checkIfEmpty(signUpNameEdit)) {
             done = false;
         }
-
-        if (signUpUserEdit.getText().length() == 0) {
-            signUpUserEdit.setHintTextColor(Color.parseColor("#c52512"));
+        if (checkIfEmpty(signUpLastEdit)) {
             done = false;
         }
-
-        if (signUpMailEdit.getText().length() == 0) {
-            signUpMailEdit.setHintTextColor(Color.parseColor("#c52512"));
+        if (checkIfEmpty(signUpMailEdit)) {
             done = false;
         }
-
-        if (signUpPwEdit1.getText().length() == 0) {
-            signUpPwEdit1.setHintTextColor(Color.parseColor("#c52512"));
+        if (checkIfEmpty(signUpPwEdit1)) {
             done = false;
         }
-
-        if (signUpPwEdit2.getText().length() == 0) {
-            signUpPwEdit2.setHintTextColor(Color.parseColor("#c52512"));
+        if (checkIfEmpty(signUpPwEdit2)) {
             done = false;
         }
-
+        if (checkIfPWNotCorrect()) {
+            done = false;
+        }
+        if (emailNotCorrect(signUpMailEdit)) {
+            done = false;
+        }
+        if (nameNotCorrect("[^a-z0-9]", signUpUserEdit)) {
+            done = false;
+        }
+        if (nameNotCorrect("[^a-z]", signUpNameEdit)) {
+            done = false;
+        }
+        if (nameNotCorrect("[^a-z]", signUpLastEdit)) {
+            done = false;
+        }
         return done;
     }
 
-    public boolean checkIfPWCorrect() {
-        boolean done = true;
+    public boolean checkIfEmpty(EditText name) {
+        if (name.getText().length() == 0) {
+            name.setError(getResources().getString(R.string.fill));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkIfPWNotCorrect() {
+        boolean done = false;
         if (!signUpPwEdit1.getText().toString().equals(signUpPwEdit2.getText().toString())) {
+            signUpPwEdit1.setError(getResources().getString(R.string.checkPw));
+            signUpPwEdit2.setError(getResources().getString(R.string.checkPw));
             signUpPwEdit1.setText("");
             signUpPwEdit2.setText("");
-            done = false;
+            done = true;
+        }
+        if (signUpPwEdit1.getText().length() < 6) {
+            signUpPwEdit1.setError(getResources().getString(R.string.pwLength));
+            done = true;
         }
         return done;
     }
 
-    public boolean nameNotCorrect(String name, String pat) {
+    public boolean nameNotCorrect(String pat, EditText name) {
         Pattern p = Pattern.compile(pat, Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(name);
+        Matcher m = p.matcher(name.getText().toString());
         boolean b = m.find();
         if (b) {
-            return true;
-        } else {
-            return false;
+            if (name == signUpUserEdit) {
+                name.setError(getResources().getString(R.string.specialCharNum));
+            }
+            if (name == signUpNameEdit) {
+                name.setError(getResources().getString(R.string.specialChar));
+            }
         }
+        if (name == signUpUserEdit && name.getText().length() < 4) {
+            name.setError(getResources().getString(R.string.chars4));
+            return true;
+        }
+        return b;
+    }
+
+    public boolean emailNotCorrect(EditText email) {
+        boolean done;
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        done = !pattern.matcher(email.getText()).matches();
+        if (done) {
+            email.setError(getResources().getString(R.string.correctEmail));
+        }
+        return done;
     }
 
     @Override

@@ -48,4 +48,12 @@
         <item>Ekspert</item>
     </string-array>
 
+    <string name="specialCharNum">Lubatud on ainult tähed ja numbrid</string>
+    <string name="specialChar">Nimes on lubatud ainult tähed</string>
+    <string name="chars4">Kasutajanimi peab olema vähemalt 4 tähemärki pikk</string>
+    <string name="fill">Täida väli</string>
+    <string name="correctEmail">Sisesta korrektne e-mail</string>
+    <string name="checkPw">Paroolid ei kattu</string>
+    <string name="pwLength">Parool peab olema vähemalt 6 tähemärki pikk</string>
+
 </resources>
