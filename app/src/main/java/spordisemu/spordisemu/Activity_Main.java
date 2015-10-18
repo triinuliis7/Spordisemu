@@ -178,9 +178,14 @@ public class Activity_Main extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
-            Intent resultIntent = new Intent(getApplicationContext(), Activity_Result.class);
-            resultIntent.putExtra(EXTRA_MESSAGE, result);
-            startActivity(resultIntent);
+            if (loggedIn = true){
+                Intent loginIntent = new Intent(getApplicationContext(), Activity_Home.class);
+                startActivity(loginIntent);
+            } else {
+                Intent resultIntent = new Intent(getApplicationContext(), Activity_Result.class);
+                resultIntent.putExtra(EXTRA_MESSAGE, result);
+                startActivity(resultIntent);
+            }
         }
     }
 
