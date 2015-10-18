@@ -27,11 +27,11 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:text="@string/lisauuspilt"
-        android:id="@+id/button2"
+        android:id="@+id/addPicture"
         android:layout_gravity="center_horizontal"
         android:background="#fff"
         android:textColor="#ff039069"
-        android:stateListAnimator="@null"/>
+        android:stateListAnimator="@null" />
 
     <LinearLayout
         android:orientation="horizontal"
