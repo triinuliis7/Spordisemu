@@ -1,7 +1,10 @@
 package spordisemu.spordisemu;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -89,6 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void verifyUrl(View view) {
 
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
         view.startAnimation(buttonClick);
         loggedIn = false;
 
@@ -122,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class CallAPI extends AsyncTask<String, String, String> {
 
-        @Override
+        /*@Override
         protected void onPreExecute() {
             super.onPreExecute();
             showDialog(DIALOG_DOWNLOAD_PROGRESS);
@@ -130,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onProgressUpdate(String... progress) {
             mProgressDialog.setProgress(Integer.parseInt(progress[0]));
-        }
+        }*/
 
         @Override
         protected String doInBackground(String... params) {
@@ -162,13 +169,11 @@ public class MainActivity extends AppCompatActivity {
             try {
                 json = new JSONObject(strFileContents);
                 if (json.getString("password").equals(password)) {
-                    loggedIn = true;
-
-                    response = "Sisselogimine \u00f5nnestus";
+                    response = "true";
 
                 }
                 else {
-                    response = "Sisselogimine eba\u00f5nnestus";
+                    response = "false";
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -177,19 +182,27 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
-            if (loggedIn = true){
+            //dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
+            if (result.equals("true")){
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(loginIntent);
             } else {
-                Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
-                resultIntent.putExtra(EXTRA_MESSAGE, result);
-                startActivity(resultIntent);
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                alert.setMessage("Kasutajanimi või parool on vale");
+                alert.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = alert.create();
+                alert11.show();
             }
         }
     }
 
-    @Override
+    /*@Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DIALOG_DOWNLOAD_PROGRESS:
@@ -202,5 +215,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return null;
         }
-    }
+    }*/
 }
