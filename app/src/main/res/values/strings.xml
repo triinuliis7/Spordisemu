@@ -5,6 +5,10 @@
 
     <string name="action_settings">Seaded</string>
     <string name="title_activity_result">Tulemused</string>
+    <string name="otsing">Otsing</string>
+    <string name="profiil">Profiil</string>
+    <string name="sobrad">Sõbrad</string>
+    <string name="logivalja">Logi välja</string>
 
     <string name="name">Kasutajatunnus</string>
     <string name="button_login">Logi sisse</string>

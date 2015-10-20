@@ -16,6 +16,8 @@ public class Activity_Home extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
 
+        setTitle("Pealeht");
+
         setContentView(R.layout.activity_home);
 
         Intent intent = getIntent();
