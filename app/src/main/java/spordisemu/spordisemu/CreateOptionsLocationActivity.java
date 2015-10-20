@@ -2,7 +2,9 @@ package spordisemu.spordisemu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +28,13 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_options_location);
+
+        ActionBar bar = getSupportActionBar();
+        LayoutInflater mInflater = LayoutInflater.from(this);
+        View mCustomView = mInflater.inflate(R.layout.actionbar3, null);
+
+        bar.setCustomView(mCustomView);
+        bar.setDisplayShowCustomEnabled(true);
 
         Intent intent = getIntent();
 
