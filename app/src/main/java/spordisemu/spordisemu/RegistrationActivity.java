@@ -1,8 +1,6 @@
 package spordisemu.spordisemu;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -11,13 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.Menu;
@@ -26,9 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -37,7 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Activity_Registration extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
     public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
 
@@ -284,7 +277,7 @@ public class Activity_Registration extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            Intent createOptionsPictureIntent = new Intent(getApplicationContext(), Activity_CreateOptionsPicture.class);
+            Intent createOptionsPictureIntent = new Intent(getApplicationContext(), CreateOptionsPictureActivity.class);
             startActivity(createOptionsPictureIntent);
         }
     }

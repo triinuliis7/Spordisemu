@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * Created by Kelian on 09/10/2015.
  */
-public class Activity_CreateOptionsPicture extends AppCompatActivity{
+public class CreateOptionsPictureActivity extends AppCompatActivity{
 
     private Uri mImageCaptureUri;
     private ImageView mImageView;
@@ -93,7 +92,7 @@ public class Activity_CreateOptionsPicture extends AppCompatActivity{
     public void createSports (View view) {
 
         view.startAnimation(buttonClick);
-        Intent createOptionsSportsIntent = new Intent(getApplicationContext(), Activity_CreateOptionsSports.class);
+        Intent createOptionsSportsIntent = new Intent(getApplicationContext(), CreateOptionsSportsActivity.class);
         startActivity(createOptionsSportsIntent);
 
     }

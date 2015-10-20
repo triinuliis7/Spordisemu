@@ -13,7 +13,7 @@ import android.widget.Spinner;
 /**
  * Created by ingrid on 10/9/15.
  */
-public class Activity_CreateOptionsSports extends AppCompatActivity {
+public class CreateOptionsSportsActivity extends AppCompatActivity {
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
@@ -44,7 +44,7 @@ public class Activity_CreateOptionsSports extends AppCompatActivity {
 
     public void createLocation (View view) {
         view.startAnimation(buttonClick);
-        Intent createOptionsLocationIntent = new Intent(getApplicationContext(), Activity_CreateOptionsLocation.class);
+        Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
         startActivity(createOptionsLocationIntent);
 
     }

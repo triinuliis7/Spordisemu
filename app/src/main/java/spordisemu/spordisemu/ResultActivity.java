@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 
-public class Activity_Result extends AppCompatActivity {
+public class ResultActivity extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class Activity_Result extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String message = intent.getStringExtra(Activity_Main.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         TextView textView = new TextView(this);
         textView.setTextSize(24);

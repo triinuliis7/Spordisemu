@@ -14,7 +14,7 @@ import com.google.android.gms.maps.GoogleMap;
 /**
  * Created by Triinu Liis on 09/10/2015.
  */
-public class Activity_CreateOptionsLocation extends AppCompatActivity  {
+public class CreateOptionsLocationActivity extends AppCompatActivity  {
 
     private GoogleMap mMap;
     public static TextView location;
@@ -51,7 +51,7 @@ public class Activity_CreateOptionsLocation extends AppCompatActivity  {
 
     public void createHome (View view) {
         view.startAnimation(buttonClick);
-        Intent homeIntent = new Intent(getApplicationContext(), Activity_Home.class);
+        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
         startActivity(homeIntent);
 
     }

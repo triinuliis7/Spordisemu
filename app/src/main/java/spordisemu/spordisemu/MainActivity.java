@@ -27,7 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class Activity_Main extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE = "";
     public static boolean loggedIn = false;
@@ -115,7 +115,7 @@ public class Activity_Main extends AppCompatActivity {
     public void registration (View view) {
 
         view.startAnimation(buttonClick);
-        Intent registrationIntent = new Intent(getApplicationContext(), Activity_Registration.class);
+        Intent registrationIntent = new Intent(getApplicationContext(), RegistrationActivity.class);
         startActivity(registrationIntent);
 
     }
@@ -179,10 +179,10 @@ public class Activity_Main extends AppCompatActivity {
         protected void onPostExecute(String result) {
             dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
             if (loggedIn = true){
-                Intent loginIntent = new Intent(getApplicationContext(), Activity_Home.class);
+                Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(loginIntent);
             } else {
-                Intent resultIntent = new Intent(getApplicationContext(), Activity_Result.class);
+                Intent resultIntent = new Intent(getApplicationContext(), ResultActivity.class);
                 resultIntent.putExtra(EXTRA_MESSAGE, result);
                 startActivity(resultIntent);
             }

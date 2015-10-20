@@ -10,7 +10,7 @@ import android.view.View;
 /**
  * Created by Triinu Liis on 11/10/2015.
  */
-public class Activity_Home extends AppCompatActivity{
+public class HomeActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -21,13 +21,6 @@ public class Activity_Home extends AppCompatActivity{
         setContentView(R.layout.activity_home);
 
         Intent intent = getIntent();
-    }
-
-    public void createSports (View view) {
-
-        Intent createOptionsSportsIntent = new Intent(getApplicationContext(), Activity_CreateOptionsSports.class);
-        startActivity(createOptionsSportsIntent);
-
     }
 
     @Override
