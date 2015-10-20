@@ -19,14 +19,12 @@ public class HomeActivity extends AppCompatActivity{
         setTitle("Pealeht");
 
         setContentView(R.layout.activity_home);
-
-        Intent intent = getIntent();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_result, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

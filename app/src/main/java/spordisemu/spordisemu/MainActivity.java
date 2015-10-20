@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class CallAPI extends AsyncTask<String, String, String> {
 
-        @Override
+        /*@Override
         protected void onPreExecute() {
             super.onPreExecute();
             showDialog(DIALOG_DOWNLOAD_PROGRESS);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onProgressUpdate(String... progress) {
             mProgressDialog.setProgress(Integer.parseInt(progress[0]));
-        }
+        }*/
 
         @Override
         protected String doInBackground(String... params) {
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 if (json.getString("password").equals(password)) {
                     loggedIn = true;
 
-                    response = "Sisselogimine \u00f5nnestus";
+                    //response = "Sisselogimine \u00f5nnestus";
 
                 }
                 else {
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
+            //dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
             if (loggedIn = true){
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(loginIntent);
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+/*    @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case DIALOG_DOWNLOAD_PROGRESS:
@@ -202,5 +202,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return null;
         }
-    }
+    }*/
 }
