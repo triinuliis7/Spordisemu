@@ -10,7 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by ingrid on 10/9/15.
@@ -18,6 +22,8 @@ import android.widget.Spinner;
 public class CreateOptionsSportsActivity extends AppCompatActivity {
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
+    static Spinner sportSpinner;
+    static Spinner raskustaseSpinner;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -35,19 +41,28 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         //Spordialade dropdown
-        Spinner sportSpinner = (Spinner) findViewById(R.id.sport);
+        sportSpinner = (Spinner) findViewById(R.id.sport);
         ArrayAdapter<CharSequence> sportItems = ArrayAdapter.createFromResource(this, R.array.sportList,
                 android.R.layout.simple_spinner_item);
         sportItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sportSpinner.setAdapter(sportItems);
 
         //raskustaseme dropdown
-        Spinner raskustaseSpinner = (Spinner)findViewById(R.id.raskustase);
+        raskustaseSpinner = (Spinner)findViewById(R.id.raskustase);
         ArrayAdapter<CharSequence> raskustaseItems = ArrayAdapter.createFromResource(this, R.array.raskustaseList,
                 android.R.layout.simple_spinner_item);
         raskustaseItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         raskustaseSpinner.setAdapter(raskustaseItems);
 
+    }
+
+    public void addSports (View view) {
+        view.startAnimation(buttonClick);
+        TextView added = (TextView) findViewById(R.id.textView6);
+        added.setVisibility(View.VISIBLE);
+        TextView addedSport = (TextView) findViewById(R.id.sportsText);
+        addedSport.setText(sportSpinner.getSelectedItem().toString() + ": " +
+                raskustaseSpinner.getSelectedItem().toString());
     }
 
 
