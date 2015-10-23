@@ -142,6 +142,56 @@ Spordisemu is an Android app for finding people to do sports together.
                 "location": "Hogwarts",
                 "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
             }
+
+## Sports collection [/users/{username}/sports]
+
+### Show all sports of a user [GET]
+
++ Parameters 
+    + username (text) - username of a user
+    
++ Response 200 (application/json)
+
+        [
+            {
+                "sports_id" : 1, 
+                "user_id" : 1,
+                "sports" : "Jalgpall",
+                "level" : "Kerge"
+            },
+            {
+                "sports_id" : 2, 
+                "user_id" : 1, 
+                "sports" : "Sulgpall",
+                "level" : "Keskmine"
+            }
+        ]
+        
+### Add sports to a user [POST]
+
++ Request (application/json)
+    
+        {
+            "sports_id" : 3,
+            "user_id" : 1,
+            "sports" : "Korvpall", 
+            "level" : "Raske"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /users/{username}/sports/2
+
+    + Body
+
+            {
+                "sports_id" : 2,
+                "user_id" : 1,
+                "sports" : "korvpall", 
+                "level" : "raske"
+            }
         
 ## Ratings collection [/users/{username}/ratings]
 
