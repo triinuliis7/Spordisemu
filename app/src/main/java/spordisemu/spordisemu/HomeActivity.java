@@ -1,5 +1,6 @@
 package spordisemu.spordisemu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class HomeActivity extends AppCompatActivity{
         setTitle("Pealeht");
 
         setContentView(R.layout.activity_home);
+        Intent intent = getIntent();
 
 
         CustomListAdapter adapter = new CustomListAdapter(this, sportsArray, dateArray, locationArray, imgid);
@@ -72,12 +74,37 @@ public class HomeActivity extends AppCompatActivity{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(item.getItemId()) {
+            case R.id.pealeht:
+                Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(homeIntent);
+                break;
+            case R.id.profiil:
+                Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(profileIntent);
+                break;
+            case R.id.sobrad:
+                Intent friendsIntent = new Intent(getApplicationContext(), FriendsActivity.class);
+                startActivity(friendsIntent);
+                break;
+            case R.id.action_settings:
+                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+            case R.id.logivalja:
+                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainIntent);
+                break;
+            default:
+                Toast.makeText(getApplicationContext(),
+                        "Midagi läks valesti :(",
+                        Toast.LENGTH_SHORT).show();
+                break;
         }
 
-        return super.onOptionsItemSelected(item);
+        //Return false to allow normal menu processing to proceed,
+        //true to consume it here.
+            return false;
     }
 
 

@@ -8,16 +8,16 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 /**
- * Created by Harry Potter on 23.10.2015.
+ * Created by ingrid on 10/25/15.
  */
-public class SettingsActivity extends AppCompatActivity {
+public class FriendsActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setTitle("Seaded");
+        setTitle("Sõbrad");
 
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_friends);
 
         Intent intent = getIntent();
     }
@@ -69,5 +69,4 @@ public class SettingsActivity extends AppCompatActivity {
         //true to consume it here.
         return false;
     }
-
 }

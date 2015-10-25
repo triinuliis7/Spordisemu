@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".Main">
     <item android:id="@+id/pealeht" android:title="@string/pealeht"
         android:orderInCategory="1" app:showAsAction="never" />
-    <item android:id="@+id/otsing" android:title="@string/otsing"
-        android:orderInCategory="2" app:showAsAction="never" />
     <item android:id="@+id/profiil" android:title="@string/profiil"
         android:orderInCategory="3" app:showAsAction="never" />
     <item android:id="@+id/sobrad" android:title="@string/sobrad"
