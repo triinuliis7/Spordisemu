@@ -34,7 +34,7 @@ public class HomeActivity extends AppCompatActivity{
 
         ListView sportsListView = (ListView) findViewById(R.id.sports_list);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String> (this,
-                android.R.layout.simple_list_item_1, sportsArray);
+                R.layout.listview_item, R.id.texti1, sportsArray);
         sportsListView.setAdapter(arrayAdapter);
 
     }

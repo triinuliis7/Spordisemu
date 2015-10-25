@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- this needs to be layout, cannot move to drawable folder -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff">
+
+    <!--do not use id:text1, that is systems default
+     if you call id.text1, it wants android.R.layout.text1
+     it will use the default text1 and won't let use this one.
+     trust me.-->
+    <TextView
+        android:id="@+id/texti1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        android:textColor="#000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+</LinearLayout>
