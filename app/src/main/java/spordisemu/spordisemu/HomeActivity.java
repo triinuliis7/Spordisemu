@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity{
     ListView sports_list;
     String[] sportsArray = {"Jalgpall", "Korvpall", "Sulgpall", "Korvpall"};
     String[] dateArray = {"30. oktoober", "3. november", "5. nomveber", "5. november"};
+    String[] locationArray = {"Tartu kesklinn", "Anne kanal", "Ülejõe park", "Mingi suur väljak"};
 
 
     Integer[] imgid={
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity{
         setContentView(R.layout.activity_home);
 
 
-        CustomListAdapter adapter = new CustomListAdapter(this, sportsArray, dateArray, imgid);
+        CustomListAdapter adapter = new CustomListAdapter(this, sportsArray, dateArray, locationArray, imgid);
         sports_list=(ListView)findViewById(R.id.sports_list);
         sports_list.setAdapter(adapter);
 
@@ -49,7 +50,6 @@ public class HomeActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // TODO Auto-generated method stub
                 String Slecteditem = sportsArray[+position];
                 Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
 
