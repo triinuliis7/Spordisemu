@@ -1,16 +1,14 @@
 package spordisemu.spordisemu;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
-
-import java.security.Timestamp;
-import java.util.Date;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 /**
  * Created by Triinu Liis on 11/10/2015.
@@ -19,23 +17,44 @@ public class HomeActivity extends AppCompatActivity{
 
     public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
 
-
+    ListView sports_list;
     String[] sportsArray = {"Jalgpall", "Korvpall", "Sulgpall", "Korvpall"};
+    String[] dateArray = {"30. oktoober", "3. november", "5. nomveber", "5. november"};
 
 
+    Integer[] imgid={
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher,
+            R.mipmap.ic_launcher,
+    };
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
+        //sets title of menu
         setTitle("Pealeht");
 
         setContentView(R.layout.activity_home);
 
 
-        ListView sportsListView = (ListView) findViewById(R.id.sports_list);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String> (this,
-                R.layout.listview_item, R.id.texti1, sportsArray);
-        sportsListView.setAdapter(arrayAdapter);
+        CustomListAdapter adapter = new CustomListAdapter(this, sportsArray, dateArray, imgid);
+        sports_list=(ListView)findViewById(R.id.sports_list);
+        sports_list.setAdapter(adapter);
+
+        sports_list.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                // TODO Auto-generated method stub
+                String Slecteditem = sportsArray[+position];
+                Toast.makeText(getApplicationContext(), Slecteditem, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 

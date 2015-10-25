@@ -4,18 +4,38 @@
     android:id="@+id/linearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="horizontal"
     android:background="#fff">
 
-    <!--do not use id:text1, that is systems default
-     if you call id.text1, it wants android.R.layout.text1
-     it will use the default text1 and won't let use this one.
-     trust me.-->
-    <TextView
-        android:id="@+id/texti1"
-        android:layout_width="fill_parent"
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="5dp" />
+
+    <LinearLayout android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeight"
-        android:textColor="#000"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="vertical">
+        <!--do not use id:text1, that is systems default
+         if you call id.text1, it wants android.R.layout.text1
+        it will use the default text1 and won't let use this one.
+         trust me.-->
+        <TextView
+            android:id="@+id/texti1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:padding="2dp" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
 </LinearLayout>
