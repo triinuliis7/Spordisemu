@@ -82,6 +82,12 @@
             android:label=""
             android:name=".ProfileActivity">
         </activity>
+        <activity
+            android:theme="@style/AppThemeAction"
+            android:screenOrientation="portrait"
+            android:label=""
+            android:name=".PracticeViewActivity">
+        </activity>
     </application>
 
 </manifest>

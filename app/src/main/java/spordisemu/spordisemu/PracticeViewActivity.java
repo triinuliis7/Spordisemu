@@ -5,62 +5,39 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import org.w3c.dom.Text;
 
 /**
- * Created by Triinu Liis on 11/10/2015.
+ * Created by ingrid on 10/25/15.
  */
-public class HomeActivity extends AppCompatActivity{
-
-    public final static String apiURL = "http://private-6358e-spordisemu1.apiary-mock.com";
-
-    ListView sports_list;
-    String[] sportsArray = {"Jalgpall", "Korvpall", "Sulgpall", "Korvpall"};
-    String[] dateArray = {"30. oktoober", "3. november", "5. november", "5. november"};
-    String[] locationArray = {"Tartu kesklinn", "Anne kanal", "Ülejõe park", "Mingi suur väljak"};
+public class PracticeViewActivity extends AppCompatActivity{
 
 
-    Integer[] imgid={
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-    };
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        //sets title of menu
-        setTitle("Pealeht");
 
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_practice_view);
 
+        String sports = getIntent().getExtras().getString("sports");
+        setTitle(sports);
 
+        String date = getIntent().getExtras().getString("date");
+        String location = getIntent().getExtras().getString("location");
 
-        CustomListAdapter adapter = new CustomListAdapter(this, sportsArray, dateArray, locationArray, imgid);
-        sports_list=(ListView)findViewById(R.id.sports_list);
-        sports_list.setAdapter(adapter);
+        TextView tv = (TextView) findViewById(R.id.textView5);
+        tv.setText(date);
 
-        final Intent i=new Intent(this, PracticeViewActivity.class);
+        TextView tv2 = (TextView) findViewById(R.id.textView7);
+        tv2.setText(location);
 
-        sports_list.setOnItemClickListener(new OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                i.putExtra("sports",sportsArray[+position]);
-                i.putExtra("date",dateArray[+position]);
-                i.putExtra("location", locationArray[+position]);
-                startActivity(i);
-
-            }
-        });
+        //setContentView(tv);
+        //setContentView(tv2);
 
     }
 
@@ -76,6 +53,7 @@ public class HomeActivity extends AppCompatActivity{
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         switch(item.getItemId()) {
@@ -108,8 +86,6 @@ public class HomeActivity extends AppCompatActivity{
 
         //Return false to allow normal menu processing to proceed,
         //true to consume it here.
-            return false;
+        return false;
     }
-
-
 }
