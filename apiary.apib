@@ -244,25 +244,66 @@ Spordisemu is an Android app for finding people to do sports together.
 
 + Response 200 (application/json)
 
-        {
-            "practice_id": 1,
-            "type": "Quidditch",
-            "timestamp": "2016-09-01 14:00:00",
-            "location": "Hogwarts",
-            "level": "novice",
-            "user_id": 1
-        }
+        [
+            {
+                "practice_id": 1,
+                "type": "Quidditch",
+                "timestamp": "2016-09-01 14:00:00",
+                "location": "Hogwarts",
+                "level": "1",
+                "user_id": 1
+            },
+            {
+                "practice_id": 2,
+                "type": "Korvpall",
+                "timestamp": "2016-10-01 14:00:00",
+                "location": "Väljak",
+                "level": "1",
+                "user_id": 3
+            },
+            {
+                "practice_id": 3,
+                "type": "Jalgpall",
+                "timestamp": "2016-10-08 14:00:00",
+                "location": "Minu hoovis",
+                "level": "2",
+                "user_id": 4
+            },
+            {
+                "practice_id": 4,
+                "type": "Korvpall",
+                "timestamp": "2016-10-11 14:00:00",
+                "location": "Liivi 2",
+                "level": "2",
+                "user_id": 1
+            },
+            {
+                "practice_id": 5,
+                "type": "Sulgpall",
+                "timestamp": "2016-11-01 14:00:00",
+                "location": "Vaatab veel",
+                "level": "4",
+                "user_id": 1
+            },
+            {
+                "practice_id": 6,
+                "type": "Mädamuna",
+                "timestamp": "2016-11-11 14:00:00",
+                "location": "Põllu peal",
+                "level": "1",
+                "user_id": 2
+            }
+        ]
         
 ### Create new practice [POST]
   
 + Request (application/json)
 
         {
-            "practice_id": 2,
             "type": "Wizard chess",
             "timestamp": "2016-09-15 15:00:00",
             "location": "Hogwarts",
-            "level": "expert",
+            "level": "4",
             "user_id": 1
         }
         
@@ -279,13 +320,31 @@ Spordisemu is an Android app for finding people to do sports together.
                 "type": "Wizard chess",
                 "timestamp": "2016-09-15 15:00:00",
                 "location": "Hogwarts",
-                "level": "expert",
+                "level": "4",
                 "user_id": 1
             }
             
+## One practice collection [/practices/{practice_id}]
+
+### Show one practice [GET]
+
++ Parameters
+    + practice_id (number) - id of a practice
+
++ Response 200 (application/json)
+
+        {
+            "practice_id": 1,
+            "type": "Quidditch",
+            "timestamp": "2016-09-01 14:00:00",
+            "location": "Hogwarts",
+            "level": "1",
+            "user_id": 1
+        }
+            
 ## Comments collection [/practices/{practice_id}/comments]
 
-### Show all practices [GET]
+### Show all comments [GET]
 
 + Parameters
     + practice_id (number) - id of a practice
@@ -304,7 +363,6 @@ Spordisemu is an Android app for finding people to do sports together.
 + Request (application/json)
 
         {
-            "comment_id": 2,
             "user_id": 1,
             "practice_id": 1,
             "comment": "Yes it is (HP 4 life)"
@@ -345,7 +403,6 @@ Spordisemu is an Android app for finding people to do sports together.
 + Request (application/json)
 
         {
-            "attend_id": 2,
             "user_id": 3,
             "practice_id": 1
         }
