@@ -1,6 +1,9 @@
 package spordisemu.spordisemu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -8,36 +11,35 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by ingrid on 10/25/15.
  */
-public class PracticeViewActivity extends AppCompatActivity{
-
-
+public class PracticeViewActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-
         setContentView(R.layout.activity_practice_view);
 
-        String sports = getIntent().getExtras().getString("sports");
-        setTitle(sports);
+        setTitle(getIntent().getStringExtra("title"));
 
-        String date = getIntent().getExtras().getString("date");
-        String location = getIntent().getExtras().getString("location");
-
-        TextView tv = (TextView) findViewById(R.id.textView5);
-        tv.setText(date);
-
-        TextView tv2 = (TextView) findViewById(R.id.textView7);
-        tv2.setText(location);
-
-        //setContentView(tv);
-        //setContentView(tv2);
+        TextView date = (TextView) findViewById(R.id.date);
+        date.setText(getIntent().getStringExtra("date"));
+        TextView location = (TextView) findViewById(R.id.location);
+        location.setText(getIntent().getStringExtra("location"));
+        TextView user = (TextView) findViewById(R.id.user);
+        user.setText(getResources().getString(R.string.korraldaja) + " " + getIntent().getStringExtra("user"));
 
     }
 

@@ -63,4 +63,7 @@
     <string name="checkPw">Paroolid ei kattu</string>
     <string name="pwLength">Parool peab olema vähemalt 6 tähemärki pikk</string>
 
+    <string name="osale">Osale</string>
+    <string name="korraldaja">Korraldaja:</string>
+
 </resources>
