@@ -140,6 +140,8 @@ public class Map extends android.support.v4.app.FragmentActivity{
     public void setLocation (View view) {
         if (address.getAddressLine(0).toString() != null) {
             finish();
+            Intent createOptionsLocationActivity = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
+            createOptionsLocationActivity.putExtra("location", address.getAddressLine(0).toString());
             CreateOptionsLocationActivity.setText(address.getAddressLine(0).toString());
             CreateOptionsLocationActivity.location.setText(address.getAddressLine(0).toString());
         }

@@ -66,5 +66,7 @@
     <string name="osale">Osale</string>
     <string name="korraldaja">Korraldaja:</string>
     <string name="wait">Palun oota</string>
+    <string name="vajutamataNupp">Lisa spordiala!</string>
+    <string name="valimataSport">Mingi väli on jäänud valimata</string>
 
 </resources>

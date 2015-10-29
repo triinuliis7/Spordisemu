@@ -292,6 +292,13 @@ public class RegistrationActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             dialog.dismiss();
             Intent createOptionsPictureIntent = new Intent(getApplicationContext(), CreateOptionsPictureActivity.class);
+            try {
+                Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
+                createOptionsLocationIntent.putExtra("user_id", new JSONObject(result).getString("id"));
+                createOptionsLocationIntent.putExtra("username", new JSONObject(result).getString("username"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             startActivity(createOptionsPictureIntent);
         }
     }

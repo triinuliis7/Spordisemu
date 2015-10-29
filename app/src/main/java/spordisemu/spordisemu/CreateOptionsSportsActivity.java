@@ -97,25 +97,47 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            postJson(json);
-
         }
     }
 
 
     public void createLocation (View view) {
         view.startAnimation(buttonClick);
-        Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
-        startActivity(createOptionsLocationIntent);
+        TextView added = (TextView) findViewById(R.id.textView6);
+
+        if (sportSpinner.getSelectedItem().toString().equals( "Spordialad" ) ||
+                raskustaseSpinner.getSelectedItem().toString().equals( "Tasemed")) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(CreateOptionsSportsActivity.this);
+            alert.setMessage(getResources().getString(R.string.valimataSport));
+            alert.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = alert.create();
+            alert11.show();
+        } else if (added.getVisibility() == (View.INVISIBLE)) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(CreateOptionsSportsActivity.this);
+            alert.setMessage(getResources().getString(R.string.vajutamataNupp));
+            alert.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = alert.create();
+            alert11.show();
+        } else {
+            Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
+            createOptionsLocationIntent.putExtra("sports", sportSpinner.getSelectedItem().toString());
+            createOptionsLocationIntent.putExtra("level", raskustaseSpinner.getSelectedItem().toString());
+            startActivity(createOptionsLocationIntent);
+        }
 
     }
-
-    public void postJson(JSONObject json) {
-        String apiURL = getResources().getString(R.string.apiUrl);
-        String urlString = apiURL + "/users/test/sports";
-        new CallAPI().execute(urlString, json.toString());
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,48 +157,5 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    private class CallAPI extends AsyncTask<String, String, String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-            String urlString = params[0];
-            String request = params[1];
-            String response;
-
-            StringBuffer jsonResponse = new StringBuffer();
-
-            // HTTP POST
-            try {
-                String line;
-                URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Accept", "application/json");
-                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
-                writer.write(request);
-                writer.close();
-                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                while ((line = br.readLine()) != null) {
-                    jsonResponse.append(line);
-                }
-                br.close();
-                urlConnection.disconnect();
-            } catch (Exception e ) {
-                System.out.println(e.getMessage());
-                return e.getMessage();
-            }
-
-            response = jsonResponse.toString();
-            return response;
-
-        }
-
     }
 }

@@ -101,6 +101,9 @@ public class CreateOptionsPictureActivity extends AppCompatActivity{
     public void createSports (View view) {
 
         view.startAnimation(buttonClick);
+        Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
+        createOptionsLocationIntent.putExtra("img", "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg");
+
         Intent createOptionsSportsIntent = new Intent(getApplicationContext(), CreateOptionsSportsActivity.class);
         startActivity(createOptionsSportsIntent);
 
