@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -239,6 +240,18 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private class CallAPI extends AsyncTask<String, String, String> {
 
+        ProgressDialog dialog = new ProgressDialog(RegistrationActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage(getResources().getString(R.string.wait));
+            dialog.setIndeterminate(true);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
+
         @Override
         protected String doInBackground(String... params) {
             String urlString = params[0];
@@ -277,6 +290,7 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
+            dialog.dismiss();
             Intent createOptionsPictureIntent = new Intent(getApplicationContext(), CreateOptionsPictureActivity.class);
             startActivity(createOptionsPictureIntent);
         }

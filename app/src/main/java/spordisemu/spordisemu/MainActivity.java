@@ -1,5 +1,6 @@
 package spordisemu.spordisemu;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -13,10 +14,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -36,13 +40,11 @@ public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGE = "";
     public static boolean loggedIn = false;
 
-    public static final int DIALOG_DOWNLOAD_PROGRESS = 0;
-    private ProgressDialog mProgressDialog;
-
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -128,16 +130,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {
+        ProgressDialog dialog = new ProgressDialog(MainActivity.this);
 
-        /*@Override
+        @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            showDialog(DIALOG_DOWNLOAD_PROGRESS);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage(getResources().getString(R.string.wait));
+            dialog.setIndeterminate(true);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
         }
-
-        protected void onProgressUpdate(String... progress) {
-            mProgressDialog.setProgress(Integer.parseInt(progress[0]));
-        }*/
 
         @Override
         protected String doInBackground(String... params) {
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(String result) {
-            //dismissDialog(DIALOG_DOWNLOAD_PROGRESS);
+            dialog.dismiss();
             if (result.equals("true")){
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(loginIntent);
@@ -201,19 +204,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    /*@Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DIALOG_DOWNLOAD_PROGRESS:
-                mProgressDialog = new ProgressDialog(this);
-                mProgressDialog.setMessage("waiting 5 minutes..");
-                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
-                return mProgressDialog;
-            default:
-                return null;
-        }
-    }*/
 }

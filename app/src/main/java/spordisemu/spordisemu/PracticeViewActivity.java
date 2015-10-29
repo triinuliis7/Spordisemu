@@ -1,5 +1,6 @@
 package spordisemu.spordisemu;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,11 @@ public class PracticeViewActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+        requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         setContentView(R.layout.activity_practice_view);
 
@@ -79,6 +85,9 @@ public class PracticeViewActivity extends AppCompatActivity {
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainIntent);
                 break;
+            case android.R.id.home:
+                this.finish();
+                return true;
             default:
                 Toast.makeText(getApplicationContext(),
                         "Midagi läks valesti :(",

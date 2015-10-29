@@ -1,6 +1,7 @@
 package spordisemu.spordisemu;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -173,6 +174,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {
+        ProgressDialog dialog = new ProgressDialog(HomeActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage(getResources().getString(R.string.wait));
+            dialog.setIndeterminate(true);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -220,6 +232,7 @@ public class HomeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else if (result.charAt(0) == 'u') {
+                dialog.dismiss();
                 try {
                     initializeUser(new JSONObject(result.substring(1)));
                 } catch (JSONException e) {
@@ -227,6 +240,7 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
             try {
+                dialog.dismiss();
                 JSONArray json = new JSONArray(result);
                 initializeVariables(json);
             } catch (JSONException e) {
