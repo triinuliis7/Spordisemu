@@ -58,6 +58,7 @@
             android:id="@+id/attend"
             android:layout_marginRight="40dp"
             android:textColor="#fff"
+            android:onClick="attend"
             android:background="#ff039069"
             android:layout_marginTop="20dp" />
     </LinearLayout>

@@ -2,9 +2,11 @@ package spordisemu.spordisemu;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
@@ -19,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,9 +39,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
@@ -129,6 +135,38 @@ public class PracticeViewActivity extends AppCompatActivity {
         return p1;
     }
 
+    public void attend(View view) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
+        alert.setMessage(getResources().getString(R.string.kinnitaOsalemine));
+        alert.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        String loggedIn_id = getIntent().getStringExtra("loggedIn_id");
+                        String practice_id = getIntent().getStringExtra("practice_id");
+                        String apiURL = getResources().getString(R.string.apiUrl);
+                        String urlString = apiURL + "/practices/" + practice_id + "/attend";
+                        JSONObject json = new JSONObject();
+                        try {
+                            json.put("user_id", loggedIn_id);
+                            json.put("practice_id", practice_id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        new CallAPI().execute(urlString, json.toString());
+                    }
+                });
+        alert.setNegativeButton(getResources().getString(R.string.cancel),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = alert.create();
+        alert11.show();
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -151,4 +189,74 @@ public class PracticeViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class CallAPI extends AsyncTask<String, String, String> {
+
+        ProgressDialog dialog = new ProgressDialog(PracticeViewActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage(getResources().getString(R.string.wait));
+            dialog.setIndeterminate(true);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String urlString = params[0];
+            String request = params[1];
+            String response;
+
+            StringBuffer jsonResponse = new StringBuffer();
+
+            // HTTP POST
+            try {
+                String line;
+                URL url = new URL(urlString);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                urlConnection.setDoInput(true);
+                urlConnection.setDoOutput(true);
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
+                writer.write(request);
+                writer.close();
+                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                while ((line = br.readLine()) != null) {
+                    jsonResponse.append(line);
+                }
+                br.close();
+                urlConnection.disconnect();
+            } catch (Exception e ) {
+                System.out.println(e.getMessage());
+                return e.getMessage();
+            }
+
+            response = jsonResponse.toString();
+            return response;
+        }
+
+        protected void onPostExecute(String result) {
+            dialog.dismiss();
+            AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
+            alert.setMessage(getResources().getString(R.string.success));
+            alert.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Button btn = (Button) findViewById(R.id.attend);
+                            btn.setText(getResources().getString(R.string.juba_osaled));
+                            btn.setEnabled(false);
+                            btn.setBackgroundColor(Color.LTGRAY);
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = alert.create();
+            alert11.show();
+        }
+    }
 }

@@ -33,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     public String date = "";
     public String location = "";
     public String title = "";
+    public String practice_id = "";
 
 
     @Override
@@ -89,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                detailedView(ids[position]);
+                detailedView(position);
             }
         });
     }
@@ -107,6 +108,7 @@ public class HomeActivity extends AppCompatActivity {
             date = json.get("timestamp").toString();
             location = json.getString("location").toString();
             title = json.getString("type").toString();
+            practice_id = json.getString("practice_id").toString();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -120,6 +122,8 @@ public class HomeActivity extends AppCompatActivity {
             PracticeViewIntent.putExtra("date", date);
             PracticeViewIntent.putExtra("location", location);
             PracticeViewIntent.putExtra("title", title);
+            PracticeViewIntent.putExtra("practice_id", practice_id);
+            PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
             startActivity(PracticeViewIntent);
         } catch (JSONException e) {
             e.printStackTrace();

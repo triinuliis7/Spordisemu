@@ -189,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
             if (result.equals("true")){
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(loginIntent);
+                try {
+                    loginIntent.putExtra("loggedIn_id", new JSONObject(result).getString("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
                 alert.setMessage("Kasutajanimi või parool on vale");
