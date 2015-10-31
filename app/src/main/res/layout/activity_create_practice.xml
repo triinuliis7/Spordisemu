@@ -4,4 +4,78 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal">
+
+        <Spinner
+            android:id="@+id/sport"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:textColor="#ff41815b"
+            android:background="#ff039069"
+            android:popupBackground="#ff039069"
+            android:dropDownSelector="#ff039069"
+            android:layout_marginTop="40dp" />
+
+        <Spinner
+            android:id="@+id/raskustase"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="#ff039069"
+            android:popupBackground="#ff039069"
+            android:textColor="#ff41815b"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Kuupäev:"
+            android:id="@+id/dateText"
+            android:paddingStart="10dp"
+            android:textColor="#ff41815b"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="31.10.2015"
+            android:id="@+id/date"
+            android:paddingStart="10dp"
+            android:textColor="#ff41815b"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/calendar"
+            android:id="@+id/calendar"
+            android:onClick="setDate"
+            android:background="#ff039069"
+            android:stateListAnimator="@null"
+            />
+
+
+    </LinearLayout>
+
 </LinearLayout>

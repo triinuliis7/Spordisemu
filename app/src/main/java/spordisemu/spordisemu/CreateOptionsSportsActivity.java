@@ -70,8 +70,8 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
     public void addSports (View view) {
         view.startAnimation(buttonClick);
 
-        if(sportSpinner.getSelectedItem().toString().equals( "Spordialad" ) ||
-                raskustaseSpinner.getSelectedItem().toString().equals( "Tasemed")){
+        if(sportSpinner.getSelectedItem().toString().equals( "Spordiala" ) ||
+                raskustaseSpinner.getSelectedItem().toString().equals( "Tase")){
             AlertDialog.Builder alert = new AlertDialog.Builder(CreateOptionsSportsActivity.this);
             alert.setMessage(getResources().getString(R.string.valimataSport));
             alert.setPositiveButton("OK",

@@ -40,14 +40,14 @@
     <string name="kolmas_andmed">3/3 Andmed > Lisa asukoht</string>
 
     <string-array name="sportList">
-        <item>Spordialad</item>
+        <item>Spordiala</item>
         <item>Korvpall</item>
         <item>Jalgpall</item>
         <item>Sulgpall</item>
     </string-array>
 
     <string-array name="raskustaseList">
-        <item>Tasemed</item>
+        <item>Tase</item>
         <item>Algaja</item>
         <item>Kerge</item>
         <item>Keskmine</item>
