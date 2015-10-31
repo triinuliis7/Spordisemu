@@ -53,13 +53,13 @@ public class CreateOptionsPictureActivity extends AppCompatActivity{
         bar.setCustomView(mCustomView);
         bar.setDisplayShowCustomEnabled(true);
 
-        final String [] items			= new String [] {"Take from camera", "Select from gallery"};
-        ArrayAdapter<String> adapter	= new ArrayAdapter<String> (this, android.R.layout.select_dialog_item,items);
+        ArrayAdapter<String> adapter	= new ArrayAdapter<String> (this, android.R.layout.select_dialog_item,
+                getResources().getStringArray(R.array.lisaPiltList));
         AlertDialog.Builder builder		= new AlertDialog.Builder(this);
 
-        builder.setTitle("Select Image");
+        builder.setTitle(getResources().getString(R.string.selectImg));
         builder.setAdapter( adapter, new DialogInterface.OnClickListener() {
-            public void onClick( DialogInterface dialog, int item ) { //pick from camera
+            public void onClick( DialogInterface dialog, int item ) { //tee pilt kaameraga
                 if (item == 0) {
                     Intent intent 	 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -154,7 +154,7 @@ public class CreateOptionsPictureActivity extends AppCompatActivity{
         int size = list.size();
 
         if (size == 0) {
-            Toast.makeText(this, "Can not find image crop app", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.cantFindCropApp), Toast.LENGTH_SHORT).show();
 
             return;
         } else {
@@ -190,7 +190,7 @@ public class CreateOptionsPictureActivity extends AppCompatActivity{
                 CropOptionAdapter adapter = new CropOptionAdapter(getApplicationContext(), cropOptions);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Choose Crop App");
+                builder.setTitle(getResources().getString(R.string.chooseCrop));
                 builder.setAdapter( adapter, new DialogInterface.OnClickListener() {
                     public void onClick( DialogInterface dialog, int item ) {
                         startActivityForResult( cropOptions.get(item).appIntent, CROP_FROM_CAMERA);

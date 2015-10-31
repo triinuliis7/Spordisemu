@@ -73,4 +73,12 @@
     <string name="cancel">Tagasi</string>
     <string name="kinnitaOsalemine">Oled kindel, et soovid sellel treeningul osaleda?</string>
 
+    <string name="selectImg">Vali pilt</string>
+    <string-array name="lisaPiltList">
+        <item>Tee kaameraga pilti</item>
+        <item>Vali galeriist</item>
+    </string-array>
+    <string name="cantFindCropApp">Ei leia rakendust pildi lõikamiseks</string>
+    <string name="chooseCrop">Vali rakendus pildi lõikamiseks</string>
+
 </resources>

@@ -73,7 +73,7 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
         if(sportSpinner.getSelectedItem().toString().equals( "Spordialad" ) ||
                 raskustaseSpinner.getSelectedItem().toString().equals( "Tasemed")){
             AlertDialog.Builder alert = new AlertDialog.Builder(CreateOptionsSportsActivity.this);
-            alert.setMessage("Mingi väli on jäänud valimata");
+            alert.setMessage(getResources().getString(R.string.valimataSport));
             alert.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
