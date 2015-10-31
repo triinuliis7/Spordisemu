@@ -50,7 +50,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
         raskustaseSpinner.setAdapter(raskustaseItems);
 
 
-        dateView = (TextView) findViewById(R.id.textView4);
+        dateView = (TextView) findViewById(R.id.date);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
@@ -67,15 +67,15 @@ public class CreatePracticeActivity extends AppCompatActivity {
         if (month < 9) {
             monthS = "0" + Integer.toString(month);
         }
-        //showDate(yearS, monthS, dayS);
+        showDate(yearS, monthS, dayS);
 
     }
 
     public void setDate(View view) {
 
-        //showDialog(999);
+        showDialog(999);
     }
-/*
+
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == 999) {
@@ -104,6 +104,6 @@ public class CreatePracticeActivity extends AppCompatActivity {
     private void showDate(String year, String month, String day) {
         dateView.setText(new StringBuilder().append(day).append(".").append(month).append(".").append(year));
     }
-*/
+
 }
 
