@@ -81,4 +81,6 @@
     <string name="cantFindCropApp">Ei leia rakendust pildi lõikamiseks</string>
     <string name="chooseCrop">Vali rakendus pildi lõikamiseks</string>
 
+    <string name="trenn">Loo trenn</string>
+
 </resources>

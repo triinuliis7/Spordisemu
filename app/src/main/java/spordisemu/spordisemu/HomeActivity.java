@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     public String location = "";
     public String title = "";
     public String practice_id = "";
+
+    private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
 
     @Override
@@ -176,6 +179,14 @@ public class HomeActivity extends AppCompatActivity {
         //true to consume it here.
             return false;
     }
+
+    public void createPracticeActivity (View view) {
+
+        view.startAnimation(buttonClick);
+        Intent practiceIntent = new Intent(getApplicationContext(), CreatePracticeActivity.class);
+        startActivity(practiceIntent);
+    }
+
 
     private class CallAPI extends AsyncTask<String, String, String> {
         ProgressDialog dialog = new ProgressDialog(HomeActivity.this);

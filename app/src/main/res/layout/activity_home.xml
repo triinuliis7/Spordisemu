@@ -16,4 +16,20 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/createPractice"
+        android:layout_alignBottom="@+id/sports_list"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/button_round"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold|italic"
+        android:padding="15dp"
+        android:onClick="createPracticeActivity" />
+
 </RelativeLayout>
