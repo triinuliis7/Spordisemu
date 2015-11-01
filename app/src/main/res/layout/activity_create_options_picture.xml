@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textView3"
-        android:textColor="#ff039069"
+        android:textColor="#339933"
         android:textSize="32dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
@@ -30,7 +30,7 @@
         android:id="@+id/addPicture"
         android:layout_gravity="center_horizontal"
         android:background="#fff"
-        android:textColor="#ff039069"
+        android:textColor="#339933"
         android:stateListAnimator="@null" />
 
     <LinearLayout
@@ -44,7 +44,7 @@
             android:text="@string/jatavahele"
             android:id="@+id/button4"
             android:background="#fff"
-            android:textColor="#ff039069"
+            android:textColor="#339933"
             android:stateListAnimator="@null"
             android:layout_marginTop="75dp"
             android:onClick="createSports"
@@ -57,7 +57,7 @@
             android:textColor="#fff"
             android:id="@+id/button3"
             android:layout_marginTop="75dp"
-            android:background="#ff039069"
+            android:background="#40bf40"
             android:stateListAnimator="@null"
             android:layout_marginLeft="170dp"
             android:onClick="createSports"

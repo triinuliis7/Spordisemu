@@ -32,7 +32,7 @@
             android:text="@string/kinnita"
             android:id="@+id/button6"
             android:layout_gravity="center_horizontal"
-            android:background="#ff039069"
+            android:background="#40bf40"
             android:onClick="setLocation" />
     </LinearLayout>
 

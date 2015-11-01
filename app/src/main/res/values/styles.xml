@@ -2,16 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#ff039069</item>
-        <item name="colorPrimaryDark">#FF026A4D</item>
+        <item name="colorPrimary">#40bf40</item>
+        <item name="colorPrimaryDark">#339933</item>
     </style>
 
     <style name="AppThemeAction" parent="Theme.AppCompat">
-        <item name="colorPrimary">#ff039069</item>
-        <item name="colorPrimaryDark">#FF026A4D</item>
+        <item name="colorPrimary">#40bf40</item>
+        <item name="colorPrimaryDark">#339933</item>
     </style>
 
     <style name="green">
-        <item name="android:color">#ff039069</item>
+        <item name="android:color">#40bf40</item>
     </style>
 </resources>

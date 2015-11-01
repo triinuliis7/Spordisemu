@@ -10,7 +10,7 @@
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
         android:textSize="32dp"
-        android:textColor="#ff039069"
+        android:textColor="#339933"
         android:autoText="false"
         android:layout_marginTop="50dp"
         android:text="@string/lisa_spordiala" />
@@ -20,20 +20,20 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:textColor="#ff41815b"
+        android:textColor="#339933"
         android:layout_marginTop="80dp"
-        android:background="#ff039069"
-        android:popupBackground="#ff039069"
-        android:dropDownSelector="#ff039069" />
+        android:background="#40bf40"
+        android:popupBackground="#40bf40"
+        android:dropDownSelector="#40bf40" />
 
     <Spinner
         android:id="@+id/raskustase"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:background="#ff039069"
-        android:popupBackground="#ff039069"
+        android:background="#40bf40"
+        android:popupBackground="#40bf40"
         android:layout_gravity="center_horizontal"
-        android:textColor="#ff41815b"
+        android:textColor="#339933"
         android:layout_marginTop="20dp" />
 
     <Button
@@ -45,7 +45,7 @@
         android:layout_gravity="center_horizontal"
         android:background="#fff1f1f1"
         android:stateListAnimator="@null"
-        android:textColor="#ff039069"
+        android:textColor="#339933"
         android:nestedScrollingEnabled="false"
         android:onClick="addSports" />
 
@@ -57,7 +57,7 @@
         android:id="@+id/textView6"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:textColor="#ff039069"
+        android:textColor="#339933"
         android:visibility="invisible" />
 
     <TextView
@@ -66,7 +66,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/sportsText"
         android:layout_gravity="center_horizontal"
-        android:textColor="#ff039069" />
+        android:textColor="#339933" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -80,7 +80,7 @@
             android:textColor="#fff"
             android:id="@+id/button3"
             android:layout_marginTop="40dp"
-            android:background="#ff039069"
+            android:background="#40bf40"
             android:stateListAnimator="@null"
             android:layout_marginLeft="260dp"
             android:onClick="createLocation"
