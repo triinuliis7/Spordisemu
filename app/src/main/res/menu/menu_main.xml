@@ -11,4 +11,6 @@
         android:orderInCategory="5" app:showAsAction="never" />
     <item android:id="@+id/logivalja" android:title="@string/logivalja"
         android:orderInCategory="6" app:showAsAction="never" />
+    <item android:id="@+id/lisa_spordiala" android:title="@string/lisa_spordiala"
+        android:orderInCategory="7" app:showAsAction="never" />
 </menu>

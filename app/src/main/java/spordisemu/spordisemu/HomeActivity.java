@@ -168,6 +168,10 @@ public class HomeActivity extends AppCompatActivity {
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainIntent);
                 break;
+            case R.id.lisa_spordiala:
+                Intent lisaIntent = new Intent(getApplicationContext(), AddSportsActivity.class);
+                startActivity(lisaIntent);
+                break;
             default:
                 Toast.makeText(getApplicationContext(),
                         "Midagi läks valesti :(",
