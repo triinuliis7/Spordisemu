@@ -59,7 +59,7 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
         sportSpinner.setAdapter(sportItems);
 
         //raskustaseme dropdown
-        raskustaseSpinner = (Spinner)findViewById(R.id.raskustase);
+        raskustaseSpinner = (Spinner)findViewById(R.id.raskustase1);
         ArrayAdapter<CharSequence> raskustaseItems = ArrayAdapter.createFromResource(this, R.array.raskustaseList,
                 android.R.layout.simple_spinner_item);
         raskustaseItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

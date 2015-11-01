@@ -42,7 +42,7 @@ public class CreateOptionsSportsActivityTest extends ActivityInstrumentationTest
         onView(withId(R.id.sport)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Jalgpall"))).perform(click());
 
-        onView(withId(R.id.raskustase)).perform(click());
+        onView(withId(R.id.raskustase1)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Kerge"))).perform(click());
 
         //clicks on button "Lisa" and ckecks if there is correct text
