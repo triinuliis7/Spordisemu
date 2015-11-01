@@ -44,8 +44,52 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Kuupäev:"
             android:id="@+id/dateText"
+            android:paddingStart="10dp"
+            android:textColor="#ff41815b"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/dateText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/date"
+            android:id="@+id/date"
+            android:paddingStart="10dp"
+            android:textColor="#ff41815b"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calendar"
+            android:id="@+id/calendar"
+            android:onClick="setDate"
+            android:stateListAnimator="@null"
+            android:background="#fff"
+            android:layout_marginLeft="10dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/timeText"
+            android:id="@+id/timeText"
             android:paddingStart="10dp"
             android:textColor="#ff41815b"
             android:textSize="18dp"
@@ -54,28 +98,25 @@
             android:layout_marginTop="10dp" />
 
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="31.10.2015"
-            android:id="@+id/date"
+            android:text="@string/time"
+            android:id="@+id/time"
             android:paddingStart="10dp"
             android:textColor="#ff41815b"
             android:textSize="18dp"
-            android:layout_marginTop="10dp"
-            />
+            android:layout_marginTop="10dp" />
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
-            android:src="@drawable/calendar"
-            android:id="@+id/calendar"
-            android:onClick="setDate"
-            android:background="#ff039069"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time"
+            android:id="@+id/imageButton"
+            android:onClick="setTime"
             android:stateListAnimator="@null"
-            />
-
-
+            android:background="#fff"
+            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
 </LinearLayout>

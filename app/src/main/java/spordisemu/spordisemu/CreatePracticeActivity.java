@@ -2,28 +2,35 @@ package spordisemu.spordisemu;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
 
 /**
  * Created by Kelian on 31/10/2015.
  */
-public class CreatePracticeActivity extends AppCompatActivity {
+public class CreatePracticeActivity extends FragmentActivity {
 
     static Spinner sportSpinner;
     static Spinner raskustaseSpinner;
 
-    private DatePicker datePicker;
     private Calendar calendar;
     private TextView dateView;
     private int year, month, day;
+
+    private TextView timeView;
+    private int hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,17 +76,39 @@ public class CreatePracticeActivity extends AppCompatActivity {
         }
         showDate(yearS, monthS, dayS);
 
+        timeView = (TextView) findViewById(R.id.time);
+        hour = calendar.get(Calendar.HOUR_OF_DAY);
+        minute = calendar.get(Calendar.MINUTE);
+
+        String hourS = Integer.toString(hour);
+        String minuteS = Integer.toString(minute);
+
+        if (hour < 10) {
+            hourS = "0" + Integer.toString(hour);
+        }
+        if (minute < 10) {
+            minuteS = "0" + Integer.toString(minute);
+        }
+
+        showTime(hourS,minuteS);
+
     }
 
     public void setDate(View view) {
-
         showDialog(999);
+    }
+
+    public void setTime(View view) {
+        showDialog(998);
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == 999) {
             return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        if (id == 998) {
+            return new TimePickerDialog(this, myTimeListener, hour, minute, DateFormat.is24HourFormat(this));
         }
         return null;
     }
@@ -101,9 +130,28 @@ public class CreatePracticeActivity extends AppCompatActivity {
         }
     };
 
+    private TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker arg0, int arg1, int arg2) {
+            String arg1S = Integer.toString(arg1); //hour
+            String arg2S = Integer.toString(arg2); //minute
+
+            if (arg1 < 10) {
+                arg1S = "0" + Integer.toString(arg1);
+            }
+            if (arg2 < 10) {
+                arg2S = "0" + Integer.toString(arg2);
+            }
+            showTime(arg1S, arg2S);
+        }
+    };
+
     private void showDate(String year, String month, String day) {
         dateView.setText(new StringBuilder().append(day).append(".").append(month).append(".").append(year));
     }
 
+    private void showTime(String hour, String minute) {
+        timeView.setText(new StringBuilder().append(hour).append(":").append(minute));
+    }
 }
 

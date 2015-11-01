@@ -81,6 +81,13 @@
     <string name="cantFindCropApp">Ei leia rakendust pildi lõikamiseks</string>
     <string name="chooseCrop">Vali rakendus pildi lõikamiseks</string>
 
+
+    <string name="dateText">Kuupäev: </string>
+    <string name="date">31.10.2015</string>
+    <string name="timeText">Aeg: </string>
+    <string name="time">10:00</string>
+
     <string name="trenn">Loo trenn</string>
+
 
 </resources>
