@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"></LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -17,17 +24,16 @@
             android:layout_height="40dp"
             android:layout_gravity="left"
             android:textColor="#ff41815b"
-            android:background="#ff039069"
-            android:popupBackground="#ff039069"
-            android:dropDownSelector="#ff039069"
+            android:background="#818081"
+            android:popupBackground="#818081"
             android:layout_marginTop="40dp" />
 
         <Spinner
             android:id="@+id/raskustase"
             android:layout_width="150dp"
             android:layout_height="40dp"
-            android:background="#ff039069"
-            android:popupBackground="#ff039069"
+            android:background="#818081"
+            android:popupBackground="#818081"
             android:textColor="#ff41815b"
             android:layout_marginTop="20dp"
             android:layout_gravity="right"
@@ -46,7 +52,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/dateText"
             android:paddingStart="10dp"
-            android:textColor="#ff41815b"
+            android:textColor="#818081"
             android:textSize="18dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
@@ -60,7 +66,7 @@
             android:text="@string/date"
             android:id="@+id/date"
             android:paddingStart="10dp"
-            android:textColor="#ff41815b"
+            android:textColor="#818081"
             android:textSize="18dp"
             android:layout_marginTop="10dp" />
 
@@ -91,7 +97,7 @@
             android:text="@string/timeText"
             android:id="@+id/timeText"
             android:paddingStart="10dp"
-            android:textColor="#ff41815b"
+            android:textColor="#818081"
             android:textSize="18dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
@@ -104,7 +110,7 @@
             android:text="@string/time"
             android:id="@+id/time"
             android:paddingStart="10dp"
-            android:textColor="#ff41815b"
+            android:textColor="#818081"
             android:textSize="18dp"
             android:layout_marginTop="10dp" />
 
@@ -117,6 +123,86 @@
             android:stateListAnimator="@null"
             android:background="#fff"
             android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/sugu"
+            android:id="@+id/textView5"
+            android:paddingStart="10dp"
+            android:textColor="#818081"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/sugu"
+            android:id="@+id/sugu"
+            android:paddingStart="10dp"
+            android:textColor="#818081"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mees"
+                android:id="@+id/r1"
+                android:layout_marginTop="6dp"
+                android:buttonTint="#818081"
+                android:textColor="#818081"
+                android:textSize="16dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/naine"
+                android:id="@+id/r2"
+                android:layout_marginTop="6dp"
+                android:buttonTint="#818081"
+                android:textColor="#818081"
+                android:textSize="16dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/both"
+                android:id="@+id/r3"
+                android:layout_marginTop="6dp"
+                android:buttonTint="#818081"
+                android:textColor="#818081"
+                android:textSize="16dp" />
+        </RadioGroup>
+
     </LinearLayout>
 
 </LinearLayout>

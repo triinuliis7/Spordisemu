@@ -30,7 +30,7 @@
         android:id="@+id/addPicture"
         android:layout_gravity="center_horizontal"
         android:background="#fff"
-        android:textColor="#339933"
+        android:textColor="#818081"
         android:stateListAnimator="@null" />
 
     <LinearLayout
@@ -44,7 +44,7 @@
             android:text="@string/jatavahele"
             android:id="@+id/button4"
             android:background="#fff"
-            android:textColor="#339933"
+            android:textColor="#818081"
             android:stateListAnimator="@null"
             android:layout_marginTop="75dp"
             android:onClick="createSports"

@@ -3,7 +3,6 @@ package spordisemu.spordisemu;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,19 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * Created by ingrid on 10/9/15.
@@ -54,15 +45,15 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
         //Spordialade dropdown
         sportSpinner = (Spinner) findViewById(R.id.sport);
         ArrayAdapter<CharSequence> sportItems = ArrayAdapter.createFromResource(this, R.array.sportList,
-                android.R.layout.simple_spinner_item);
-        sportItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner);
+        sportItems.setDropDownViewResource(R.layout.item_spinner_dropdown);
         sportSpinner.setAdapter(sportItems);
 
         //raskustaseme dropdown
         raskustaseSpinner = (Spinner)findViewById(R.id.raskustase1);
         ArrayAdapter<CharSequence> raskustaseItems = ArrayAdapter.createFromResource(this, R.array.raskustaseList,
-                android.R.layout.simple_spinner_item);
-        raskustaseItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner);
+        raskustaseItems.setDropDownViewResource(R.layout.item_spinner_dropdown);
         raskustaseSpinner.setAdapter(raskustaseItems);
 
     }

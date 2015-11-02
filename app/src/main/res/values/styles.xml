@@ -14,4 +14,9 @@
     <style name="green">
         <item name="android:color">#40bf40</item>
     </style>
+
+    <style name="dark_grey">
+        <item name="android:color">#818081</item>
+    </style>
+
 </resources>

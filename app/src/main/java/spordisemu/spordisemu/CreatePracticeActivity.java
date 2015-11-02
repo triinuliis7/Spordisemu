@@ -2,10 +2,8 @@ package spordisemu.spordisemu;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -20,7 +18,7 @@ import java.util.Calendar;
 /**
  * Created by Kelian on 31/10/2015.
  */
-public class CreatePracticeActivity extends FragmentActivity {
+public class CreatePracticeActivity extends AppCompatActivity {
 
     static Spinner sportSpinner;
     static Spinner raskustaseSpinner;
@@ -45,15 +43,15 @@ public class CreatePracticeActivity extends FragmentActivity {
         //Spordialade dropdown
         sportSpinner = (Spinner) findViewById(R.id.sport);
         ArrayAdapter<CharSequence> sportItems = ArrayAdapter.createFromResource(this, R.array.sportList,
-                android.R.layout.simple_spinner_item);
-        sportItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner);
+        sportItems.setDropDownViewResource(R.layout.item_spinner_dropdown);
         sportSpinner.setAdapter(sportItems);
 
         //raskustaseme dropdown
         raskustaseSpinner = (Spinner)findViewById(R.id.raskustase);
         ArrayAdapter<CharSequence> raskustaseItems = ArrayAdapter.createFromResource(this, R.array.raskustaseList,
-                android.R.layout.simple_spinner_item);
-        raskustaseItems.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.item_spinner);
+        raskustaseItems.setDropDownViewResource(R.layout.item_spinner_dropdown);
         raskustaseSpinner.setAdapter(raskustaseItems);
 
 
