@@ -22,7 +22,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
         android:background="#fff1f1f1"
-        android:popupBackground="#818081" />
+        android:popupBackground="#fff1f1f1" />
 
     <Spinner
         android:id="@+id/raskustase1"
@@ -31,7 +31,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="#fff1f1f1"
-        android:popupBackground="#818081"/>
+        android:popupBackground="#fff1f1f1"/>
 
     <Button
         android:layout_width="250dp"

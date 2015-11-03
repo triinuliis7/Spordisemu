@@ -80,12 +80,17 @@
 
 
     <string name="dateText">Kuupäev: </string>
-    <string name="date">31.10.2015</string>
+    <string name="day">dd</string>
+    <string name="month">mm</string>
+    <string name="year">yyyy</string>
+
     <string name="timeText">Aeg: </string>
-    <string name="time">10:00</string>
+    <string name="hour">hh</string>
+    <string name="minutes">mm</string>
+
     <string name="people">Inimeste arv: </string>
-    <string name="min">Min</string>
-    <string name="max">Max</string>
+    <string name="min">min</string>
+    <string name="max">max</string>
     <string name="asukoht">Asukoht: </string>
     <string name="trenn">Lisa trenn</string>
     <string name="spordiala">Spordiala: </string>
