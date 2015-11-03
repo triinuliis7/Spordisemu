@@ -6,152 +6,224 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"></LinearLayout>
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal">
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/spordialaText"
+            android:paddingStart="10dp"
+            android:textColor="#686768"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:text="@string/spordiala"
+            android:layout_marginTop="10dp" />
 
         <Spinner
             android:id="@+id/sport"
-            android:layout_width="150dp"
+            android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:layout_gravity="left"
             android:textColor="#ff41815b"
-            android:background="#818081"
-            android:popupBackground="#818081"
-            android:layout_marginTop="40dp" />
+            android:background="#fff1f1f1"
+            android:popupBackground="#fff1f1f1"
+            android:layout_marginRight="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/raskustaseText"
+            android:paddingStart="10dp"
+            android:textColor="#686768"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:text="@string/raskustase"
+            android:layout_marginTop="10dp" />
 
         <Spinner
             android:id="@+id/raskustase"
-            android:layout_width="150dp"
+            android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:background="#818081"
-            android:popupBackground="#818081"
+            android:background="#fff1f1f1"
+            android:popupBackground="#fff1f1f1"
             android:textColor="#ff41815b"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="right"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginRight="20dp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_marginTop="15dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/dateText"
             android:paddingStart="10dp"
-            android:textColor="#818081"
+            android:textColor="#686768"
             android:textSize="18dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="@string/dateText" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/date"
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:inputType="date"
+            android:ems="10"
             android:id="@+id/date"
-            android:paddingStart="10dp"
-            android:textColor="#818081"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/calendar"
-            android:id="@+id/calendar"
-            android:onClick="setDate"
-            android:stateListAnimator="@null"
-            android:background="#fff"
-            android:layout_marginLeft="10dp" />
+            android:background="#fff1f1f1"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="#686768"
+            android:textColorHint="#ff939393"
+            android:textSize="16dp"
+            android:layout_marginRight="20dp" />
 
 
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/timeText"
             android:id="@+id/timeText"
             android:paddingStart="10dp"
-            android:textColor="#818081"
+            android:textColor="#686768"
             android:textSize="18dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp" />
 
-        <TextView
+        <EditText
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/time"
+            android:layout_height="40dp"
+            android:inputType="time"
+            android:ems="10"
             android:id="@+id/time"
-            android:paddingStart="10dp"
-            android:textColor="#818081"
-            android:textSize="18dp"
-            android:layout_marginTop="10dp" />
+            android:background="#fff1f1f1"
+            android:layout_marginRight="20dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="#686768"
+            android:textColorHint="#ff939393"
+            android:textSize="16dp" />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/time"
-            android:id="@+id/imageButton"
-            android:onClick="setTime"
-            android:stateListAnimator="@null"
-            android:background="#fff"
-            android:layout_marginLeft="10dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/sugu"
-            android:id="@+id/textView5"
+            android:text="@string/asukoht"
+            android:id="@+id/locationText"
             android:paddingStart="10dp"
-            android:textColor="#818081"
+            android:textColor="#686768"
             android:textSize="18dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/location"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:textColor="#686768"
+            android:textColorHint="#ff939393"
+            android:textSize="16dp"
+            android:background="#fff1f1f1"
+            android:layout_marginRight="20dp" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/people"
+            android:id="@+id/people"
+            android:paddingStart="10dp"
+            android:textColor="#686768"
+            android:textSize="18dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/min"
+            android:background="#fff1f1f1"
+            android:textColor="#686768"
+            android:textColorHint="#ff939393"
+            android:textSize="16dp"
+            android:hint="@string/min"
+            android:paddingEnd="5dp"
+            android:paddingStart="10dp"
+            android:layout_weight=".20"
+            android:layout_marginRight="20dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/max"
+            android:background="#fff1f1f1"
+            android:textColor="#686768"
+            android:textColorHint="#ff939393"
+            android:textSize="16dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="10dp"
+            android:hint="@string/max"
+            android:layout_weight=".20"
+            android:layout_marginRight="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -160,14 +232,14 @@
             android:text="@string/sugu"
             android:id="@+id/sugu"
             android:paddingStart="10dp"
-            android:textColor="#818081"
+            android:textColor="#686768"
             android:textSize="18dp"
             android:layout_gravity="bottom"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp" />
 
         <RadioGroup
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginLeft="10dp"
             android:orientation="horizontal">
@@ -178,9 +250,10 @@
                 android:text="@string/mees"
                 android:id="@+id/r1"
                 android:layout_marginTop="6dp"
-                android:buttonTint="#818081"
-                android:textColor="#818081"
-                android:textSize="16dp" />
+                android:buttonTint="#686768"
+                android:textColor="#686768"
+                android:textSize="16dp"
+                android:layout_weight=".20" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -188,9 +261,10 @@
                 android:text="@string/naine"
                 android:id="@+id/r2"
                 android:layout_marginTop="6dp"
-                android:buttonTint="#818081"
-                android:textColor="#818081"
-                android:textSize="16dp" />
+                android:buttonTint="#686768"
+                android:textColor="#686768"
+                android:textSize="16dp"
+                android:layout_weight=".20" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -198,11 +272,32 @@
                 android:text="@string/both"
                 android:id="@+id/r3"
                 android:layout_marginTop="6dp"
-                android:buttonTint="#818081"
-                android:textColor="#818081"
-                android:textSize="16dp" />
+                android:buttonTint="#686768"
+                android:textColor="#686768"
+                android:textSize="16dp"
+                android:layout_weight=".20"
+                android:layout_marginRight="20dp" />
         </RadioGroup>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:gravity="bottom">
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:text="@string/trenn"
+            android:textColor="#fff"
+            android:id="@+id/button7"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="#40bf40"
+            android:stateListAnimator="@null"
+            android:layout_marginBottom="20dp" />
     </LinearLayout>
 
 </LinearLayout>

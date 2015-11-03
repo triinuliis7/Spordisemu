@@ -3,6 +3,7 @@
     <string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyBdTM0VhUT6A3WjKiW-ch57NrXaTwCNOXI</string>
     <string name="apiUrl">http://private-6358e-spordisemu1.apiary-mock.com</string>
 
+    <string name="pealeht">Pealeht</string>
     <string name="action_settings">Seaded</string>
     <string name="title_activity_result">Tulemused</string>
     <string name="otsing">Otsing</string>
@@ -34,11 +35,6 @@
     <string name="vali_linn">Vali linn</string>
     <string name="täpne_asukoht">Vali täpne asukoht</string>
     <string name="kinnita">Kinnita</string>
-
-    <string name="pealeht">Pealeht</string>
-    <string name="esimene_andmed">1/3 Andmed > Lisa pilt</string>
-    <string name="teine_andmed">2/3 Andmed > Lisa spordiala</string>
-    <string name="kolmas_andmed">3/3 Andmed > Lisa asukoht</string>
 
     <string-array name="sportList">
         <item>Spordiala</item>
@@ -87,8 +83,13 @@
     <string name="date">31.10.2015</string>
     <string name="timeText">Aeg: </string>
     <string name="time">10:00</string>
-
-    <string name="trenn">Loo trenn</string>
+    <string name="people">Inimeste arv: </string>
+    <string name="min">Min</string>
+    <string name="max">Max</string>
+    <string name="asukoht">Asukoht: </string>
+    <string name="trenn">Lisa trenn</string>
+    <string name="spordiala">Spordiala: </string>
+    <string name="raskustase">Raskustase: </string>
 
 
 </resources>

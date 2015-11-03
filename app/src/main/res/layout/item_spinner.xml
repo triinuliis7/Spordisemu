@@ -9,5 +9,5 @@
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
     android:textAlignment="inherit"
-    android:textColor="#fff1f1f1"
+    android:textColor="#686768"
     />

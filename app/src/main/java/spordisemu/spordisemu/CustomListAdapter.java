@@ -22,7 +22,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
     private final String[] location;
 
     public CustomListAdapter(Activity context, String[] itemname, String[] date, String[] location, Integer[] imgid) {
-        super(context, R.layout.listview_item, itemname);
+        super(context, R.layout.item_listview, itemname);
 
 
         this.context=context;
@@ -34,7 +34,7 @@ public class CustomListAdapter extends ArrayAdapter<String> {
 
     public View getView(int position,View view,ViewGroup parent) {
         LayoutInflater inflater=context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.listview_item, null,true);
+        View rowView=inflater.inflate(R.layout.item_listview, null,true);
 
         TextView txtTitle = (TextView) rowView.findViewById(R.id.texti1);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);

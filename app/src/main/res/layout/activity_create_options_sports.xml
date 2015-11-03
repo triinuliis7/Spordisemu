@@ -21,7 +21,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
-        android:background="#818081"
+        android:background="#fff1f1f1"
         android:popupBackground="#818081" />
 
     <Spinner
@@ -30,7 +30,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:background="#818081"
+        android:background="#fff1f1f1"
         android:popupBackground="#818081"/>
 
     <Button
@@ -40,9 +40,9 @@
         android:id="@+id/button2"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
-        android:background="#fff1f1f1"
+        android:background="#40bf40"
         android:stateListAnimator="@null"
-        android:textColor="#818081"
+        android:textColor="#fff"
         android:nestedScrollingEnabled="false"
         android:onClick="addSports" />
 

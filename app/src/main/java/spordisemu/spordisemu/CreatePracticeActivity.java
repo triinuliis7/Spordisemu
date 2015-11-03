@@ -9,6 +9,7 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -24,10 +25,10 @@ public class CreatePracticeActivity extends AppCompatActivity {
     static Spinner raskustaseSpinner;
 
     private Calendar calendar;
-    private TextView dateView;
+    private EditText dateView;
     private int year, month, day;
 
-    private TextView timeView;
+    private EditText timeView;
     private int hour, minute;
 
     @Override
@@ -55,7 +56,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
         raskustaseSpinner.setAdapter(raskustaseItems);
 
 
-        dateView = (TextView) findViewById(R.id.date);
+        dateView = (EditText) findViewById(R.id.date);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
@@ -74,7 +75,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
         }
         showDate(yearS, monthS, dayS);
 
-        timeView = (TextView) findViewById(R.id.time);
+        timeView = (EditText) findViewById(R.id.time);
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
 
@@ -92,64 +93,12 @@ public class CreatePracticeActivity extends AppCompatActivity {
 
     }
 
-    public void setDate(View view) {
-        showDialog(999);
-    }
-
-    public void setTime(View view) {
-        showDialog(998);
-    }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == 999) {
-            return new DatePickerDialog(this, myDateListener, year, month, day);
-        }
-        if (id == 998) {
-            return new TimePickerDialog(this, myTimeListener, hour, minute, DateFormat.is24HourFormat(this));
-        }
-        return null;
-    }
-
-    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
-            String arg1S = Integer.toString(arg1); //year
-            String arg2S = Integer.toString(arg2 + 1); //month
-            String arg3S = Integer.toString(arg3); //day
-
-            if (arg3 < 10) {
-                arg3S = "0" + Integer.toString(arg3);
-            }
-            if (arg2 < 9) {
-                arg2S = "0" + Integer.toString(arg2 + 1);
-            }
-            showDate(arg1S, arg2S, arg3S);
-        }
-    };
-
-    private TimePickerDialog.OnTimeSetListener myTimeListener = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker arg0, int arg1, int arg2) {
-            String arg1S = Integer.toString(arg1); //hour
-            String arg2S = Integer.toString(arg2); //minute
-
-            if (arg1 < 10) {
-                arg1S = "0" + Integer.toString(arg1);
-            }
-            if (arg2 < 10) {
-                arg2S = "0" + Integer.toString(arg2);
-            }
-            showTime(arg1S, arg2S);
-        }
-    };
-
     private void showDate(String year, String month, String day) {
-        dateView.setText(new StringBuilder().append(day).append(".").append(month).append(".").append(year));
+        //dateView.setText(new StringBuilder().append(day).append(".").append(month).append(".").append(year));
     }
 
     private void showTime(String hour, String minute) {
-        timeView.setText(new StringBuilder().append(hour).append(":").append(minute));
+        //timeView.setText(new StringBuilder().append(hour).append(":").append(minute));
     }
 }
 
