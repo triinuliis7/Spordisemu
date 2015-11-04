@@ -37,10 +37,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
     static EditText signUpNameEdit;
     static EditText signUpLastEdit;
+
     static EditText signUpUserEdit;
+
     static EditText signUpMailEdit;
+
     static EditText signUpPwEdit1;
     static EditText signUpPwEdit2;
+
     static RadioButton signUpGenderM;
 
     public final static String EXTRA_MESSAGE = "";

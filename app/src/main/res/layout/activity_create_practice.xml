@@ -96,7 +96,7 @@
             android:hint="@string/day"
             android:paddingEnd="5dp"
             android:paddingStart="10dp"
-            android:layout_weight=".20"
+            android:layout_weight=".10"
             android:layout_marginRight="10dp" />
 
         <EditText
@@ -112,7 +112,7 @@
             android:paddingEnd="5dp"
             android:paddingStart="10dp"
             android:hint="@string/month"
-            android:layout_weight=".20"
+            android:layout_weight=".10"
             android:layout_marginRight="10dp" />
 
         <EditText
@@ -128,7 +128,7 @@
             android:paddingEnd="5dp"
             android:paddingStart="10dp"
             android:hint="@string/year"
-            android:layout_weight=".15"
+            android:layout_weight=".10"
             android:layout_marginRight="20dp" />
 
 
@@ -183,20 +183,7 @@
             android:paddingEnd="5dp"
             android:paddingStart="10dp"
             android:layout_weight=".20"
-            android:layout_marginRight="10dp" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:inputType="none"
-            android:ems="10"
-            android:id="@+id/empty_place"
-            android:textSize="16dp"
-            android:paddingEnd="5dp"
-            android:paddingStart="10dp"
-            android:layout_weight=".15"
-            android:layout_marginRight="20dp"
-            android:enabled="false" />
+            android:layout_marginRight="20dp" />
 
     </LinearLayout>
 
@@ -281,20 +268,8 @@
             android:paddingStart="10dp"
             android:hint="@string/max"
             android:layout_weight=".20"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="20dp" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:inputType="none"
-            android:ems="10"
-            android:id="@+id/empty_place2"
-            android:textSize="16dp"
-            android:paddingEnd="5dp"
-            android:paddingStart="10dp"
-            android:layout_weight=".15"
-            android:layout_marginRight="20dp"
-            android:enabled="false" />
     </LinearLayout>
 
     <LinearLayout
@@ -320,12 +295,13 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/gender">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mees"
+                android:text="@string/men"
                 android:id="@+id/r1"
                 android:layout_marginTop="6dp"
                 android:buttonTint="#686768"
@@ -336,7 +312,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/naine"
+                android:text="@string/women"
                 android:id="@+id/r2"
                 android:layout_marginTop="6dp"
                 android:buttonTint="#686768"
@@ -354,7 +330,8 @@
                 android:textColor="#686768"
                 android:textSize="16dp"
                 android:layout_weight=".20"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                android:checked="true" />
         </RadioGroup>
 
     </LinearLayout>
@@ -371,11 +348,12 @@
             android:layout_height="40dp"
             android:text="@string/trenn"
             android:textColor="#fff"
-            android:id="@+id/button7"
+            android:id="@+id/createPractice"
             android:layout_gravity="bottom|center_horizontal"
             android:background="#40bf40"
             android:stateListAnimator="@null"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="40dp"
+            android:onClick="createPractice" />
     </LinearLayout>
 
 </LinearLayout>
