@@ -1,5 +1,7 @@
 package spordisemu.spordisemu;
 
+import android.app.KeyguardManager;
+import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -33,6 +35,9 @@ public class CreateOptionsSportsActivityTest extends ActivityInstrumentationTest
         super.setUp();
         injectInstrumentation(InstrumentationRegistry.getInstrumentation());
         createOptionsSportsActivity = getActivity();
+        KeyguardManager km = (KeyguardManager) createOptionsSportsActivity.getSystemService(Context.KEYGUARD_SERVICE);
+        KeyguardManager.KeyguardLock keyguardLock = km.newKeyguardLock("TAG");
+        keyguardLock.disableKeyguard();
     }
 
 
