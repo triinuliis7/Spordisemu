@@ -96,6 +96,11 @@
             android:label=""
             android:name=".AddSportsActivity">
         </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:label=""
+            android:name=".ResultActivity">
+        </activity>
     </application>
 
 </manifest>
