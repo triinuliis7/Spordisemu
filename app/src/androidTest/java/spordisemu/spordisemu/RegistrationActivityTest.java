@@ -8,6 +8,7 @@ import org.junit.Before;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.isDialog;
@@ -48,15 +49,15 @@ public class RegistrationActivityTest  extends ActivityInstrumentationTestCase2<
         onView(withId(R.id.SignUpLastEdit))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpMailEdit))
-                .perform(typeText("test@mail.ee"), closeSoftKeyboard());
+                .perform(click(), replaceText("test@mail.ee"), closeSoftKeyboard());
         onView(withId(R.id.signUpMailEdit))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpPwEdit1))
-                .perform(typeText("testtest"), closeSoftKeyboard());
+                .perform(click(), replaceText("testtest"), closeSoftKeyboard());
         onView(withId(R.id.signUpPwEdit1))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpPwEdit2))
-                .perform(typeText("testtest"), closeSoftKeyboard());
+                .perform(click(), replaceText("testtest"), closeSoftKeyboard());
         onView(withId(R.id.signUpPwEdit2))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpBtn)).perform(click());
