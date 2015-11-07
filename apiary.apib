@@ -420,4 +420,21 @@ Spordisemu is an Android app for finding people to do sports together.
                 "practice_id": 1
             }
 
+## Practice additional information collection [/practices/{practice_id}/info]
+
+### Show additional information of a practice [GET]
+
++ Parameters
+    + practice_id (number) - id of a practice
+    
++ Response 200 (application/json)
+
+        {
+            "practice_id": 1,
+            "description": "Jalgpallimäng 10 min soojendust + 45 jalgpalli.
+            Meeskonnad jagatakse kohapeal",
+            "min": 15,
+            "max": 0,
+            "gender": 1
+        }
         
