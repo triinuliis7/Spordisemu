@@ -199,6 +199,9 @@ public class RegistrationActivity extends AppCompatActivity {
             if (name == signUpNameEdit) {
                 name.setError(getResources().getString(R.string.specialChar));
             }
+            if (name == signUpLastEdit) {
+                name.setError(getResources().getString(R.string.specialChar));
+            }
         }
         if (name == signUpUserEdit && name.getText().length() < 4) {
             name.setError(getResources().getString(R.string.chars4));
