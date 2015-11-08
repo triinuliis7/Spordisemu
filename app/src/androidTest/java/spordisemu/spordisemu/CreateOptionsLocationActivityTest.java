@@ -42,8 +42,8 @@ public class CreateOptionsLocationActivityTest extends ActivityInstrumentationTe
         onView(withText(R.string.pealeht)).check(matches(isDisplayed()));
     }
 
-    /*public void testClickSkipButton(){
+    public void testClickSkipButton(){
         onView(withId(R.id.button4)).perform(click());
         onView(withText(R.string.pealeht)).check(matches(isDisplayed()));
-    }*/
+    }
 }
