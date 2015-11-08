@@ -103,11 +103,13 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
         JSONObject json = new JSONObject();
         try {
             json.put("user_id", getIntent().getStringExtra("user_id"));
+            json.put("username", getIntent().getStringExtra("username"));
             json.put("sports", getIntent().getStringExtra("sports"));
             json.put("level", getIntent().getStringExtra("level"));
+            json.put("pic", getIntent().getStringExtra("img"));
 
             String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/users/" + getIntent().getStringExtra("username") + "/sports";
+            String urlString = apiURL + "/users/" + getIntent().getStringExtra("username");
             new CallAPI().execute(urlString, json.toString());
         } catch (JSONException e) {
             e.printStackTrace();
