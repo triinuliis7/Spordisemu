@@ -105,5 +105,6 @@
     <string name="minError">Ei tohi olla 0 või negatiivne arv</string>
     <string name="maxError">Max arv ei tohi olla väiksem kui min</string>
 
+    <string name="wentWrong">Midagi läks valesti :(</string>
 
 </resources>

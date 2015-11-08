@@ -37,7 +37,7 @@ public class FriendsActivity extends AppCompatActivity{
 
         int id = item.getItemId();
 
-        switch(item.getItemId()) {
+        switch(id) {
             case R.id.pealeht:
                 Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(homeIntent);
@@ -58,9 +58,13 @@ public class FriendsActivity extends AppCompatActivity{
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainIntent);
                 break;
+            case R.id.lisa_spordiala:
+                Intent lisaIntent = new Intent(getApplicationContext(), AddSportsActivity.class);
+                startActivity(lisaIntent);
+                break;
             default:
                 Toast.makeText(getApplicationContext(),
-                        "Midagi läks valesti :(",
+                        R.string.wentWrong,
                         Toast.LENGTH_SHORT).show();
                 break;
         }

@@ -147,7 +147,7 @@ public class HomeActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch(item.getItemId()) {
+        switch(id) {
             case R.id.pealeht:
                 Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(homeIntent);
@@ -174,7 +174,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             default:
                 Toast.makeText(getApplicationContext(),
-                        "Midagi läks valesti :(",
+                        R.string.wentWrong,
                         Toast.LENGTH_SHORT).show();
                 break;
         }
