@@ -337,23 +337,36 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:gravity="bottom">
 
         <Button
-            android:layout_width="250dp"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="@string/cancel"
+            android:textColor="#818081"
+            android:id="@+id/button7"
+            android:background="#fff"
+            android:stateListAnimator="@null"
+            android:onClick="onCancelClick"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:layout_width="fill_parent"
             android:layout_height="40dp"
             android:text="@string/trenn"
             android:textColor="#fff"
             android:id="@+id/createPractice"
-            android:layout_gravity="bottom|center_horizontal"
+            android:layout_gravity="bottom"
             android:background="#40bf40"
             android:stateListAnimator="@null"
-            android:layout_marginBottom="40dp"
-            android:onClick="createPractice" />
+            android:onClick="createPractice"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
     </LinearLayout>
 
 </LinearLayout>

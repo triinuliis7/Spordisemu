@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -258,7 +259,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
     public void postJson(JSONObject json) {
         String apiURL = getResources().getString(R.string.apiUrl);
         String urlString = apiURL + "/practices";
-        new CallAPI().execute(urlString, json.toString(),"createPractice", "post");
+        new CallAPI().execute(urlString, json.toString(), "createPractice", "post");
 
     }
 
@@ -300,6 +301,43 @@ public class CreatePracticeActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+
+    // warns user of canceling creating a practice
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            alertMessage();
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
+
+    public void onCancelClick(View view) {
+        alertMessage();
+    }
+
+    public void alertMessage() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(CreatePracticeActivity.this);
+        alert.setMessage(getResources().getString(R.string.backButton));
+        alert.setNegativeButton("Jah",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        Intent HomeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(HomeIntent);
+                    }
+                });
+        alert.setPositiveButton("Ei",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = alert.create();
+        alert11.show();
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {

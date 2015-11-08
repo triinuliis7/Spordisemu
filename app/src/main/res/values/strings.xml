@@ -104,6 +104,7 @@
     <string name="yearError">Pole korrektne aasta</string>
     <string name="minError">Ei tohi olla 0 või negatiivne arv</string>
     <string name="maxError">Max arv ei tohi olla väiksem kui min</string>
+    <string name="backButton">Kas sa soovid katkestada trenni loomise?</string>
 
     <string name="wentWrong">Midagi läks valesti :(</string>
 
