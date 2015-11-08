@@ -8,7 +8,9 @@ import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.AsyncTask;
@@ -16,6 +18,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -240,6 +243,33 @@ public class RegistrationActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(RegistrationActivity.this);
+            alert.setMessage(getResources().getString(R.string.backRegistration));
+            alert.setNegativeButton("Jah",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            Intent MainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(MainIntent);
+                        }
+                    });
+            alert.setPositiveButton("Ei",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = alert.create();
+            alert11.show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {

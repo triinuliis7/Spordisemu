@@ -9,12 +9,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
@@ -26,12 +24,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-
-import javax.xml.transform.Result;
 
 /**
  * Created by Kelian on 31/10/2015.
@@ -320,7 +313,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
 
     public void alertMessage() {
         AlertDialog.Builder alert = new AlertDialog.Builder(CreatePracticeActivity.this);
-        alert.setMessage(getResources().getString(R.string.backButton));
+        alert.setMessage(getResources().getString(R.string.backPractice));
         alert.setNegativeButton("Jah",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
