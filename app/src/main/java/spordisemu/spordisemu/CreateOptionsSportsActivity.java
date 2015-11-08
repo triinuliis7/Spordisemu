@@ -111,7 +111,7 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
             alert11.show();
         } else if (added.getVisibility() == (View.INVISIBLE)) {
             AlertDialog.Builder alert = new AlertDialog.Builder(CreateOptionsSportsActivity.this);
-            alert.setMessage(getResources().getString(R.string.vajutamataNupp));
+            alert.setMessage(getResources().getString(R.string.valimataSport));
             alert.setPositiveButton("OK",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {

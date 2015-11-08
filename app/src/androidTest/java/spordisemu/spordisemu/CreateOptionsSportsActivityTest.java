@@ -60,4 +60,42 @@ public class CreateOptionsSportsActivityTest extends ActivityInstrumentationTest
         onView(withId(R.id.textView3)).check(matches(isDisplayed()));
 
     }
+    public void testSportOnlyChosen(){
+        onView(withId(R.id.sport)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Jalgpall"))).perform(click());
+
+        //clicks on button "Lisa" and ckecks if alert box is coming up
+        onView(withId(R.id.button2)).perform(click());
+        onView(withText(R.string.valimataSport)).check(matches(isDisplayed()));
+        onView(withId(android.R.id.button1)).perform(click());
+
+        //"Edasi" button
+        onView(withId(R.id.button3)).perform(click());
+        onView(withText(R.string.valimataSport)).check(matches(isDisplayed()));
+
+    }
+    public void testLevelOnlyChosen(){
+        onView(withId(R.id.raskustase1)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Kerge"))).perform(click());
+
+        //clicks on button "Lisa" and ckecks if alert box is coming up
+        onView(withId(R.id.button2)).perform(click());
+        onView(withText(R.string.valimataSport)).check(matches(isDisplayed()));
+        onView(withId(android.R.id.button1)).perform(click());
+
+        //"Edasi" button
+        onView(withId(R.id.button3)).perform(click());
+        onView(withText(R.string.valimataSport)).check(matches(isDisplayed()));
+    }
+    public void testNothingChosen(){
+
+        //clicks on button "Lisa" and ckecks if alert box is coming up
+        onView(withId(R.id.button2)).perform(click());
+        onView(withText(R.string.valimataSport)).check(matches(isDisplayed()));
+        onView(withId(android.R.id.button1)).perform(click());
+
+        //"Edasi" button
+        onView(withId(R.id.button3)).perform(click());
+        onView(withText(R.string.valimataSport)).check(matches(isDisplayed()));
+    }
 }
