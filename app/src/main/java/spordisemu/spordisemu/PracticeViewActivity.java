@@ -47,6 +47,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -67,15 +68,38 @@ public class PracticeViewActivity extends AppCompatActivity {
 
         setTitle(getIntent().getStringExtra("title"));
 
+        setUpMapIfNeeded();
+
         TextView date = (TextView) findViewById(R.id.date);
-        date.setText(getIntent().getStringExtra("date"));
+        String dateText = parseDate(getIntent().getStringExtra("date"));
+        date.setText(dateText);
         TextView location = (TextView) findViewById(R.id.location);
         location.setText(getIntent().getStringExtra("location"));
         TextView user = (TextView) findViewById(R.id.user);
         user.setText(getResources().getString(R.string.korraldaja) + " " + getIntent().getStringExtra("user"));
 
-        setUpMapIfNeeded();
+        TextView level = (TextView) findViewById(R.id.levelText);
+        String[] levels = getResources().getStringArray(R.array.raskustaseList);
+        level.setText(getResources().getString(R.string.raskustase) + " " +
+                levels[Integer.valueOf(getIntent().getStringExtra("level"))]);
+        TextView min = (TextView) findViewById(R.id.attendeesText);
+        min.setText(getResources().getString(R.string.osalejateArv) + " " +
+                getIntent().getStringExtra("min") + " - " + getIntent().getStringExtra("max"));
+        TextView gender = (TextView) findViewById(R.id.genderText);
+        String genderText = getIntent().getStringExtra("gender") == "1" ?
+                getResources().getString(R.string.men) : getIntent().getStringExtra("gender") == "2" ?
+                getResources().getString(R.string.women): getResources().getString(R.string.both);
+        gender.setText(getResources().getString(R.string.eelistatudSugu) + " " + genderText);
 
+    }
+
+    protected String parseDate(String date) {
+        String[] dateTime = date.split(" ");
+        String[] dates = dateTime[0].split("-");
+        String[] times = dateTime[1].split(":");
+        String dateNew = dates[2] + "." + dates[1] + "." + dates[0];
+        dateNew += " " + times[0] + ":" + times[1];
+        return dateNew;
     }
 
     @Override
@@ -102,11 +126,10 @@ public class PracticeViewActivity extends AppCompatActivity {
 
     private void setUpMap() {
 
-        TextView location = (TextView) findViewById(R.id.location);
-        String locationString = location.getText().toString();
+        String locationString = getIntent().getStringExtra("location");
         LatLng latLng = getLocationFromAddress(this, locationString);
         mMap.addMarker(new MarkerOptions().position(latLng).title(locationString)).showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 6));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
 
     }
 
@@ -212,9 +235,6 @@ public class PracticeViewActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 break;
         }
-
-        //Return false to allow normal menu processing to proceed,
-        //true to consume it here.
         return false;
     }
 

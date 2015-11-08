@@ -1,6 +1,7 @@
 package spordisemu.spordisemu;
 
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.Espresso;
 import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
@@ -9,7 +10,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.RootMatchers.isDialog;
@@ -50,18 +50,21 @@ public class RegistrationActivityTest  extends ActivityInstrumentationTestCase2<
         onView(withId(R.id.SignUpLastEdit))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpMailEdit))
-                .perform(scrollTo(), click(), replaceText("test@mail.ee"), closeSoftKeyboard());
+                .perform(click(), replaceText("test@mail.ee"), closeSoftKeyboard());
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signUpMailEdit))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpPwEdit1))
-                .perform(scrollTo(), click(), replaceText("testtest"), closeSoftKeyboard());
+                .perform(click(), replaceText("testtest"), closeSoftKeyboard());
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signUpPwEdit1))
                 .check(matches(isDisplayed()));
         onView(withId(R.id.signUpPwEdit2))
-                .perform(scrollTo(), click(), replaceText("testtest"), closeSoftKeyboard());
+                .perform(click(), replaceText("testtest"), closeSoftKeyboard());
+        Espresso.closeSoftKeyboard();
         onView(withId(R.id.signUpPwEdit2))
                 .check(matches(isDisplayed()));
-        onView(withId(R.id.signUpBtn)).perform(scrollTo(), click());
+        onView(withId(R.id.signUpBtn)).perform(click());
 
         // Check if new activity is open
         onView(withId(R.id.textView3)).check(matches(isDisplayed()));

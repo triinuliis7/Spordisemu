@@ -35,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     public String location = "";
     public String title = "";
     public String practice_id = "";
+    public String level = "";
+    public Intent PracticeViewIntent;
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
 
@@ -50,6 +52,8 @@ public class HomeActivity extends AppCompatActivity {
         setTitle(R.string.pealeht);
 
         setContentView(R.layout.activity_home);
+
+        PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
 
     }
 
@@ -111,6 +115,7 @@ public class HomeActivity extends AppCompatActivity {
             date = json.get("timestamp").toString();
             location = json.getString("location").toString();
             title = json.getString("type").toString();
+            level = json.getString("level").toString();
             practice_id = json.getString("practice_id").toString();
 
         } catch (JSONException e) {
@@ -119,14 +124,29 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void initializeUser(JSONObject json) {
-        Intent PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
         try {
             PracticeViewIntent.putExtra("user", json.getString("firstname").toString() + " " + json.getString("lastname").toString());
             PracticeViewIntent.putExtra("date", date);
             PracticeViewIntent.putExtra("location", location);
             PracticeViewIntent.putExtra("title", title);
+            PracticeViewIntent.putExtra("level", level);
             PracticeViewIntent.putExtra("practice_id", practice_id);
             PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
+            //startActivity(PracticeViewIntent);
+
+            String apiURL = getResources().getString(R.string.apiUrl);
+            String urlString = apiURL + "/practices/" + practice_id + "/info";
+            new CallAPI().execute(urlString, "info");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void initializeInfo(JSONObject json) {
+        try {
+            PracticeViewIntent.putExtra("min", json.getString("min").toString());
+            PracticeViewIntent.putExtra("max", json.getString("max").toString());
+            PracticeViewIntent.putExtra("gender", json.getString("gender").toString());
             startActivity(PracticeViewIntent);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -181,7 +201,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //Return false to allow normal menu processing to proceed,
         //true to consume it here.
-            return false;
+        return false;
     }
 
     public void createPracticeActivity (View view) {
@@ -237,8 +257,10 @@ public class HomeActivity extends AppCompatActivity {
             response = jsonResponse.toString();
             if (type.equals("practice")) {
                 response = "p" + response;
-            } else if (type.equals("user")){
+            } else if (type.equals("user")) {
                 response = "u" + response;
+            } else if (type.equals("info")) {
+                response = "i" + response;
             }
             return response;
         }
@@ -251,9 +273,15 @@ public class HomeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             } else if (result.charAt(0) == 'u') {
-                dialog.dismiss();
                 try {
                     initializeUser(new JSONObject(result.substring(1)));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else if (result.charAt(0) == 'i') {
+                dialog.dismiss();
+                try {
+                    initializeInfo(new JSONObject(result.substring(1)));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

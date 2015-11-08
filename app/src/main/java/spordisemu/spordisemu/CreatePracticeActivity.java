@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
@@ -24,7 +26,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import javax.xml.transform.Result;
 
 /**
  * Created by Kelian on 31/10/2015.
@@ -56,7 +63,10 @@ public class CreatePracticeActivity extends AppCompatActivity {
     public String j_date = "";
     public String j_location = "";
     public String j_title = "";
+    public String j_level = "";
     public String j_practice_id = "";
+
+    public Intent PracticeViewIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,8 @@ public class CreatePracticeActivity extends AppCompatActivity {
         setTitle(R.string.trenn);
 
         setContentView(R.layout.activity_create_practice);
+
+        PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
 
         //Spordialade dropdown
         sportSpinner = (Spinner) findViewById(R.id.sport);
@@ -273,6 +285,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
             j_date = json.get("timestamp").toString();
             j_location = json.getString("location").toString();
             j_title = json.getString("type").toString();
+            j_level = json.getString("level").toString();
             j_practice_id = json.getString("practice_id").toString();
 
         } catch (JSONException e) {
@@ -282,20 +295,35 @@ public class CreatePracticeActivity extends AppCompatActivity {
 
     public void initializeUser(JSONObject json) {
 
-        Intent PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
         try {
             PracticeViewIntent.putExtra("user", json.getString("firstname").toString() + " " + json.getString("lastname").toString());
             PracticeViewIntent.putExtra("date", j_date);
             PracticeViewIntent.putExtra("location", j_location);
             PracticeViewIntent.putExtra("title", j_title);
+            PracticeViewIntent.putExtra("level", j_level);
             PracticeViewIntent.putExtra("practice_id", j_practice_id);
             PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
-            startActivity(PracticeViewIntent);
+
+            String apiURL = getResources().getString(R.string.apiUrl);
+            String urlString = apiURL + "/practices/" + j_practice_id + "/info";
+            new CallAPI().execute(urlString, "", "info", "get");
+
+            //startActivity(PracticeViewIntent);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    public void initializeInfo(JSONObject json) {
+        try {
+            PracticeViewIntent.putExtra("min", json.getString("min").toString());
+            PracticeViewIntent.putExtra("max", json.getString("max").toString());
+            PracticeViewIntent.putExtra("gender", json.getString("gender").toString());
+            startActivity(PracticeViewIntent);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     // warns user of canceling creating a practice
     @Override
@@ -304,7 +332,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
             alertMessage();
             return true;
         }
-        return super.onKeyDown(keyCode,event);
+        return super.onKeyDown(keyCode, event);
     }
 
     public void onCancelClick(View view) {
@@ -332,6 +360,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
         AlertDialog alert11 = alert.create();
         alert11.show();
     }
+
 
     private class CallAPI extends AsyncTask<String, String, String> {
 
@@ -412,6 +441,8 @@ public class CreatePracticeActivity extends AppCompatActivity {
                 response = "p" + response;
             } else if (type.equals("user")) {
                 response = "u" + response;
+            } else if (type.equals("info")) {
+                response = "i" + response;
             }
             return response;
         }
@@ -439,8 +470,16 @@ public class CreatePracticeActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }  else if (result.charAt(0) == 'i') {
+                dialog.dismiss();
+                try {
+                    initializeInfo(new JSONObject(result.substring(1)));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 }
+
 

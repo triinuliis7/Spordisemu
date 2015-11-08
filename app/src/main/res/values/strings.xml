@@ -109,4 +109,7 @@
     <string name="backPractice">Kas sa soovid katkestada trenni loomise?</string>
     <string name="backRegistration">Kas sa soovid katkestada registreerimise?</string>
 
+    <string name="osalejateArv">Osalejate arv:</string>
+    <string name="eelistatudSugu">Eelistatud sugu:</string>
+
 </resources>

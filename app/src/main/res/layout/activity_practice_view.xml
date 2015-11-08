@@ -74,4 +74,36 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/levelText"
+            android:textColor="#686768"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/attendeesText"
+            android:textColor="#686768"
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/genderText"
+            android:textColor="#686768"
+            android:textSize="20dp" />
+    </LinearLayout>
+
 </LinearLayout>
