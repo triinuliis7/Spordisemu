@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -127,6 +128,15 @@ public class MainActivity extends AppCompatActivity {
         Intent registrationIntent = new Intent(getApplicationContext(), RegistrationActivity.class);
         startActivity(registrationIntent);
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {

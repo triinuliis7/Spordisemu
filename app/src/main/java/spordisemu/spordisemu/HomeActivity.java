@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -186,6 +187,7 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.logivalja:
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainIntent);
                 break;
             case R.id.lisa_spordiala:
@@ -211,6 +213,14 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(practiceIntent);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // do nothing
+            return true;
+        }
+        return super.onKeyDown(keyCode,event);
+    }
 
     private class CallAPI extends AsyncTask<String, String, String> {
         ProgressDialog dialog = new ProgressDialog(HomeActivity.this);

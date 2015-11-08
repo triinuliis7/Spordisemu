@@ -56,6 +56,7 @@ public class FriendsActivity extends AppCompatActivity{
                 break;
             case R.id.logivalja:
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainIntent);
                 break;
             case R.id.lisa_spordiala:

@@ -255,6 +255,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
                             Intent MainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            MainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(MainIntent);
                         }
                     });
