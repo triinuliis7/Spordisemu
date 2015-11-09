@@ -299,7 +299,8 @@ public class PracticeViewActivity extends AppCompatActivity {
                             Button btn = (Button) findViewById(R.id.attend);
                             btn.setText(getResources().getString(R.string.juba_osaled));
                             btn.setEnabled(false);
-                            btn.setBackgroundColor(Color.LTGRAY);
+                            btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+                            btn.setTextColor(Color.parseColor("#818081"));
                             dialog.cancel();
                         }
                     });
