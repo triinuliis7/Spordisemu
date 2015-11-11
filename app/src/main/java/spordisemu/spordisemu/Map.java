@@ -37,10 +37,6 @@ public class Map extends android.support.v4.app.FragmentActivity{
 
         setContentView(R.layout.activity_map);
 
-        Intent intent = getIntent();
-
-
-
         setUpMapIfNeeded();
 
     }

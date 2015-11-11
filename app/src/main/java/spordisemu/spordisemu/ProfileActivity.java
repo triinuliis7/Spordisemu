@@ -18,8 +18,6 @@ public class ProfileActivity extends AppCompatActivity {
         setTitle("Profiil");
 
         setContentView(R.layout.activity_profile);
-
-        Intent intent = getIntent();
     }
 
     @Override

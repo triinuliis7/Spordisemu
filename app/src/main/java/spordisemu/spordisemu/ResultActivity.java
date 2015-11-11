@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-
+//activity we use for testing sometimes
 public class ResultActivity extends AppCompatActivity {
 
 

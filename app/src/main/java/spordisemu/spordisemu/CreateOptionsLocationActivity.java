@@ -31,7 +31,6 @@ import java.net.URL;
  */
 public class CreateOptionsLocationActivity extends AppCompatActivity  {
 
-    private GoogleMap mMap;
     public static TextView location;
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
@@ -49,12 +48,12 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
         bar.setCustomView(mCustomView);
         bar.setDisplayShowCustomEnabled(true);
 
-        Intent intent = getIntent();
-
+        //location by default is "Eesti"
         location = (TextView) findViewById(R.id.textView4);
         location.setText("Eesti");
     }
 
+    //change location according to google maps
     public static void setText(String text) {
         location.setText(text);
     }
@@ -75,8 +74,6 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
         view.startAnimation(buttonClick);
         postProfile();
         postSport();
-        Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
-        //startActivity(homeIntent);
 
     }
 

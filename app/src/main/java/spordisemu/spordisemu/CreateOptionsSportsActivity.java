@@ -33,14 +33,13 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_create_options_sports);
 
+        //the circles on top
         ActionBar bar = getSupportActionBar();
         LayoutInflater mInflater = LayoutInflater.from(this);
         View mCustomView = mInflater.inflate(R.layout.actionbar2, null);
 
         bar.setCustomView(mCustomView);
         bar.setDisplayShowCustomEnabled(true);
-
-        Intent intent = getIntent();
 
         //Spordialade dropdown
         sportSpinner = (Spinner) findViewById(R.id.sport);
@@ -50,7 +49,7 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
         sportSpinner.setAdapter(sportItems);
 
         //raskustaseme dropdown
-        raskustaseSpinner = (Spinner)findViewById(R.id.raskustase1);
+        raskustaseSpinner = (Spinner)findViewById(R.id.raskustase);
         ArrayAdapter<CharSequence> raskustaseItems = ArrayAdapter.createFromResource(this, R.array.raskustaseList,
                 R.layout.item_spinner);
         raskustaseItems.setDropDownViewResource(R.layout.item_spinner_dropdown);
@@ -58,9 +57,10 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
 
     }
 
+    //checks if something has not been choosen and gives user an alertbox if something is wrong
     public void addSports (View view) {
         view.startAnimation(buttonClick);
-
+        //after clicking "Lisa" and something is missing
         if(sportSpinner.getSelectedItem().toString().equals( "Spordiala" ) ||
                 raskustaseSpinner.getSelectedItem().toString().equals( "Tase")){
             AlertDialog.Builder alert = new AlertDialog.Builder(CreateOptionsSportsActivity.this);

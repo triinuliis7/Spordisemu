@@ -1,8 +1,6 @@
 package spordisemu.spordisemu;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,13 +13,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -67,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup.MarginLayoutParams editTextParams = (ViewGroup.MarginLayoutParams) editText.getLayoutParams();
         editTextParams.topMargin = height / 15;
 
-        /*LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)nameEditText.getLayoutParams();
-        params.setMargins(nameEditText.getLeft(), 0, height / 4, 0); //left, top, right, bottom
-        nameEditText.setLayoutParams(params);*/
     }
 
     @Override
@@ -102,9 +95,6 @@ public class MainActivity extends AppCompatActivity {
         view.startAnimation(buttonClick);
         loggedIn = false;
 
-        //Button login = (Button) findViewById(R.id.login);
-        //login.setBackgroundColor(Color.parseColor("#c7c7c7"));
-
         EditText nameEditText = (EditText) findViewById(R.id.nameId);
         String username = nameEditText.getText().toString();
         nameEditText.setTypeface(Typeface.SANS_SERIF);
@@ -122,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //click on "Registreeru" button
     public void registration (View view) {
 
         view.startAnimation(buttonClick);

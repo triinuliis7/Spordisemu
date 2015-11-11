@@ -39,7 +39,6 @@ import javax.xml.transform.Result;
 public class CreatePracticeActivity extends AppCompatActivity {
 
     private AlphaAnimation buttonClick = new AlphaAnimation(1.0F, 0.5F);
-    public final static String EXTRA_MESSAGE = "";
 
     static Spinner sportSpinner;
     static Spinner raskustaseSpinner;
@@ -50,8 +49,6 @@ public class CreatePracticeActivity extends AppCompatActivity {
     static EditText day;
     static EditText month;
     static EditText year;
-
-    static Calendar calendar;
 
     static EditText location;
 
