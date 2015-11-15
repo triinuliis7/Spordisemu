@@ -202,7 +202,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
         // poolik
         if (!checkIfEmpty(year)) {
             int yyyy = Integer.parseInt(year.getText().toString());
-            if (yyyy < 2014) {
+            if (yyyy < 2015) {
                 year.setError(getResources().getString(R.string.yearError));
                 return true;
             }
