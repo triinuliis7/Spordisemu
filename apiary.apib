@@ -101,12 +101,12 @@ Spordisemu is an Android app for finding people to do sports together.
             "password": "testtest"
         }
 
-## User profile collection [/profiles/{username}]
+## User profile collection [/profiles/{user_id}]
 
 ### Show user's profile [GET]
 
 + Parameters
-    + username (text) - email of a user
+    + user_id (text) - id of a user
     
 + Response 200 (application/json)
 
@@ -120,7 +120,7 @@ Spordisemu is an Android app for finding people to do sports together.
 ### Create new profile [POST]
 
 + Parameters
-    + username (text) - username of a user
+    + user_id (text) - id of a user
     
 + Request (application/json)
 
@@ -136,7 +136,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /profiles/uus123
+            Location: /profiles/5
 
     + Body
 
