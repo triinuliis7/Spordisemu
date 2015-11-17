@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 
@@ -21,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -73,16 +75,22 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
     public void createHome (View view) {
         view.startAnimation(buttonClick);
         postProfile();
-        postSport();
+        //postSport();
 
     }
 
     public JSONObject makeJson() {
         JSONObject json = new JSONObject();
         try {
-            json.put("id", getIntent().getStringExtra("user_id"));
-            json.put("location", getIntent().getStringExtra("location"));
-            json.put("pic", getIntent().getStringExtra("img"));
+            //json.put("user_id", getIntent().getStringExtra("user_id"));
+            json.put("user_id", "10");
+            json.put("sports", getIntent().getStringExtra("sports"));
+            json.put("level", getIntent().getStringExtra("level"));
+            json.put("location", location.getText());
+            json.put("pic", getIntent().getStringExtra("pic"));
+            //json.put("pic", "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg");
+            Toast.makeText(getApplicationContext(), getIntent().getExtras().toString(),
+                    Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -92,7 +100,7 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
     public void postProfile() {
         JSONObject json = makeJson();
         String apiURL = getResources().getString(R.string.apiUrl);
-        String urlString = apiURL + "/profiles/" + getIntent().getStringExtra("username");
+        String urlString = apiURL + "/profiles";
         new CallAPI().execute(urlString, json.toString());
     }
 
@@ -101,12 +109,10 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
         try {
             json.put("user_id", getIntent().getStringExtra("user_id"));
             json.put("username", getIntent().getStringExtra("username"));
-            json.put("sports", getIntent().getStringExtra("sports"));
-            json.put("level", getIntent().getStringExtra("level"));
             json.put("pic", getIntent().getStringExtra("img"));
 
             String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/users/" + getIntent().getStringExtra("username");
+            String urlString = apiURL + "/profiles/";
             new CallAPI().execute(urlString, json.toString());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -161,7 +167,6 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
                 String line;
                 URL url = new URL(urlString);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
                 urlConnection.setDoInput(true);
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");
@@ -170,15 +175,16 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
                 OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
                 writer.write(request);
                 writer.close();
-                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
                 while ((line = br.readLine()) != null) {
                     jsonResponse.append(line);
                 }
                 br.close();
+
                 urlConnection.disconnect();
-            } catch (Exception e ) {
+            } catch (IOException e ) {
                 System.out.println(e.getMessage());
-                return e.getMessage();
+                return "IOException";
             }
 
             response = jsonResponse.toString();
@@ -187,6 +193,8 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
+            Toast.makeText(getApplicationContext(), result,
+                    Toast.LENGTH_LONG).show();
             Intent HomeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(HomeActivityIntent);
         }

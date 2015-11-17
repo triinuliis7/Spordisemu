@@ -27,7 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -147,37 +149,36 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String urlString = params[0];
             String password = params[1];
-            String response = "Sisselogimine eba\u00f5nnestus";
-            InputStream in;
+            String response = "false";
 
-            String strFileContents = null;
-            JSONObject json;
+            StringBuffer jsonResponse = new StringBuffer();
 
-            // HTTP Get
+            // HTTP GET
             try {
+                String line;
                 URL url = new URL(urlString);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                in = new BufferedInputStream(urlConnection.getInputStream());
 
-                byte[] contents = new byte[1024];
-
-                int bytesRead=0;
-                while( (bytesRead = in.read(contents)) != -1){
-                    strFileContents = new String(contents, 0, bytesRead);
+                urlConnection.setDoInput(true);
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setRequestProperty("Accept", "application/json");
+                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                while ((line = br.readLine()) != null) {
+                    jsonResponse.append(line);
                 }
+                br.close();
+                urlConnection.disconnect();
             } catch (Exception e ) {
                 System.out.println(e.getMessage());
                 return e.getMessage();
             }
-
             try {
-                json = new JSONObject(strFileContents);
+                // viimane osa on vajalik, kuna json on array kujul!!!
+                JSONObject json = new JSONObject(jsonResponse.toString().substring(1, jsonResponse.length()));
                 if (json.getString("password").equals(password)) {
                     response = "true";
-
-                }
-                else {
-                    response = "false";
+                } else {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             } else {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                alert.setMessage("Kasutajanimi või parool on vale");
+                alert.setMessage("Kasutajanimi või parool on vale | " + result);
                 alert.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

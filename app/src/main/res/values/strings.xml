@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Spordisemu</string>
     <string name="google_maps_key" templateMergeStrategy="preserve">AIzaSyBdTM0VhUT6A3WjKiW-ch57NrXaTwCNOXI</string>
-    <string name="apiUrl">http://private-6358e-spordisemu1.apiary-mock.com</string>
+    <string name="apiUrl">http://spordisemu.herokuapp.com</string>
 
     <string name="pealeht">Pealeht</string>
     <string name="action_settings">Seaded</string>

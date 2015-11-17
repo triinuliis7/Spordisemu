@@ -125,6 +125,8 @@ public class CreateOptionsSportsActivity extends AppCompatActivity {
             Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
             createOptionsLocationIntent.putExtra("sports", sportSpinner.getSelectedItem().toString());
             createOptionsLocationIntent.putExtra("level", raskustaseSpinner.getSelectedItem().toString());
+            createOptionsLocationIntent.putExtra("pic", getIntent().getStringExtra("pic"));
+            createOptionsLocationIntent.putExtra("user_id", getIntent().getStringExtra("user_id"));
             startActivity(createOptionsLocationIntent);
         }
 

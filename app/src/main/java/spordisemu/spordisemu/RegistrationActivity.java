@@ -1,6 +1,7 @@
 package spordisemu.spordisemu;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -29,6 +30,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -117,7 +119,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 json.put("lastname", signUpLastEdit.getText().toString());
                 json.put("username", signUpUserEdit.getText().toString());
                 json.put("gender", gender);
-                json.put("e-mail", signUpMailEdit.getText().toString());
+                json.put("email", signUpMailEdit.getText().toString());
                 json.put("password", signUpPwEdit1.getText().toString());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -303,7 +305,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 String line;
                 URL url = new URL(urlString);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
                 urlConnection.setDoInput(true);
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");
@@ -312,17 +313,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
                 writer.write(request);
                 writer.close();
-                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
                 while ((line = br.readLine()) != null) {
                     jsonResponse.append(line);
                 }
                 br.close();
-                urlConnection.disconnect();
-            } catch (Exception e ) {
-                System.out.println(e.getMessage());
-                return e.getMessage();
-            }
 
+                urlConnection.disconnect();
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                return request;
+            }
             response = jsonResponse.toString();
             return response;
         }
@@ -331,9 +332,8 @@ public class RegistrationActivity extends AppCompatActivity {
             dialog.dismiss();
             Intent createOptionsPictureIntent = new Intent(getApplicationContext(), CreateOptionsPictureActivity.class);
             try {
-                Intent createOptionsLocationIntent = new Intent(getApplicationContext(), CreateOptionsLocationActivity.class);
-                createOptionsLocationIntent.putExtra("user_id", new JSONObject(result).getString("id"));
-                createOptionsLocationIntent.putExtra("username", new JSONObject(result).getString("username"));
+                JSONObject json = new JSONObject(result);
+                createOptionsPictureIntent.putExtra("user_id", json.getString("id"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
