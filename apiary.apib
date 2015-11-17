@@ -148,9 +148,12 @@ Spordisemu is an Android app for finding people to do sports together.
                 "pic": "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg"
             }
 
-## Sports collection [/sports]
+## Sports collection [/sports/{user_id}]
 
 ### Show all sports of a user [GET]
+
++ Parameters
+    + user_id (text) - id of a user
   
 + Response 200 (application/json)
 
@@ -183,7 +186,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /sports/3
+            Location: /sports/1
 
     + Body
 
@@ -194,7 +197,7 @@ Spordisemu is an Android app for finding people to do sports together.
                 "level" : "Raske"
             }
         
-## Ratings collection [/users/{user_id}/ratings]
+## Ratings collection [/ratings/{user_id}]
 
 ### Show all ratings of a user [GET]
 
@@ -216,7 +219,6 @@ Spordisemu is an Android app for finding people to do sports together.
 + Request (application/json)
 
         {
-                "rating_id": 2,
                 "user_id": 1,
                 "commenter_id": 3,
                 "rating": 5,
@@ -227,7 +229,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /users/{user_id}/ratings/2
+            Location: /ratings/1
 
     + Body
 
@@ -335,7 +337,7 @@ Spordisemu is an Android app for finding people to do sports together.
             "user_id": 1
         }
             
-## Comments collection [/practices/{practice_id}/comments]
+## Comments collection [/comments/{practice_id}]
 
 ### Show all comments [GET]
 
@@ -377,7 +379,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /practices/1/comments/4
+            Location: /comments/1
 
     + Body
 
@@ -388,7 +390,7 @@ Spordisemu is an Android app for finding people to do sports together.
                 "comment": "Mulle küll meeldib"
             }
            
-## Attend collection [/practices/{practice_id}/attends]
+## Attend collection [/attends/{practice_id}]
 
 ### Show all attends of a practice [GET]
 
@@ -421,7 +423,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /practices/2/attend/2
+            Location: /attends/2
 
     + Body
 
@@ -431,7 +433,7 @@ Spordisemu is an Android app for finding people to do sports together.
                 "practice_id": 2
             }
 
-## Practice additional information collection [/practices/{practice_id}/additional]
+## Practice additional information collection [/additional/{practice_id}]
 
 ### Show additional information of a practice [GET]
 
@@ -462,7 +464,7 @@ Spordisemu is an Android app for finding people to do sports together.
 
     + Headers
 
-            Location: /practices/2/additional
+            Location: /additional/2
 
     + Body
 
