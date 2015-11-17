@@ -79,13 +79,13 @@ public class PracticeViewActivity extends AppCompatActivity {
         user.setText(getResources().getString(R.string.korraldaja) + " " + getIntent().getStringExtra("user"));
 
         TextView level = (TextView) findViewById(R.id.levelText);
-        String[] levels = getResources().getStringArray(R.array.raskustaseList);
         level.setText(getResources().getString(R.string.raskustase) + " " +
-                levels[Integer.valueOf(getIntent().getStringExtra("level"))]);
+                getIntent().getStringExtra("level"));
         TextView min = (TextView) findViewById(R.id.attendeesText);
         min.setText(getResources().getString(R.string.osalejateArv) + " " +
                 getIntent().getStringExtra("min") + " - " + getIntent().getStringExtra("max"));
         TextView gender = (TextView) findViewById(R.id.genderText);
+        //
         String genderText = getIntent().getStringExtra("gender") == "1" ?
                 getResources().getString(R.string.men) : getIntent().getStringExtra("gender") == "2" ?
                 getResources().getString(R.string.women): getResources().getString(R.string.both);

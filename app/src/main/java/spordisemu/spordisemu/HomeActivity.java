@@ -58,12 +58,14 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    //nuppu vajutades, id näitab positsiooni listis
     public void detailedView(int id) {
         String apiURL = getResources().getString(R.string.apiUrl);
         String urlString = apiURL + "/practices/" + id;
         new CallAPI().execute(urlString, "practice");
     }
 
+    //tehakse kohe alguses
     public void getJson() {
         String apiURL = getResources().getString(R.string.apiUrl);
         String urlString = apiURL + "/practices";
@@ -98,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                detailedView(position);
+                detailedView(position+1);
             }
         });
     }
@@ -110,7 +112,7 @@ public class HomeActivity extends AppCompatActivity {
             String id = json.getString("user_id").toString();
 
             String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/users/" + id;
+            String urlString = apiURL + "/users/id/" + id;
             new CallAPI().execute(urlString, "user");
 
             date = json.get("timestamp").toString();
@@ -136,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
             //startActivity(PracticeViewIntent);
 
             String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/practices/" + practice_id + "/info";
+            String urlString = apiURL + "/additional/" + practice_id;
             new CallAPI().execute(urlString, "info");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -278,20 +280,20 @@ public class HomeActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (result.charAt(0) == 'p') {
                 try {
-                    initializePractice(new JSONObject(result.substring(1)));
+                    initializePractice(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else if (result.charAt(0) == 'u') {
                 try {
-                    initializeUser(new JSONObject(result.substring(1)));
+                    initializeUser(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else if (result.charAt(0) == 'i') {
                 dialog.dismiss();
                 try {
-                    initializeInfo(new JSONObject(result.substring(1)));
+                    initializeInfo(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
