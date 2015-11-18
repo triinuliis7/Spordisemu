@@ -112,4 +112,7 @@
     <string name="osalejateArv">Osalejate arv:</string>
     <string name="eelistatudSugu">Eelistatud sugu:</string>
 
+    <string name="open_drawer">Ava menüü</string>
+    <string name="close_drawer">Sule menüü</string>
+
 </resources>

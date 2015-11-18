@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by ingrid on 11/1/15.
  */
-public class AddSportsActivity extends AppCompatActivity {
+public class AddSportsActivity extends BaseActivity {
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
@@ -28,7 +28,10 @@ public class AddSportsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.lisa_spordiala);
 
-        setContentView(R.layout.activity_add_sports);
+        //for navigation drawer
+        getLayoutInflater().inflate(R.layout.activity_add_sports, frameLayout);
+        mDrawerList.setItemChecked(position, true);
+        setTitle(listArray[position]);
 
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.expendableList);
@@ -74,56 +77,4 @@ public class AddSportsActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(2), murumangud);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        int id = item.getItemId();
-
-        switch(id) {
-            case R.id.pealeht:
-                Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(homeIntent);
-                break;
-            case R.id.profiil:
-                Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
-                startActivity(profileIntent);
-                break;
-            case R.id.sobrad:
-                Intent friendsIntent = new Intent(getApplicationContext(), FriendsActivity.class);
-                startActivity(friendsIntent);
-                break;
-            case R.id.action_settings:
-                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(settingsIntent);
-                break;
-            case R.id.logivalja:
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(mainIntent);
-                break;
-            case R.id.lisa_spordiala:
-                Intent lisaIntent = new Intent(getApplicationContext(), AddSportsActivity.class);
-                startActivity(lisaIntent);
-                break;
-            default:
-                Toast.makeText(getApplicationContext(),
-                        R.string.wentWrong,
-                        Toast.LENGTH_SHORT).show();
-                break;
-        }
-
-        //Return false to allow normal menu processing to proceed,
-        //true to consume it here.
-        return false;
-    }
 }
