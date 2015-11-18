@@ -22,6 +22,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String urlString = params[0];
             String password = params[1];
-            String response = "false";
+            String response = "f";
 
             StringBuffer jsonResponse = new StringBuffer();
 
@@ -177,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 // viimane osa on vajalik, kuna json on array kujul!!!
                 JSONObject json = new JSONObject(jsonResponse.toString().substring(1, jsonResponse.length()));
                 if (json.getString("password").equals(password)) {
-                    response = "true";
+                    response = "t" + json.toString();
                 } else {
                 }
             } catch (JSONException e) {
@@ -188,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            if (result.equals("true")){
+            if (result.charAt(0) == 't'){
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(loginIntent);
                 try {
-                    loginIntent.putExtra("loggedIn_id", new JSONObject(result).getString("id"));
+                    loginIntent.putExtra("loggedIn_id", new JSONObject(result.substring(1)).getString("id"));
+                    startActivity(loginIntent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

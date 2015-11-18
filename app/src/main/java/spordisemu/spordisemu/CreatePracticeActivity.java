@@ -17,11 +17,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -302,7 +304,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
             PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
 
             String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/practices/" + j_practice_id + "/info";
+            String urlString = apiURL + "/additional/" + j_practice_id;
             new CallAPI().execute(urlString, "", "info", "get");
 
             //startActivity(PracticeViewIntent);
@@ -404,7 +406,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
                     }
                     br.close();
                     urlConnection.disconnect();
-                } catch (Exception e ) {
+                } catch (IOException e ) {
                     System.out.println(e.getMessage());
                     return e.getMessage();
                 }
@@ -425,7 +427,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
                     }
                     br.close();
                     urlConnection.disconnect();
-                } catch (Exception e ) {
+                } catch (IOException e ) {
                     System.out.println(e.getMessage());
                     return e.getMessage();
                 }
@@ -446,6 +448,8 @@ public class CreatePracticeActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
+            Toast.makeText(getApplicationContext(), result,
+                    Toast.LENGTH_LONG).show();
             if(result.charAt(0) == 'c') {
                 try {
                     JSONObject json = new JSONObject(result.substring(1));
@@ -457,20 +461,20 @@ public class CreatePracticeActivity extends AppCompatActivity {
                 }
             } else if(result.charAt(0) == 'p') {
                 try {
-                    initializePractice(new JSONObject(result.substring(1)));
+                    initializePractice(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else if(result.charAt(0) == 'u') {
                 try {
-                    initializeUser(new JSONObject(result.substring(1)));
+                    initializeUser(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }  else if (result.charAt(0) == 'i') {
                 dialog.dismiss();
                 try {
-                    initializeInfo(new JSONObject(result.substring(1)));
+                    initializeInfo(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

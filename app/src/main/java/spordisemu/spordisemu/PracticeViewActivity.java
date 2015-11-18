@@ -70,6 +70,8 @@ public class PracticeViewActivity extends AppCompatActivity {
 
         setUpMapIfNeeded();
 
+        changeButtonIfNeeded();
+
         TextView date = (TextView) findViewById(R.id.date);
         String dateText = parseDate(getIntent().getStringExtra("date"));
         date.setText(dateText);
@@ -91,6 +93,13 @@ public class PracticeViewActivity extends AppCompatActivity {
                 getResources().getString(R.string.women): getResources().getString(R.string.both);
         gender.setText(getResources().getString(R.string.eelistatudSugu) + " " + genderText);
 
+    }
+
+    protected void changeButtonIfNeeded() {
+        String practice_id = getIntent().getStringExtra("practice_id");
+        String apiURL = getResources().getString(R.string.apiUrl);
+        String urlString = apiURL + "/attends/" + practice_id;
+        new CallAPI().execute(urlString, "get", "");
     }
 
     protected String parseDate(String date) {
@@ -128,8 +137,13 @@ public class PracticeViewActivity extends AppCompatActivity {
 
         String locationString = getIntent().getStringExtra("location");
         LatLng latLng = getLocationFromAddress(this, locationString);
-        mMap.addMarker(new MarkerOptions().position(latLng).title(locationString)).showInfoWindow();
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        try {
+            mMap.addMarker(new MarkerOptions().position(latLng).title(locationString)).showInfoWindow();
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+        } catch (IllegalArgumentException e) {
+            Toast.makeText(getApplicationContext(), "Aadressi " + locationString + " ei leidu!", Toast.LENGTH_LONG).show();
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(58.653895, 25.532339), 6));
+        }
 
     }
 
@@ -167,7 +181,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                         String loggedIn_id = getIntent().getStringExtra("loggedIn_id");
                         String practice_id = getIntent().getStringExtra("practice_id");
                         String apiURL = getResources().getString(R.string.apiUrl);
-                        String urlString = apiURL + "/practices/" + practice_id + "/attend";
+                        String urlString = apiURL + "/attends/" + practice_id;
                         JSONObject json = new JSONObject();
                         try {
                             json.put("user_id", loggedIn_id);
@@ -175,7 +189,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        new CallAPI().execute(urlString, json.toString());
+                        new CallAPI().execute(urlString, "post", json.toString());
                     }
                 });
         alert.setNegativeButton(getResources().getString(R.string.cancel),
@@ -255,58 +269,101 @@ public class PracticeViewActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String urlString = params[0];
-            String request = params[1];
+            String getpost = params[1];
+            String request = params[2];
             String response;
 
             StringBuffer jsonResponse = new StringBuffer();
 
             // HTTP POST
-            try {
-                String line;
-                URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            if (getpost.equals("post")) {
+                try {
+                    String line;
+                    URL url = new URL(urlString);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Accept", "application/json");
-                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
-                writer.write(request);
-                writer.close();
-                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                while ((line = br.readLine()) != null) {
-                    jsonResponse.append(line);
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
+                    writer.write(request);
+                    writer.close();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    while ((line = br.readLine()) != null) {
+                        jsonResponse.append(line);
+                    }
+                    br.close();
+                    urlConnection.disconnect();
+                } catch (IOException e ) {
+                    System.out.println(e.getMessage());
+                    return "postis probleem";
                 }
-                br.close();
-                urlConnection.disconnect();
-            } catch (Exception e ) {
-                System.out.println(e.getMessage());
-                return e.getMessage();
+                response = "p" + jsonResponse.toString();
+            } else {
+                try {
+                    String line;
+                    URL url = new URL(urlString);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                    urlConnection.setDoInput(true);
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    while ((line = br.readLine()) != null) {
+                        jsonResponse.append(line);
+                    }
+                    br.close();
+                    urlConnection.disconnect();
+                } catch (IOException e ) {
+                    System.out.println(e.getMessage());
+                    return jsonResponse.toString();
+                }
+                response = "g" + jsonResponse.toString();
             }
 
-            response = jsonResponse.toString();
             return response;
         }
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
-            alert.setMessage(getResources().getString(R.string.success));
-            alert.setPositiveButton("OK",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
+            if (result.charAt(0) == 'p') {
+                Toast.makeText(getApplicationContext(), result.substring(1), Toast.LENGTH_LONG).show();
+                AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
+                alert.setMessage(getResources().getString(R.string.success));
+                alert.setPositiveButton("OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Button btn = (Button) findViewById(R.id.attend);
+                                btn.setText(getResources().getString(R.string.juba_osaled));
+                                btn.setEnabled(false);
+                                btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+                                btn.setTextColor(Color.parseColor("#818081"));
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = alert.create();
+                alert11.show();
+            } else {
+                try {
+                    JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        if (jsonArray.getJSONObject(i).getString("user_id").equals(getIntent().getStringExtra("loggedIn_id"))) {
                             Button btn = (Button) findViewById(R.id.attend);
                             btn.setText(getResources().getString(R.string.juba_osaled));
                             btn.setEnabled(false);
                             btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
                             btn.setTextColor(Color.parseColor("#818081"));
-                            dialog.cancel();
+                            break;
                         }
-                    });
-
-            AlertDialog alert11 = alert.create();
-            alert11.show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

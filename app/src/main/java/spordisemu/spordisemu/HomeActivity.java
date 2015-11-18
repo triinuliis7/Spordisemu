@@ -100,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                detailedView(position+1);
+                detailedView(ids[position]);
             }
         });
     }
