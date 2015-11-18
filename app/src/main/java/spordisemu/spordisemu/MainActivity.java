@@ -195,13 +195,15 @@ public class MainActivity extends AppCompatActivity {
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 try {
                     loginIntent.putExtra("loggedIn_id", new JSONObject(result.substring(1)).getString("id"));
-                    startActivity(loginIntent);
+                    if (loginIntent.getStringExtra("loggedIn_id") != null) {
+                        startActivity(loginIntent);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                alert.setMessage("Kasutajanimi või parool on vale | " + result);
+                alert.setMessage("Kasutajanimi või parool on vale");
                 alert.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {

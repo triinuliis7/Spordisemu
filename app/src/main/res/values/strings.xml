@@ -40,6 +40,8 @@
         <item>Korvpall</item>
         <item>Jalgpall</item>
         <item>Sulgpall</item>
+        <item>Jõusaal</item>
+        <item>Jooga</item>
     </string-array>
 
     <string-array name="raskustaseList">

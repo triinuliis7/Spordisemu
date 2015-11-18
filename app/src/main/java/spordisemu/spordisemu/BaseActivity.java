@@ -94,6 +94,7 @@ public class BaseActivity extends AppCompatActivity {
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
 
         // ActionBarDrawerToggle ties together the the proper interactions between the sliding drawer and the action bar app icon
         actionBarDrawerToggle = new ActionBarDrawerToggle(

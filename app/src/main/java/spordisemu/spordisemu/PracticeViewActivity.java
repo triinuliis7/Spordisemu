@@ -14,6 +14,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.Menu;
@@ -66,11 +67,13 @@ public class PracticeViewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_practice_view);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
         setTitle(getIntent().getStringExtra("title"));
 
-        setUpMapIfNeeded();
-
         changeButtonIfNeeded();
+        setUpMapIfNeeded();
 
         TextView date = (TextView) findViewById(R.id.date);
         String dateText = parseDate(getIntent().getStringExtra("date"));
@@ -181,7 +184,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                         String loggedIn_id = getIntent().getStringExtra("loggedIn_id");
                         String practice_id = getIntent().getStringExtra("practice_id");
                         String apiURL = getResources().getString(R.string.apiUrl);
-                        String urlString = apiURL + "/attends/" + practice_id;
+                        String urlString = apiURL + "/attends";
                         JSONObject json = new JSONObject();
                         try {
                             json.put("user_id", loggedIn_id);
@@ -207,49 +210,20 @@ public class PracticeViewActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_result, menu);
-        return true;
+
+        return false;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        switch(id) {
-            case R.id.pealeht:
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
                 Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(homeIntent);
-                break;
-            case R.id.profiil:
-                Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
-                startActivity(profileIntent);
-                break;
-            case R.id.sobrad:
-                Intent friendsIntent = new Intent(getApplicationContext(), FriendsActivity.class);
-                startActivity(friendsIntent);
-                break;
-            case R.id.action_settings:
-                Intent settingsIntent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(settingsIntent);
-                break;
-            case R.id.logivalja:
-                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(mainIntent);
-                break;
-            case R.id.lisa_spordiala:
-                Intent lisaIntent = new Intent(getApplicationContext(), AddSportsActivity.class);
-                startActivity(lisaIntent);
-                break;
-            default:
-                Toast.makeText(getApplicationContext(),
-                        R.string.wentWrong,
-                        Toast.LENGTH_SHORT).show();
-                break;
+                return true;
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     private class CallAPI extends AsyncTask<String, String, String> {
@@ -298,7 +272,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                     urlConnection.disconnect();
                 } catch (IOException e ) {
                     System.out.println(e.getMessage());
-                    return "postis probleem";
+                    return "p"+e.getMessage();
                 }
                 response = "p" + jsonResponse.toString();
             } else {
@@ -330,7 +304,6 @@ public class PracticeViewActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             dialog.dismiss();
             if (result.charAt(0) == 'p') {
-                Toast.makeText(getApplicationContext(), result.substring(1), Toast.LENGTH_LONG).show();
                 AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
                 alert.setMessage(getResources().getString(R.string.success));
                 alert.setPositiveButton("OK",
@@ -349,6 +322,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                 alert11.show();
             } else {
                 try {
+
                     JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
                     for (int i = 0; i < jsonArray.length(); i++) {
                         if (jsonArray.getJSONObject(i).getString("user_id").equals(getIntent().getStringExtra("loggedIn_id"))) {

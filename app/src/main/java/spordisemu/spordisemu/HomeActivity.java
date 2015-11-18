@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 /**
  * Created by Triinu Liis on 11/10/2015.
@@ -54,8 +55,11 @@ public class HomeActivity extends BaseActivity {
         mDrawerList.setItemChecked(position, true);
         setTitle(listArray[position]);
 
-        PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
+        if (getIntent().getStringExtra("loggedIn_id") == null) {
+            Toast.makeText(getApplicationContext(), "Logi uuesti sisse", Toast.LENGTH_LONG).show();
+        }
 
+        PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
     }
 
     //nuppu vajutades, id näitab positsiooni listis
@@ -72,9 +76,25 @@ public class HomeActivity extends BaseActivity {
         new CallAPI().execute(urlString, "practices");
     }
 
+    protected String parseDate(String date) {
+        String[] dateTime = date.split(" ");
+        String[] dates = dateTime[0].split("-");
+        String[] times = dateTime[1].split(":");
+        String dateNew = dates[2] + "." + dates[1] + "." + dates[0];
+        dateNew += " " + times[0] + ":" + times[1];
+        return dateNew;
+    }
+
     public void initializeVariables(JSONArray json) {
         int length = json.length();
         ListView sports_list;
+        HashMap<String, Integer> icons = new HashMap<String, Integer>();
+        icons.put("Jalgpall", R.drawable.football);
+        icons.put("Korvpall", R.drawable.basketball);
+        icons.put("Sulgpall", R.drawable.tennis);
+        //icons.put("Jõusaal", R.drawable.gym);
+        icons.put("Jooga", R.drawable.jooga);
+
         String[] sportsArray = new String[length];
         String[] dateArray = new String[length];
         String[] locationArray = new String[length];
@@ -83,9 +103,9 @@ public class HomeActivity extends BaseActivity {
         for (int i = 0; i < length; i++) {
             try {
                 sportsArray[i] = json.getJSONObject(i).get("type").toString();
-                dateArray[i] = json.getJSONObject(i).get("timestamp").toString();
+                dateArray[i] = parseDate(json.getJSONObject(i).get("timestamp").toString());
                 locationArray[i] = json.getJSONObject(i).get("location").toString();
-                images[i] = R.mipmap.ic_launcher;
+                images[i] = icons.get(json.getJSONObject(i).get("type").toString());
                 ids[i] = Integer.valueOf(json.getJSONObject(i).get("practice_id").toString());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -135,6 +155,7 @@ public class HomeActivity extends BaseActivity {
             PracticeViewIntent.putExtra("level", level);
             PracticeViewIntent.putExtra("practice_id", practice_id);
             PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
+
             //startActivity(PracticeViewIntent);
 
             String apiURL = getResources().getString(R.string.apiUrl);
