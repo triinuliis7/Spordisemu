@@ -5,7 +5,7 @@
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:ellipsize="marquee"
     android:textAlignment="inherit"
     android:textColor="#111"
-    />
+    android:paddingLeft="20dp"
+    android:textSize="20sp" />

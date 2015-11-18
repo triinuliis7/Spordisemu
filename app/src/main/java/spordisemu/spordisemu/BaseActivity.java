@@ -1,6 +1,7 @@
 package spordisemu.spordisemu;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -46,7 +47,6 @@ public class BaseActivity extends AppCompatActivity {
      * List item array for navigation drawer items.
      * */
     protected String[] listArray =  {"Pealeht","Profiil","Lisa spordiala", "Sõbrad", "Seaded", "Logi välja" };
-    //protected String[] listArray = { getString(R.string.pealeht), getString(R.string.profiil), getString(R.string.lisa_spordiala), getString(R.string.sobrad), getString(R.string.action_settings), getString(R.string.logivalja) };
 
     /**
      * Static variable for selected item position. Which can be used in child activity to know which item is selected from the list.
@@ -78,9 +78,6 @@ public class BaseActivity extends AppCompatActivity {
         frameLayout = (FrameLayout)findViewById(R.id.content_frame);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-        // set a custom shadow that overlays the main content when the drawer opens
-        //mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         // set up the drawer's list view with items and click listener
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.item_navigation_drawer, listArray));
@@ -115,7 +112,7 @@ public class BaseActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                getSupportActionBar().setTitle(getString(R.string.app_name));
+                getSupportActionBar().setTitle(" ");
                 invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
                 super.onDrawerOpened(drawerView);
             }
@@ -130,6 +127,7 @@ public class BaseActivity extends AppCompatActivity {
                 super.onDrawerStateChanged(newState);
             }
         };
+
         mDrawerLayout.setDrawerListener(actionBarDrawerToggle);
 
 
