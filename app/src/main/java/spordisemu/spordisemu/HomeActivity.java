@@ -30,7 +30,7 @@ import java.net.URL;
 /**
  * Created by Triinu Liis on 11/10/2015.
  */
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     public String date = "";
     public String location = "";
@@ -49,10 +49,10 @@ public class HomeActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        //sets title of menu
-        setTitle(R.string.pealeht);
-
-        setContentView(R.layout.activity_home);
+        //for navigation drawer
+        getLayoutInflater().inflate(R.layout.activity_home, frameLayout);
+        mDrawerList.setItemChecked(position, true);
+        setTitle(listArray[position]);
 
         PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
 

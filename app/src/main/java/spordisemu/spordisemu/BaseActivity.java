@@ -45,7 +45,8 @@ public class BaseActivity extends AppCompatActivity {
     /**
      * List item array for navigation drawer items.
      * */
-    protected String[] listArray = { getString(R.string.pealeht), getString(R.string.profiil), getString(R.string.lisa_spordiala), getString(R.string.sobrad), getString(R.string.action_settings), getString(R.string.logivalja) };
+    protected String[] listArray =  {"Pealeht","Profiil","Lisa spordiala", "Sõbrad", "Seaded", "Logi välja" };
+    //protected String[] listArray = { getString(R.string.pealeht), getString(R.string.profiil), getString(R.string.lisa_spordiala), getString(R.string.sobrad), getString(R.string.action_settings), getString(R.string.logivalja) };
 
     /**
      * Static variable for selected item position. Which can be used in child activity to know which item is selected from the list.
