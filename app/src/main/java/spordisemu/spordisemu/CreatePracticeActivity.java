@@ -276,7 +276,6 @@ public class CreatePracticeActivity extends AppCompatActivity {
         try {
 
             String id = json.getString("user_id").toString();
-
             String apiURL = getResources().getString(R.string.apiUrl);
             String urlString = apiURL + "/users/" + id;
             new CallAPI().execute(urlString, "", "user", "get");
