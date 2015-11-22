@@ -55,7 +55,7 @@ public class HomeActivity extends BaseActivity {
         mDrawerList.setItemChecked(position, true);
         setTitle(listArray[position]);
 
-        if (getIntent().getStringExtra("loggedIn_id") == null) {
+        if (LoggedIn.id == null) {
             Toast.makeText(getApplicationContext(), "Logi uuesti sisse", Toast.LENGTH_LONG).show();
         }
 
@@ -154,7 +154,6 @@ public class HomeActivity extends BaseActivity {
             PracticeViewIntent.putExtra("title", title);
             PracticeViewIntent.putExtra("level", level);
             PracticeViewIntent.putExtra("practice_id", practice_id);
-            PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
 
             //startActivity(PracticeViewIntent);
 
@@ -182,6 +181,9 @@ public class HomeActivity extends BaseActivity {
 
         view.startAnimation(buttonClick);
         Intent practiceIntent = new Intent(getApplicationContext(), CreatePracticeActivity.class);
+        if (LoggedIn.id == null) {
+            Toast.makeText(getApplicationContext(), "Logi uuesti sisse", Toast.LENGTH_LONG).show();
+        }
         startActivity(practiceIntent);
     }
 

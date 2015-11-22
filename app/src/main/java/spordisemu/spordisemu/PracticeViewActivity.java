@@ -181,7 +181,7 @@ public class PracticeViewActivity extends AppCompatActivity {
         alert.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        String loggedIn_id = getIntent().getStringExtra("loggedIn_id");
+                        String loggedIn_id = LoggedIn.id;
                         String practice_id = getIntent().getStringExtra("practice_id");
                         String apiURL = getResources().getString(R.string.apiUrl);
                         String urlString = apiURL + "/attends";
@@ -303,41 +303,44 @@ public class PracticeViewActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            if (result.charAt(0) == 'p') {
-                AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
-                alert.setMessage(getResources().getString(R.string.success));
-                alert.setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+            if (result.length() != 0) {
+                if (result.charAt(0) == 'p') {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
+                    alert.setMessage(getResources().getString(R.string.success));
+                    alert.setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Button btn = (Button) findViewById(R.id.attend);
+                                    btn.setText(getResources().getString(R.string.juba_osaled));
+                                    btn.setEnabled(false);
+                                    btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+                                    btn.setTextColor(Color.parseColor("#818081"));
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alert11 = alert.create();
+                    alert11.show();
+                } else {
+                    try {
+
+                        JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            if (jsonArray.getJSONObject(i).getString("user_id").equals(LoggedIn.id)) {
                                 Button btn = (Button) findViewById(R.id.attend);
                                 btn.setText(getResources().getString(R.string.juba_osaled));
                                 btn.setEnabled(false);
                                 btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
                                 btn.setTextColor(Color.parseColor("#818081"));
-                                dialog.cancel();
+                                break;
                             }
-                        });
-
-                AlertDialog alert11 = alert.create();
-                alert11.show();
-            } else {
-                try {
-
-                    JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        if (jsonArray.getJSONObject(i).getString("user_id").equals(getIntent().getStringExtra("loggedIn_id"))) {
-                            Button btn = (Button) findViewById(R.id.attend);
-                            btn.setText(getResources().getString(R.string.juba_osaled));
-                            btn.setEnabled(false);
-                            btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
-                            btn.setTextColor(Color.parseColor("#818081"));
-                            break;
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
             }
+
         }
     }
 }

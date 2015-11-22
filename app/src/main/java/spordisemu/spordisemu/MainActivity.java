@@ -194,8 +194,10 @@ public class MainActivity extends AppCompatActivity {
             if (result.charAt(0) == 't'){
                 Intent loginIntent = new Intent(getApplicationContext(), HomeActivity.class);
                 try {
-                    loginIntent.putExtra("loggedIn_id", new JSONObject(result.substring(1)).getString("id"));
-                    if (loginIntent.getStringExtra("loggedIn_id") != null) {
+                    LoggedIn.id = new JSONObject(result.substring(1)).getString("id");
+                    LoggedIn.firstname = new JSONObject(result.substring(1)).getString("firstname");
+                    LoggedIn.lastname = new JSONObject(result.substring(1)).getString("lastname");
+                    if (LoggedIn.id != null) {
                         startActivity(loginIntent);
                     }
                 } catch (JSONException e) {

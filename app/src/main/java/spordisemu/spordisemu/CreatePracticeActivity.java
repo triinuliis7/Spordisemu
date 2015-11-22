@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,12 +26,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import javax.xml.transform.Result;
 
 /**
  * Created by Kelian on 31/10/2015.
@@ -58,12 +50,6 @@ public class CreatePracticeActivity extends AppCompatActivity {
     static EditText max;
 
     static RadioGroup gender;
-
-    public String j_date = "";
-    public String j_location = "";
-    public String j_title = "";
-    public String j_level = "";
-    public String j_practice_id = "";
 
     public Intent PracticeViewIntent;
 
@@ -114,13 +100,11 @@ public class CreatePracticeActivity extends AppCompatActivity {
             String timestamp = generateTimestamp();
             JSONObject json = new JSONObject();
             try {
-                json.put("sports", sportSpinner.getSelectedItem().toString());
-                json.put("level", raskustaseSpinner.getSelectedItem().toString());
-                json.put("gender", getGender());
+                json.put("type", sportSpinner.getSelectedItem().toString());
                 json.put("timestamp", timestamp);
                 json.put("location", location.getText().toString());
-                json.put("min", getMinMax(min));
-                json.put("max", getMinMax(max));
+                json.put("level", raskustaseSpinner.getSelectedItem().toString());
+                json.put("user_id", LoggedIn.id);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -272,52 +256,18 @@ public class CreatePracticeActivity extends AppCompatActivity {
         return false;
     }
 
-    public void initializePractice(JSONObject json) {
+    public void initializeAdditional(JSONObject json) {
         try {
 
-            String id = json.getString("user_id").toString();
+            JSONObject jsonRequest = new JSONObject();
+            jsonRequest.put("practice_id", json.getString("practice_id"));
+            jsonRequest.put("gender", getGender());
+            jsonRequest.put("min", getMinMax(min));
+            jsonRequest.put("max", getMinMax(max));
             String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/users/" + id;
-            new CallAPI().execute(urlString, "", "user", "get");
+            String urlString = apiURL + "/additional";
+            new CallAPI().execute(urlString, jsonRequest.toString(), "info", "post");
 
-            j_date = json.get("timestamp").toString();
-            j_location = json.getString("location").toString();
-            j_title = json.getString("type").toString();
-            j_level = json.getString("level").toString();
-            j_practice_id = json.getString("practice_id").toString();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initializeUser(JSONObject json) {
-
-        try {
-            PracticeViewIntent.putExtra("user", json.getString("firstname").toString() + " " + json.getString("lastname").toString());
-            PracticeViewIntent.putExtra("date", j_date);
-            PracticeViewIntent.putExtra("location", j_location);
-            PracticeViewIntent.putExtra("title", j_title);
-            PracticeViewIntent.putExtra("level", j_level);
-            PracticeViewIntent.putExtra("practice_id", j_practice_id);
-            PracticeViewIntent.putExtra("loggedIn_id", getIntent().getStringExtra("loggedIn_id"));
-
-            String apiURL = getResources().getString(R.string.apiUrl);
-            String urlString = apiURL + "/additional/" + j_practice_id;
-            new CallAPI().execute(urlString, "", "info", "get");
-
-            //startActivity(PracticeViewIntent);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void initializeInfo(JSONObject json) {
-        try {
-            PracticeViewIntent.putExtra("min", json.getString("min").toString());
-            PracticeViewIntent.putExtra("max", json.getString("max").toString());
-            PracticeViewIntent.putExtra("gender", json.getString("gender").toString());
-            startActivity(PracticeViewIntent);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -345,6 +295,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                         Intent HomeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                        HomeIntent.putExtra("loggedIn_id", LoggedIn.id);
                         startActivity(HomeIntent);
                     }
                 });
@@ -407,7 +358,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
                     urlConnection.disconnect();
                 } catch (IOException e ) {
                     System.out.println(e.getMessage());
-                    return e.getMessage();
+                    return "vale post" + request;
                 }
             } else if (getpost.equals("get")) {
                 // HTTP GET
@@ -437,8 +388,6 @@ public class CreatePracticeActivity extends AppCompatActivity {
                 response = "c" + response;
             } else if (type.equals("practice")) {
                 response = "p" + response;
-            } else if (type.equals("user")) {
-                response = "u" + response;
             } else if (type.equals("info")) {
                 response = "i" + response;
             }
@@ -447,33 +396,34 @@ public class CreatePracticeActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            Toast.makeText(getApplicationContext(), result,
-                    Toast.LENGTH_LONG).show();
             if(result.charAt(0) == 'c') {
                 try {
-                    JSONObject json = new JSONObject(result.substring(1));
+                    JSONObject json = new JSONObject(result.substring(2, result.length()));
+                    PracticeViewIntent.putExtra("title", json.getString("type"));
+                    PracticeViewIntent.putExtra("date", json.getString("timestamp"));
+                    PracticeViewIntent.putExtra("location", json.getString("location"));
+                    PracticeViewIntent.putExtra("level", json.getString("level"));
+                    PracticeViewIntent.putExtra("user", LoggedIn.firstname + " " + LoggedIn.lastname);
                     String apiURL = getResources().getString(R.string.apiUrl);
                     String urlString = apiURL + "/practices/" + json.get("practice_id").toString();
-                    new CallAPI().execute(urlString, "practice", "practice", "get");
+                    new CallAPI().execute(urlString, "", "practice", "get");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else if(result.charAt(0) == 'p') {
                 try {
-                    initializePractice(new JSONObject(result.substring(2, result.length())));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else if(result.charAt(0) == 'u') {
-                try {
-                    initializeUser(new JSONObject(result.substring(2, result.length())));
+                    initializeAdditional(new JSONObject(result.substring(2, result.length())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }  else if (result.charAt(0) == 'i') {
                 dialog.dismiss();
                 try {
-                    initializeInfo(new JSONObject(result.substring(2, result.length())));
+                    JSONObject json = new JSONObject(result.substring(2, result.length()));
+                    PracticeViewIntent.putExtra("min", json.getString("min").toString());
+                    PracticeViewIntent.putExtra("max", json.getString("max").toString());
+                    PracticeViewIntent.putExtra("gender", json.getString("gender").toString());
+                    startActivity(PracticeViewIntent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
