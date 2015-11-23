@@ -423,6 +423,7 @@ public class CreatePracticeActivity extends AppCompatActivity {
                     PracticeViewIntent.putExtra("min", json.getString("min").toString());
                     PracticeViewIntent.putExtra("max", json.getString("max").toString());
                     PracticeViewIntent.putExtra("gender", json.getString("gender").toString());
+                    PracticeViewIntent.putExtra("practice_id", json.getString("practice_id").toString());
                     startActivity(PracticeViewIntent);
                 } catch (JSONException e) {
                     e.printStackTrace();

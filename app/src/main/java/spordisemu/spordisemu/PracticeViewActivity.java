@@ -304,6 +304,7 @@ public class PracticeViewActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             dialog.dismiss();
             if (result.length() != 0) {
+                //POST
                 if (result.charAt(0) == 'p') {
                     AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
                     alert.setMessage(getResources().getString(R.string.success));
@@ -315,6 +316,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                                     btn.setEnabled(false);
                                     btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
                                     btn.setTextColor(Color.parseColor("#818081"));
+                                    btn.setVisibility(View.VISIBLE);
                                     dialog.cancel();
                                 }
                             });
@@ -323,24 +325,29 @@ public class PracticeViewActivity extends AppCompatActivity {
                     alert11.show();
                 } else {
                     try {
-
                         JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
+                        Button btn = (Button) findViewById(R.id.attend);
+                        boolean changeBtn = false;
                         for (int i = 0; i < jsonArray.length(); i++) {
                             if (jsonArray.getJSONObject(i).getString("user_id").equals(LoggedIn.id)) {
-                                Button btn = (Button) findViewById(R.id.attend);
-                                btn.setText(getResources().getString(R.string.juba_osaled));
-                                btn.setEnabled(false);
-                                btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
-                                btn.setTextColor(Color.parseColor("#818081"));
-                                break;
+                                changeBtn = true;
                             }
                         }
+                        if (changeBtn) {
+                            btn.setText(getResources().getString(R.string.juba_osaled));
+                            btn.setEnabled(false);
+                            btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+                            btn.setTextColor(Color.parseColor("#818081"));
+                        }
+                        btn.setVisibility(View.VISIBLE);
                     } catch (JSONException e) {
+                        Button btn = (Button) findViewById(R.id.attend);
+                        btn.setVisibility(View.VISIBLE);
                         e.printStackTrace();
                     }
                 }
+            } else {
             }
-
         }
     }
 }
