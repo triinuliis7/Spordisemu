@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
@@ -26,7 +32,7 @@ import java.util.HashMap;
 /**
  * Created by Triinu Liis on 11/10/2015.
  */
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends AppCompatActivity {
 
     public String date = "";
     public String location = "";
@@ -34,6 +40,9 @@ public class HomeActivity extends BaseActivity {
     public String practice_id = "";
     public String level = "";
     public Intent PracticeViewIntent;
+    ListView sports_list;
+
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +50,57 @@ public class HomeActivity extends BaseActivity {
         getJson();
 
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
 
+        // lehe pealkiri
+        setTitle(R.string.pealeht);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        // paneb menüü nupu üles
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        ab.setDisplayHomeAsUpEnabled(true);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            setupDrawerContent(navigationView);
+        }
+
+        /*
         //for navigation drawer
         getLayoutInflater().inflate(R.layout.activity_home, frameLayout);
         mDrawerList.setItemChecked(position, true);
         setTitle(listArray[position]);
-
+        */
 
         if (LoggedIn.id == null) {
             Toast.makeText(getApplicationContext(), "Logi uuesti sisse", Toast.LENGTH_LONG).show();
         }
 
         PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
     }
 
     //nuppu vajutades, id näitab positsiooni listis
@@ -80,7 +128,6 @@ public class HomeActivity extends BaseActivity {
 
     public void initializeVariables(JSONArray json) {
         int length = json.length();
-        ListView sports_list;
         HashMap<String, Integer> icons = new HashMap<String, Integer>();
         icons.put("Jalgpall", R.drawable.football);
         icons.put("Korvpall", R.drawable.basketball);
