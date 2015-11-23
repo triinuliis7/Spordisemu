@@ -4,11 +4,13 @@
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">#40bf40</item>
         <item name="colorPrimaryDark">#339933</item>
+        <item name="android:windowBackground">@color/window_background</item>
     </style>
 
     <style name="AppThemeAction" parent="Theme.AppCompat">
         <item name="colorPrimary">#40bf40</item>
         <item name="colorPrimaryDark">#339933</item>
+        <item name="android:windowBackground">@color/window_background</item>
     </style>
 
     <style name="green">
