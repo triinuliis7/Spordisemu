@@ -70,6 +70,9 @@ public class PracticeViewActivity extends AppCompatActivity {
     private GoogleMap mMap;
     private boolean chooseMarker = false;
     private Address address;
+    private Button btn;
+    boolean isAttending;
+    String attend_id;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -90,12 +93,15 @@ public class PracticeViewActivity extends AppCompatActivity {
         RoundedImageView newCommentIcon = (RoundedImageView) findViewById(R.id.newCommentIcon);
         newCommentIcon.setImageDrawable(getDrawable(R.drawable.man));
 
+        btn = (Button) findViewById(R.id.attend);
+        btn.setVisibility(View.VISIBLE);
+
         changeButtonIfNeeded();
         setUpMapIfNeeded();
         getComments();
 
         TextView date = (TextView) findViewById(R.id.date);
-        String dateText = parseDate(getIntent().getStringExtra("date"));
+        String dateText = parseDate(getIntent().getStringExtra("date"), false);
         date.setText(dateText);
         TextView location = (TextView) findViewById(R.id.location);
         location.setText(getIntent().getStringExtra("location"));
@@ -164,7 +170,7 @@ public class PracticeViewActivity extends AppCompatActivity {
             try {
                 usernames[i] = json.getJSONObject(i).get("username").toString();
                 contents[i] = json.getJSONObject(i).get("comment").toString();
-                dates[i] = "(" + parseDate(json.getJSONObject(i).get("timestamp").toString()) + ")";
+                dates[i] = "(" + parseDate(json.getJSONObject(i).get("timestamp").toString(), true) + ")";
                 images[i] = getResources().getDrawable(R.drawable.man);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -200,12 +206,18 @@ public class PracticeViewActivity extends AppCompatActivity {
         listView.setLayoutParams(params);
     }
 
-    protected String parseDate(String date) {
+    protected String parseDate(String date, boolean isComment) {
         String[] dateTime = date.split(" ");
         String[] dates = dateTime[0].split("-");
         String[] times = dateTime[1].split(":");
         //String dateNew = times[0] + ":" + times[1];
-        String dateNew = dates[2] + "." + dates[1] + "." + dates[0];
+        String dateNew;
+        if (isComment) {
+            dateNew = dates[2] + "." + dates[1] + "." + dates[0];
+        } else {
+            dateNew = times[0] + ":" + times[1] +
+                    " " + dates[2] + "." + dates[1] + "." + dates[0];
+        }
         return dateNew;
     }
 
@@ -272,30 +284,50 @@ public class PracticeViewActivity extends AppCompatActivity {
 
     public void attend(View view) {
         AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
-        alert.setMessage(getResources().getString(R.string.kinnitaOsalemine));
-        alert.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        String loggedIn_id = LoggedIn.id;
-                        String practice_id = getIntent().getStringExtra("practice_id");
-                        String apiURL = getResources().getString(R.string.apiUrl);
-                        String urlString = apiURL + "/attends";
-                        JSONObject json = new JSONObject();
-                        try {
-                            json.put("user_id", loggedIn_id);
-                            json.put("practice_id", practice_id);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+        if (!isAttending) {
+            alert.setMessage(getResources().getString(R.string.kinnitaOsalemine));
+            alert.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            String loggedIn_id = LoggedIn.id;
+                            String practice_id = getIntent().getStringExtra("practice_id");
+                            String apiURL = getResources().getString(R.string.apiUrl);
+                            String urlString = apiURL + "/attends";
+                            JSONObject json = new JSONObject();
+                            try {
+                                json.put("user_id", loggedIn_id);
+                                json.put("practice_id", practice_id);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            isAttending = true;
+                            new CallAPI().execute(urlString, "post", json.toString(), "newAttend");
                         }
-                        new CallAPI().execute(urlString, "post", json.toString(), "newAttend");
-                    }
-                });
-        alert.setNegativeButton(getResources().getString(R.string.cancel),
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+                    });
+            alert.setNegativeButton(getResources().getString(R.string.cancel),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+        // kui juba osaleb, küsi kas tahab lahkuda
+        } else {
+            alert.setMessage(getResources().getString(R.string.kinnitaLahkumine));
+            alert.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            String apiURL = getResources().getString(R.string.apiUrl);
+                            String urlString = apiURL + "/attends/" + attend_id;
+                            new CallAPI().execute(urlString, "delete", "", "deleteAttend");
+                        }
+                    });
+            alert.setNegativeButton(getResources().getString(R.string.cancel),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+        }
 
         AlertDialog alert11 = alert.create();
         alert11.show();
@@ -376,7 +408,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                     response = jsonResponse.toString();
                 }
                 response = "p" + response;
-            } else {
+            } else if (getpost.equals("get")){
                 try {
                     String line;
                     URL url = new URL(urlString);
@@ -401,6 +433,27 @@ public class PracticeViewActivity extends AppCompatActivity {
                 } else {
                     response = "a" + jsonResponse.toString();
                 }
+            } else {
+                try {
+                    String line;
+                    URL url = new URL(urlString);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+                    urlConnection.setDoInput(true);
+                    urlConnection.setRequestMethod("DELETE");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    while ((line = br.readLine()) != null) {
+                        jsonResponse.append(line);
+                    }
+                    br.close();
+                    urlConnection.disconnect();
+                } catch (IOException e ) {
+                    System.out.println(e.getMessage());
+                    return jsonResponse.toString();
+                }
+                response = "d" + jsonResponse.toString();
             }
             return response;
         }
@@ -417,52 +470,57 @@ public class PracticeViewActivity extends AppCompatActivity {
                         imm.hideSoftInputFromWindow(commentText.getWindowToken(), 0);
                         getComments();
                     } else {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
-                        alert.setMessage(getResources().getString(R.string.success));
-                        alert.setPositiveButton("OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Button btn = (Button) findViewById(R.id.attend);
-                                        btn.setText(getResources().getString(R.string.juba_osaled));
-                                        btn.setEnabled(false);
-                                        btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
-                                        btn.setTextColor(Color.parseColor("#818081"));
-                                        btn.setVisibility(View.VISIBLE);
-                                        dialog.cancel();
-                                    }
-                                });
+                        try {
+                            JSONObject json = new JSONObject(result.substring(2, result.length()-1));
+                            attend_id = json.getString("attend_id");
 
-                        AlertDialog alert11 = alert.create();
-                        alert11.show();
+                            AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
+                            alert.setMessage(getResources().getString(R.string.success));
+                            alert.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            btn.setText(getResources().getString(R.string.lahku));
+                                            btn.setBackgroundColor(Color.parseColor("#f5cece"));
+                                            btn.setTextColor(Color.parseColor("#222222"));
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = alert.create();
+                            alert11.show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                } else if (result.charAt(0) == 'a'){
+                } else if (result.charAt(0) == 'a') {
                     try {
+                        //kontrolli alguses, kas osaleb treeningul
                         JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
-                        Button btn = (Button) findViewById(R.id.attend);
-                        boolean changeBtn = false;
                         for (int i = 0; i < jsonArray.length(); i++) {
                             if (jsonArray.getJSONObject(i).getString("user_id").equals(LoggedIn.id)) {
-                                changeBtn = true;
+                                isAttending = true;
+                                attend_id = jsonArray.getJSONObject(i).getString("attend_id");
                             }
                         }
-                        if (changeBtn) {
-                            btn.setText(getResources().getString(R.string.juba_osaled));
-                            btn.setEnabled(false);
-                            btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
-                            btn.setTextColor(Color.parseColor("#818081"));
+                        if (isAttending) {
+                            btn.setText(getResources().getString(R.string.lahku));
+                            btn.setBackgroundColor(Color.parseColor("#f5cece"));
+                            btn.setTextColor(Color.parseColor("#222222"));
                         }
-                        btn.setVisibility(View.VISIBLE);
                     } catch (JSONException e) {
-                        Button btn = (Button) findViewById(R.id.attend);
-                        btn.setVisibility(View.VISIBLE);
                         e.printStackTrace();
                     }
-                } else {
+                } else if (result.charAt(0) == 'c') {
                     try {
                         initializeComments(new JSONArray(result.substring(1, result.length())));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                } else if (result.charAt(0) == 'd') {
+                    isAttending = false;
+                    btn.setText(getResources().getString(R.string.osale));
+                    btn.setBackgroundColor(Color.parseColor("#40bf40"));
+                    btn.setTextColor(Color.parseColor("#ffffff"));
                 }
             }
         }

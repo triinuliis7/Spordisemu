@@ -66,9 +66,10 @@
     <string name="vajutamataNupp">Lisa spordiala!</string>
     <string name="valimataSport">Spordiala või tase on jäänud valimata!</string>
     <string name="success">Osaled sellel treeningul</string>
-    <string name="juba_osaled">Juba osaled</string>
+    <string name="lahku">Lahku</string>
     <string name="cancel">Tagasi</string>
     <string name="kinnitaOsalemine">Oled kindel, et soovid sellel treeningul osaleda?</string>
+    <string name="kinnitaLahkumine">Oled kindel, et ei soovi sellel treeningul osaleda?</string>
 
     <string name="selectImg">Vali pilt</string>
     <string-array name="lisaPiltList">
