@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -19,10 +20,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +58,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -67,13 +77,22 @@ public class PracticeViewActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_practice_view);
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        EditText commentText = (EditText) findViewById(R.id.newComment);
+        commentText.clearFocus();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
         setTitle(getIntent().getStringExtra("title"));
 
+        //logged in users icon
+        RoundedImageView newCommentIcon = (RoundedImageView) findViewById(R.id.newCommentIcon);
+        newCommentIcon.setImageDrawable(getDrawable(R.drawable.man));
+
         changeButtonIfNeeded();
         setUpMapIfNeeded();
+        getComments();
 
         TextView date = (TextView) findViewById(R.id.date);
         String dateText = parseDate(getIntent().getStringExtra("date"));
@@ -98,19 +117,95 @@ public class PracticeViewActivity extends AppCompatActivity {
 
     }
 
+    public void addComment(View view) {
+        JSONObject json = new JSONObject();
+        EditText commentText = (EditText) findViewById(R.id.newComment);
+        if (commentText.getText().length() != 0) {
+            try {
+                json.put("user_id", LoggedIn.id);
+                json.put("practice_id", getIntent().getStringExtra("practice_id"));
+                json.put("comment", commentText.getText());
+
+                String apiURL = getResources().getString(R.string.apiUrl);
+                String urlString = apiURL + "/comments";
+                new CallAPI().execute(urlString, "post", json.toString(), "comments");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.commentTooShort), Toast.LENGTH_SHORT).show();
+        }
+    }
+
     protected void changeButtonIfNeeded() {
         String practice_id = getIntent().getStringExtra("practice_id");
         String apiURL = getResources().getString(R.string.apiUrl);
         String urlString = apiURL + "/attends/" + practice_id;
-        new CallAPI().execute(urlString, "get", "");
+        new CallAPI().execute(urlString, "get", "", "attends");
+    }
+
+    protected void getComments() {
+        String practice_id = getIntent().getStringExtra("practice_id");
+        String apiURL = getResources().getString(R.string.apiUrl);
+        String urlString = apiURL + "/comments/" + practice_id;
+        new CallAPI().execute(urlString, "get", "", "comments");
+    }
+
+    public void initializeComments(JSONArray json) {
+        int length = json.length();
+        ListView comments_list;
+
+        String[] usernames = new String[length];
+        String[] contents = new String[length];
+        Drawable[] images = new Drawable[length];
+        String[] dates = new String[length];
+        final Integer[] ids = new Integer[length];
+        for (int i = 0; i < length; i++) {
+            try {
+                usernames[i] = json.getJSONObject(i).get("username").toString();
+                contents[i] = json.getJSONObject(i).get("comment").toString();
+                dates[i] = "(" + parseDate(json.getJSONObject(i).get("timestamp").toString()) + ")";
+                images[i] = getResources().getDrawable(R.drawable.man);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        CommentsListAdapter adapter = new CommentsListAdapter(this, usernames, images, dates, contents);
+        comments_list = (ListView) findViewById(R.id.comments_list);
+        comments_list.setAdapter(adapter);
+        setListViewHeightBasedOnChildren(comments_list);
+    }
+
+    /**** Method for Setting the Height of the ListView dynamically.
+     **** Hack to fix the issue of not showing all the items of the ListView
+     **** when placed inside a ScrollView  ****/
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, AbsListView.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
     }
 
     protected String parseDate(String date) {
         String[] dateTime = date.split(" ");
         String[] dates = dateTime[0].split("-");
         String[] times = dateTime[1].split(":");
+        //String dateNew = times[0] + ":" + times[1];
         String dateNew = dates[2] + "." + dates[1] + "." + dates[0];
-        dateNew += " " + times[0] + ":" + times[1];
         return dateNew;
     }
 
@@ -192,7 +287,7 @@ public class PracticeViewActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        new CallAPI().execute(urlString, "post", json.toString());
+                        new CallAPI().execute(urlString, "post", json.toString(), "newAttend");
                     }
                 });
         alert.setNegativeButton(getResources().getString(R.string.cancel),
@@ -245,6 +340,7 @@ public class PracticeViewActivity extends AppCompatActivity {
             String urlString = params[0];
             String getpost = params[1];
             String request = params[2];
+            String type = params[3];
             String response;
 
             StringBuffer jsonResponse = new StringBuffer();
@@ -272,9 +368,14 @@ public class PracticeViewActivity extends AppCompatActivity {
                     urlConnection.disconnect();
                 } catch (IOException e ) {
                     System.out.println(e.getMessage());
-                    return "p"+e.getMessage();
+                    return jsonResponse.toString();
                 }
-                response = "p" + jsonResponse.toString();
+                if (type.equals("comments")) {
+                    response = "c" + jsonResponse.toString();
+                } else {
+                    response = jsonResponse.toString();
+                }
+                response = "p" + response;
             } else {
                 try {
                     String line;
@@ -295,9 +396,12 @@ public class PracticeViewActivity extends AppCompatActivity {
                     System.out.println(e.getMessage());
                     return jsonResponse.toString();
                 }
-                response = "g" + jsonResponse.toString();
+                if (type.equals("comments")) {
+                    response = "c" + jsonResponse.toString();
+                } else {
+                    response = "a" + jsonResponse.toString();
+                }
             }
-
             return response;
         }
 
@@ -306,24 +410,32 @@ public class PracticeViewActivity extends AppCompatActivity {
             if (result.length() != 0) {
                 //POST
                 if (result.charAt(0) == 'p') {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
-                    alert.setMessage(getResources().getString(R.string.success));
-                    alert.setPositiveButton("OK",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    Button btn = (Button) findViewById(R.id.attend);
-                                    btn.setText(getResources().getString(R.string.juba_osaled));
-                                    btn.setEnabled(false);
-                                    btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
-                                    btn.setTextColor(Color.parseColor("#818081"));
-                                    btn.setVisibility(View.VISIBLE);
-                                    dialog.cancel();
-                                }
-                            });
+                    if (result.charAt(1) == 'c') {
+                        EditText commentText = (EditText) findViewById(R.id.newComment);
+                        commentText.setText("");
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(commentText.getWindowToken(), 0);
+                        getComments();
+                    } else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(PracticeViewActivity.this);
+                        alert.setMessage(getResources().getString(R.string.success));
+                        alert.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Button btn = (Button) findViewById(R.id.attend);
+                                        btn.setText(getResources().getString(R.string.juba_osaled));
+                                        btn.setEnabled(false);
+                                        btn.setBackgroundColor(Color.parseColor("#fff1f1f1"));
+                                        btn.setTextColor(Color.parseColor("#818081"));
+                                        btn.setVisibility(View.VISIBLE);
+                                        dialog.cancel();
+                                    }
+                                });
 
-                    AlertDialog alert11 = alert.create();
-                    alert11.show();
-                } else {
+                        AlertDialog alert11 = alert.create();
+                        alert11.show();
+                    }
+                } else if (result.charAt(0) == 'a'){
                     try {
                         JSONArray jsonArray = new JSONArray(result.substring(1, result.length()));
                         Button btn = (Button) findViewById(R.id.attend);
@@ -345,8 +457,13 @@ public class PracticeViewActivity extends AppCompatActivity {
                         btn.setVisibility(View.VISIBLE);
                         e.printStackTrace();
                     }
+                } else {
+                    try {
+                        initializeComments(new JSONArray(result.substring(1, result.length())));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-            } else {
             }
         }
     }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- this needs to be layout, cannot move to drawable folder -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!--do not use id:text1, that is systems default
+         if you call id.text1, it wants android.R.layout.text1
+        it will use the default text1 and won't let use this one.
+         trust me.-->
+
+        <spordisemu.spordisemu.RoundedImageView
+            android:id="@+id/commentIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/commentName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium Text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="2dp"
+                    android:textSize="20dp"
+                    android:layout_gravity="bottom" />
+
+                <TextView
+                    android:id="@+id/commentDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="#95858383"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/commentContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#9a000000"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

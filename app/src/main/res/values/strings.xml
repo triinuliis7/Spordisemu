@@ -117,4 +117,8 @@
     <string name="close_drawer">Sule menüü</string>
 
     <string name="estonia">Eesti</string>
+
+    <string name="comments">Kommentaarid</string>
+    <string name="commentBtn">Kirjuta kommentaar</string>
+    <string name="commentTooShort">Sisesta kommentaar!</string>
 </resources>
