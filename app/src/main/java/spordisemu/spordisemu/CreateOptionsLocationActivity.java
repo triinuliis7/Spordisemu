@@ -52,7 +52,7 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
 
         //location by default is "Eesti"
         location = (TextView) findViewById(R.id.textView4);
-        location.setText("Eesti");
+        location.setText(R.string.estonia);
     }
 
     //change location according to google maps
@@ -89,8 +89,8 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
             json.put("location", location.getText());
             json.put("pic", getIntent().getStringExtra("pic"));
             //json.put("pic", "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg");
-            Toast.makeText(getApplicationContext(), getIntent().getExtras().toString(),
-                    Toast.LENGTH_LONG).show();
+            /*Toast.makeText(getApplicationContext(), getIntent().getExtras().toString(),
+                    Toast.LENGTH_LONG).show();*/
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -193,8 +193,8 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            Toast.makeText(getApplicationContext(), result,
-                    Toast.LENGTH_LONG).show();
+            /*Toast.makeText(getApplicationContext(), result,
+                    Toast.LENGTH_LONG).show();*/
             Intent HomeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
             startActivity(HomeActivityIntent);
         }
