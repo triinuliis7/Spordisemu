@@ -24,6 +24,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -49,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        //Notifications
+        Parse.initialize(this, "FWLLWZk8Adonl3ixkHu71nPUDaM1R2uFcmZJKQA5", "Vtdc1OL9auXX6Gjcavb5wzWzCyKKkAXRbpRlsh1t");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
