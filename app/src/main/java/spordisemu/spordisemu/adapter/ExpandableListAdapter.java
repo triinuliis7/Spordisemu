@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.adapter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import spordisemu.spordisemu.R;
 
 /**
  * Created by ingrid on 11/1/15.

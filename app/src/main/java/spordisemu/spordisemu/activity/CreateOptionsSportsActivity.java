@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import spordisemu.spordisemu.R;
 
 /**
  * Created by ingrid on 10/9/15.

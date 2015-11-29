@@ -1,42 +1,30 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -47,20 +35,19 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+
+import spordisemu.spordisemu.widget.LoggedIn;
+import spordisemu.spordisemu.R;
+import spordisemu.spordisemu.widget.RoundedImageView;
+import spordisemu.spordisemu.adapter.CommentsListAdapter;
 
 /**
  * Created by ingrid on 10/25/15.

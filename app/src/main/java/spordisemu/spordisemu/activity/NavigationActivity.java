@@ -1,22 +1,13 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.Toast;
+
+import spordisemu.spordisemu.R;
 
 /**
  * Created by ingrid on 11/18/15.

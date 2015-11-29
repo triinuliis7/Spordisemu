@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,8 +20,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -30,10 +28,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import spordisemu.spordisemu.R;
 
 
 public class RegistrationActivity extends AppCompatActivity {

@@ -1,28 +1,27 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import spordisemu.spordisemu.R;
 
 /**
- * Created by Harry Potter on 23.10.2015.
+ * Created by ingrid on 10/25/15.
  */
-public class SettingsActivity extends NavigationActivity {
+public class ProfileActivity extends NavigationActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        setTitle(R.string.action_settings);
+        setTitle(R.string.profiil);
+        setContentView(R.layout.activity_profile);
 
-        IntentId = R.id.action_settings;
+        IntentId = R.id.profiil;
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // paneb menüü nupu üles
@@ -36,7 +35,6 @@ public class SettingsActivity extends NavigationActivity {
             setupDrawerContent(navigationView);
         }
 
-
     }
 
     @Override
@@ -48,6 +46,4 @@ public class SettingsActivity extends NavigationActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

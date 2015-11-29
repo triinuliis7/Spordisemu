@@ -1,8 +1,6 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,9 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.maps.GoogleMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,6 +22,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import spordisemu.spordisemu.fragmentActivity.Map;
+import spordisemu.spordisemu.R;
 
 /**
  * Created by Triinu Liis on 09/10/2015.

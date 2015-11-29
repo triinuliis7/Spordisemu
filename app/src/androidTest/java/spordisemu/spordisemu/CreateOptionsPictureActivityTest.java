@@ -5,6 +5,8 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 
+import spordisemu.spordisemu.activity.CreateOptionsPictureActivity;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;

@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.content.Context;
 
 import java.util.ArrayList;
+
+import spordisemu.spordisemu.widget.CropOption;
+import spordisemu.spordisemu.R;
 
 /**
  * Created by Kelian on 18/10/2015.

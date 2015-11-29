@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp">
 
-                    <spordisemu.spordisemu.RoundedImageView
+                    <spordisemu.spordisemu.widget.RoundedImageView
                         android:id="@+id/newCommentIcon"
                         android:layout_width="48dp"
                         android:layout_height="48dp"

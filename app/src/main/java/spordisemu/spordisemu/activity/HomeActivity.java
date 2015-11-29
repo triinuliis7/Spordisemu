@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -25,6 +25,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+
+import spordisemu.spordisemu.widget.LoggedIn;
+import spordisemu.spordisemu.R;
+import spordisemu.spordisemu.adapter.CustomListAdapter;
 
 /**
  * Created by Triinu Liis on 11/10/2015.

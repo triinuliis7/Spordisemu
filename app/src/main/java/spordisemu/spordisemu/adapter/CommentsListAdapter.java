@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.adapter;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import spordisemu.spordisemu.R;
 
 /**
  * Created by Triinu on 11/23/15.

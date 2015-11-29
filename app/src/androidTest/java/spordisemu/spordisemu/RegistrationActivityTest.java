@@ -6,13 +6,14 @@ import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 
+import spordisemu.spordisemu.activity.RegistrationActivity;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.RootMatchers.isDialog;
 import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;

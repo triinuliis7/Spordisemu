@@ -17,7 +17,7 @@
         it will use the default text1 and won't let use this one.
          trust me.-->
 
-        <spordisemu.spordisemu.RoundedImageView
+        <spordisemu.spordisemu.widget.RoundedImageView
             android:id="@+id/commentIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"

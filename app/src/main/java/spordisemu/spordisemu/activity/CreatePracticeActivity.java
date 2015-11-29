@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
@@ -26,6 +25,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import spordisemu.spordisemu.widget.LoggedIn;
+import spordisemu.spordisemu.R;
 
 /**
  * Created by Kelian on 31/10/2015.

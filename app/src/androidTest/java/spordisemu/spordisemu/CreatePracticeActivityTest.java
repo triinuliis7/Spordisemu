@@ -1,10 +1,11 @@
 package spordisemu.spordisemu;
 
 import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.Espresso;
 import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
+
+import spordisemu.spordisemu.activity.CreatePracticeActivity;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;

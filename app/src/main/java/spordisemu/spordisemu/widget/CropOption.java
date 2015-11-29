@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.widget;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;

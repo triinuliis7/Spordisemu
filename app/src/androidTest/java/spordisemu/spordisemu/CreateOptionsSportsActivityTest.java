@@ -1,7 +1,5 @@
 package spordisemu.spordisemu;
 
-import android.app.KeyguardManager;
-import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.test.ActivityInstrumentationTestCase2;
 
@@ -18,6 +16,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 
 import org.junit.Before;
+
+import spordisemu.spordisemu.activity.CreateOptionsSportsActivity;
 
 /**
  * Created by ingrid on 11/1/15.

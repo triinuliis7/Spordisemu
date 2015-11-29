@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -26,6 +26,10 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import spordisemu.spordisemu.widget.CropOption;
+import spordisemu.spordisemu.adapter.CropOptionAdapter;
+import spordisemu.spordisemu.R;
 
 /**
  * Created by Kelian on 09/10/2015.

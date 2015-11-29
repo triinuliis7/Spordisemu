@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.fragmentActivity;
 
 import android.content.Intent;
 import android.graphics.Point;
@@ -7,8 +7,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,6 +19,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import spordisemu.spordisemu.R;
+import spordisemu.spordisemu.activity.CreateOptionsLocationActivity;
 
 /**
  * Created by Triinu Liis on 11/10/2015.

@@ -1,4 +1,4 @@
-package spordisemu.spordisemu;
+package spordisemu.spordisemu.activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -13,8 +13,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,7 +20,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
@@ -30,12 +27,13 @@ import com.parse.ParseInstallation;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import spordisemu.spordisemu.widget.LoggedIn;
+import spordisemu.spordisemu.R;
 
 
 public class MainActivity extends AppCompatActivity {
