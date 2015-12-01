@@ -12,7 +12,7 @@
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textColor="#339933" />
 
     <Button
@@ -31,11 +31,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="asukoht"
+        android:text="@string/asukoht"
         android:id="@+id/textView4"
         android:layout_gravity="center_horizontal"
         android:textColor="#818081"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:layout_marginTop="20dp" />
 
     <LinearLayout

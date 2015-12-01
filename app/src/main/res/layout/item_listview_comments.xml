@@ -37,22 +37,22 @@
                     android:id="@+id/commentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Medium Text"
+                    android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:padding="2dp"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_gravity="bottom" />
 
                 <TextView
                     android:id="@+id/commentDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
+                    android:text=""
                     android:textColor="#95858383"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:layout_gravity="bottom" />
             </LinearLayout>
@@ -61,9 +61,9 @@
                 android:id="@+id/commentContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=""
                 android:textColor="#9a000000"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical" />
 

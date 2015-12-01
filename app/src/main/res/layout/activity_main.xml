@@ -22,7 +22,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"
             android:textColor="#fff"
-            android:textSize="32dp" />
+            android:textSize="32sp" />
 
         <EditText
             android:background="#ffffffff"
@@ -32,32 +32,33 @@
             android:hint="@string/username"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            android:gravity="left|center"
+            android:gravity="start|center"
             android:singleLine="true"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:fontFamily="sans-serif"
             android:textColor="#818081"
             android:textColorHint="#ff9b9b9b"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:inputType="text" />
 
         <EditText
             android:background="#ffffffff"
             android:layout_width="250dp"
             android:layout_height="40dp"
-            android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordId"
             android:hint="@string/parool1"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:password="true"
             android:gravity="left|center"
             android:fontFamily="sans-serif"
             android:textColor="#818081"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColorHint="#FF9B9B9B"
-            android:paddingStart="10dp" />
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:inputType="textPassword" />
 
         <Button
             android:layout_width="250dp"
@@ -67,8 +68,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:background="#fff1f1f1"
-            android:textSize="16dp"
-            android:stateListAnimator="@null"
+            android:textSize="16sp"
             android:textColor="#818081" />
 
         <Button
@@ -80,7 +80,7 @@
             android:layout_gravity="center_horizontal"
             android:background="#fff1f1f1"
             android:layout_marginTop="5dp"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:stateListAnimator="@null"
             android:textColor="#818081" />
 
