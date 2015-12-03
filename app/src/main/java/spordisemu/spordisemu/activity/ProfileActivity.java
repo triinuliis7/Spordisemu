@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import spordisemu.spordisemu.R;
@@ -23,6 +24,10 @@ public class ProfileActivity extends NavigationActivity {
         IntentId = R.id.profiil;
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // paneb menüü nupu üles
         final ActionBar ab = getSupportActionBar();

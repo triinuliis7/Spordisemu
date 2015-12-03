@@ -7,7 +7,6 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -95,7 +94,7 @@
             android:name=".activity.FriendsActivity">
         </activity>
         <activity
-            android:theme="@style/AppThemeAction"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait"
             android:label=""
             android:name=".activity.ProfileActivity">
@@ -104,13 +103,23 @@
             android:theme="@style/AppThemeAction"
             android:screenOrientation="portrait"
             android:label=""
-            android:name=".activity.PracticeViewActivity">
+            android:name=".activity.PracticeViewActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity"
+                />
         </activity>
         <activity
             android:theme="@style/AppThemeAction"
             android:screenOrientation="portrait"
             android:label=""
-            android:name=".activity.CreatePracticeActivity">
+            android:name=".activity.CreatePracticeActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.HomeActivity"
+                />
         </activity>
         <activity
             android:theme="@style/AppThemeAction"
