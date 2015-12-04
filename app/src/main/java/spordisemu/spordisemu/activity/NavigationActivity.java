@@ -41,8 +41,8 @@ public class NavigationActivity extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                 }
                                 return true;
-                            case R.id.lisa_spordiala:
-                                if(IntentId != R.id.lisa_spordiala) {
+                            case R.id.minu_spordialad:
+                                if(IntentId != R.id.minu_spordialad) {
                                     startActivity(new Intent(getApplicationContext(), AddSportsActivity.class));
                                 }
                                 return true;

@@ -31,9 +31,9 @@ public class AddSportsActivity extends NavigationActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_sports);
-        setTitle(R.string.lisa_spordiala);
+        setTitle(R.string.minu_spordialad);
 
-        IntentId = R.id.lisa_spordiala;
+        IntentId = R.id.minu_spordialad;
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 

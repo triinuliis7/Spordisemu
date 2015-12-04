@@ -11,9 +11,9 @@
             android:title="@string/profiil"
             android:icon="@drawable/ic_person_black_24dp"/>
         <item
-            android:id="@+id/lisa_spordiala"
-            android:title="@string/lisa_spordiala"
-            android:icon="@drawable/ic_library_add_black_24dp"/>
+            android:id="@+id/minu_spordialad"
+            android:title="@string/minu_spordialad"
+            android:icon="@drawable/ic_favorite_black_24dp"/>
         <item
             android:id="@+id/sobrad"
             android:title="@string/sobrad"
