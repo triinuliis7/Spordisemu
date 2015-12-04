@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import spordisemu.spordisemu.R;
+import spordisemu.spordisemu.widget.RoundedImageView;
 
 /**
  * Created by ingrid on 10/25/15.
@@ -18,7 +19,6 @@ public class ProfileActivity extends NavigationActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setTitle(R.string.profiil);
         setContentView(R.layout.activity_profile);
 
         IntentId = R.id.profiil;
@@ -40,6 +40,8 @@ public class ProfileActivity extends NavigationActivity {
             setupDrawerContent(navigationView);
         }
 
+        RoundedImageView avatar = (RoundedImageView) findViewById(R.id.avatar_icon);
+        avatar.setImageDrawable(getDrawable(R.drawable.woman));
     }
 
     @Override
