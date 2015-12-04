@@ -40,12 +40,12 @@
                     app:layout_collapseMode="parallax" />
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/profilename"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="220dp"
                     android:layout_gravity="center_horizontal"
-                    android:text="Eesnimi Perenimi"
+                    android:text=""
                     android:textColor="@color/headline"
                     android:textStyle="bold"
                     android:textSize="@dimen/headline"/>

@@ -7,8 +7,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import spordisemu.spordisemu.R;
+import spordisemu.spordisemu.widget.LoggedIn;
 import spordisemu.spordisemu.widget.RoundedImageView;
 
 /**
@@ -42,6 +44,9 @@ public class ProfileActivity extends NavigationActivity {
 
         RoundedImageView avatar = (RoundedImageView) findViewById(R.id.avatar_icon);
         avatar.setImageDrawable(getDrawable(R.drawable.woman));
+
+        TextView name = (TextView) findViewById(R.id.profilename);
+        name.setText(LoggedIn.firstname + " " + LoggedIn.lastname);
     }
 
     @Override
