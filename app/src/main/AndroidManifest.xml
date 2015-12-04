@@ -80,7 +80,7 @@
             </intent-filter>
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".SearchResultsActivity" />
+                android:value=".activity.SearchResultsActivity" />
         </activity>
         <activity
             android:theme="@style/AppThemeAction"
@@ -146,7 +146,7 @@
             android:name=".activity.NotificationsActivity">
         </activity>
         <activity
-            android:name="activity.SearchResultsActivity"
+            android:name=".activity.SearchResultsActivity"
             android:label=""
             android:theme="@style/AppThemeAction">
 
