@@ -28,11 +28,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import spordisemu.spordisemu.R;
+import spordisemu.spordisemu.widget.LoggedIn;
 
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -162,6 +164,7 @@ public class RegistrationActivity extends AppCompatActivity {
         if (nameNotCorrect("[^a-z]", signUpLastEdit)) {
             done = false;
         }
+        usernameUnique(signUpUserEdit);
         return done;
     }
 
@@ -221,10 +224,16 @@ public class RegistrationActivity extends AppCompatActivity {
         return done;
     }
 
+    public void usernameUnique(EditText username) {
+        String apiURL = getResources().getString(R.string.apiUrl);
+        String urlString = apiURL + "/users/" + username.getText();
+        new CallAPI().execute(urlString, "", "get");
+    }
+
     public void postJson(JSONObject json) {
         String apiURL = getResources().getString(R.string.apiUrl);
         String urlString = apiURL + "/users";
-        new CallAPI().execute(urlString, json.toString());
+        new CallAPI().execute(urlString, json.toString(), "post");
     }
 
     @Override
@@ -273,48 +282,80 @@ public class RegistrationActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String urlString = params[0];
             String request = params[1];
+            String getpost = params[2];
             String response;
 
             StringBuffer jsonResponse = new StringBuffer();
 
-            // HTTP POST
-            try {
-                String line;
-                URL url = new URL(urlString);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setDoInput(true);
-                urlConnection.setDoOutput(true);
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Accept", "application/json");
-                urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-                OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
-                writer.write(request);
-                writer.close();
-                BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
-                while ((line = br.readLine()) != null) {
-                    jsonResponse.append(line);
-                }
-                br.close();
+            if (getpost.equals("get")) {
+                // HTTP GET
+                try {
+                    String line;
+                    URL url = new URL(urlString);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
-                urlConnection.disconnect();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-                return request;
+                    urlConnection.setDoInput(true);
+                    urlConnection.setRequestMethod("GET");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    while ((line = br.readLine()) != null) {
+                        jsonResponse.append(line);
+                    }
+                    br.close();
+                    urlConnection.disconnect();
+                } catch (Exception e ) {
+                    System.out.println(e.getMessage());
+                    return e.getMessage();
+                }
+                response = "g" + jsonResponse.toString();
+            } else {
+                // HTTP POST
+                try {
+                    String line;
+                    URL url = new URL(urlString);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setDoInput(true);
+                    urlConnection.setDoOutput(true);
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setRequestProperty("Accept", "application/json");
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+                    OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8");
+                    writer.write(request);
+                    writer.close();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
+                    while ((line = br.readLine()) != null) {
+                        jsonResponse.append(line);
+                    }
+                    br.close();
+
+                    urlConnection.disconnect();
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                    return request;
+                }
+                response = "p" + jsonResponse.toString();
             }
-            response = jsonResponse.toString();
             return response;
         }
 
         protected void onPostExecute(String result) {
             dialog.dismiss();
-            Intent createOptionsPictureIntent = new Intent(getApplicationContext(), CreateOptionsPictureActivity.class);
-            try {
-                JSONObject json = new JSONObject(result);
-                createOptionsPictureIntent.putExtra("user_id", json.getString("id"));
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (result.charAt(0) == 'p') {
+                Intent createOptionsPictureIntent = new Intent(getApplicationContext(), CreateOptionsPictureActivity.class);
+                try {
+                    JSONObject json = new JSONObject(result.substring(2, result.length()-1));
+                    LoggedIn.id = json.getString("id");
+                    createOptionsPictureIntent.putExtra("user_id", json.getString("id"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                startActivity(createOptionsPictureIntent);
+            } else {
+                if (result.contains("id")) {
+                    signUpUserEdit.setError(getResources().getString(R.string.uniqueError));
+                }
             }
-            startActivity(createOptionsPictureIntent);
         }
     }
 

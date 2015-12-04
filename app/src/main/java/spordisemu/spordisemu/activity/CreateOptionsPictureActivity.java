@@ -108,8 +108,8 @@ public class CreateOptionsPictureActivity extends AppCompatActivity{
         Intent createOptionsSportsIntent = new Intent(getApplicationContext(), CreateOptionsSportsActivity.class);
         createOptionsSportsIntent.putExtra("pic", "http://trialx.org/wp-content/uploads/2012/04/animals/Cabbagehead-3.jpg");
         createOptionsSportsIntent.putExtra("user_id", getIntent().getStringExtra("user_id"));
-        Toast.makeText(getApplicationContext(), createOptionsSportsIntent.getStringExtra("pic"),
-                Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), createOptionsSportsIntent.getStringExtra("pic"),
+        //        Toast.LENGTH_LONG).show();
         startActivity(createOptionsSportsIntent);
 
     }
