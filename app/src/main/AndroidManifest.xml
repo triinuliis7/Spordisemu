@@ -75,7 +75,7 @@
             android:name=".activity.HomeActivity">
             <!-- to identify this activity as "searchable" -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.HOME" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
@@ -137,6 +137,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeAction"
             android:label=""
+            android:parentActivityName=".activity.SettingsActivity"
             android:name=".activity.PasswordActivity">
         </activity>
         <activity

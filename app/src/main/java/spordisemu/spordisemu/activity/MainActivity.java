@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
                     LoggedIn.id = new JSONObject(result.substring(1)).getString("id");
                     LoggedIn.firstname = new JSONObject(result.substring(1)).getString("firstname");
                     LoggedIn.lastname = new JSONObject(result.substring(1)).getString("lastname");
+                    LoggedIn.username = new JSONObject(result.substring(1)).getString("username");
                     if (LoggedIn.id != null) {
                         ParsePush.subscribeInBackground(LoggedIn.id.toString());
                         List<String> subscribedChannels = ParseInstallation.getCurrentInstallation().getList("channels");

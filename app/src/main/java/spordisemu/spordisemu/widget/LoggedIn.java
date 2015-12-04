@@ -10,4 +10,5 @@ public class LoggedIn extends Application{
     public static String id;
     public static String firstname;
     public static String lastname;
+    public static String username;
 }
