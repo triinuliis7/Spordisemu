@@ -124,4 +124,11 @@
     <string name="comments">Kommentaarid</string>
     <string name="commentBtn">Kirjuta kommentaar</string>
     <string name="commentTooShort">Sisesta kommentaar!</string>
+
+    <string name="changeProfile">Muuda profiili</string>
+    <string name="changePassword">Vaheta parooli</string>
+    <string name="changeNotifications">Teavitused</string>
+    <string name="terms">Kasutustingimused</string>
+
+    <string name="termsLong">Kasutustingimused on tingimused kasutamiseks, et oleks hea kasutada tingimusi</string>
 </resources>

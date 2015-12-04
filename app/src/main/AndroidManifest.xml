@@ -134,6 +134,18 @@
             android:name=".activity.ResultActivity">
         </activity>
         <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAction"
+            android:label=""
+            android:name=".activity.PasswordActivity">
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeAction"
+            android:label=""
+            android:name=".activity.NotificationsActivity">
+        </activity>
+        <activity
             android:name="activity.SearchResultsActivity"
             android:label=""
             android:theme="@style/AppThemeAction">

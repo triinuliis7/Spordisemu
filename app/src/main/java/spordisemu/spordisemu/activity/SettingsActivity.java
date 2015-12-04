@@ -1,11 +1,16 @@
 package spordisemu.spordisemu.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import spordisemu.spordisemu.R;
 
@@ -33,8 +38,35 @@ public class SettingsActivity extends NavigationActivity {
         if (navigationView != null) {
             setupDrawerContent(navigationView);
         }
+    }
 
+    public void changeProfile (View view) {
+        Intent profileIntent = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(profileIntent);
+    }
 
+    public void changePassword (View view) {
+        Intent passwordIntent = new Intent(getApplicationContext(), PasswordActivity.class);
+        startActivity(passwordIntent);
+    }
+
+    public void changeNotifications (View view) {
+        Intent notificationsIntent = new Intent(getApplicationContext(), NotificationsActivity.class);
+        startActivity(notificationsIntent);
+    }
+
+    public void terms (View view) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(SettingsActivity.this);
+        alert.setMessage(getResources().getString(R.string.termsLong));
+        alert.setNeutralButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = alert.create();
+        alert11.show();
     }
 
     @Override
