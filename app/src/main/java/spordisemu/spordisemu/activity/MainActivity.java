@@ -20,9 +20,11 @@ import android.view.animation.AlphaAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.ParsePush;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import spordisemu.spordisemu.widget.LoggedIn;
 import spordisemu.spordisemu.R;
@@ -50,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
-        //Notifications
-        Parse.initialize(this, "FWLLWZk8Adonl3ixkHu71nPUDaM1R2uFcmZJKQA5", "Vtdc1OL9auXX6Gjcavb5wzWzCyKKkAXRbpRlsh1t");
-        ParseInstallation.getCurrentInstallation().saveInBackground();
 
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
@@ -181,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
                     LoggedIn.firstname = new JSONObject(result.substring(1)).getString("firstname");
                     LoggedIn.lastname = new JSONObject(result.substring(1)).getString("lastname");
                     if (LoggedIn.id != null) {
+                        ParsePush.subscribeInBackground(LoggedIn.id.toString());
+                        List<String> subscribedChannels = ParseInstallation.getCurrentInstallation().getList("channels");
+                        //Toast.makeText(getApplicationContext(), subscribedChannels.get(0), Toast.LENGTH_LONG).show();
                         startActivity(loginIntent);
                     }
                 } catch (JSONException e) {
