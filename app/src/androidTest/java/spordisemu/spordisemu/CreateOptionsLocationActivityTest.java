@@ -41,11 +41,11 @@ public class CreateOptionsLocationActivityTest extends ActivityInstrumentationTe
     public void testClickForwardButton(){
 
         onView(withId(R.id.button3)).perform(click());
-        onView(withId(R.id.createPractice)).check(matches(isDisplayed()));
+        onView(withText(R.string.third_party_title)).check(matches(isDisplayed()));
     }
 
     public void testClickSkipButton(){
         onView(withId(R.id.button4)).perform(click());
-        onView(withId(R.id.createPractice)).check(matches(isDisplayed()));
+        onView(withText(R.string.third_party_title)).check(matches(isDisplayed()));
     }
 }
