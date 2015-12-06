@@ -72,6 +72,7 @@ public class CreatePracticeActivityTest extends ActivityInstrumentationTestCase2
                 .perform(typeText("10"), closeSoftKeyboard());
 
         onView(withId(R.id.createPractice)).perform(click());
+        onView(withText("Jalgpall")).check(matches(isDisplayed()));
     }
 
     public void testChangeTextNotFilled() {
