@@ -3,6 +3,7 @@ package spordisemu.spordisemu.activity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -79,6 +81,22 @@ public class HomeActivity extends NavigationActivity {
         }
 
         PracticeViewIntent = new Intent(getApplicationContext(), PracticeViewActivity.class);
+
+        // if just registered, then show third-party note
+        if (getIntent().getStringExtra("third-party") != null) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(HomeActivity.this);
+            alert.setTitle(getResources().getString(R.string.third_party_title));
+            alert.setMessage(getResources().getString(R.string.third_party));
+            alert.setPositiveButton("OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = alert.create();
+            alert11.show();
+        }
     }
 
     // for search on actionbar this method needs to be added

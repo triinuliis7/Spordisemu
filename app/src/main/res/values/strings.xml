@@ -138,4 +138,7 @@
     <string name="newPassword2">Uus salasõna uuesti</string>
     <string name="wrongPw">Vale parool</string>
     <string name="passwordIsChanged">Parool on edukalt vahetatud</string>
+
+    <string name="third_party_title">Kolmandad osapooled</string>
+    <string name="third_party">Me ei jaga teie andmeid kolmandate osapooltega.</string>
 </resources>

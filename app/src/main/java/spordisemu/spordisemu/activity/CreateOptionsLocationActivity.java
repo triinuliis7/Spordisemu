@@ -194,6 +194,7 @@ public class CreateOptionsLocationActivity extends AppCompatActivity  {
             /*Toast.makeText(getApplicationContext(), result,
                     Toast.LENGTH_LONG).show();*/
             Intent HomeActivityIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            HomeActivityIntent.putExtra("third-party","yes");
             startActivity(HomeActivityIntent);
         }
     }
