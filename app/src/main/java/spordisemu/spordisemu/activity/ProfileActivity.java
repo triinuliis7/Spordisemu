@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import spordisemu.spordisemu.R;
@@ -45,7 +46,14 @@ public class ProfileActivity extends NavigationActivity {
         }
 
         RoundedImageView avatar = (RoundedImageView) findViewById(R.id.avatar_icon);
-        avatar.setImageDrawable(getDrawable(R.drawable.woman));
+        ImageView genderPic = (ImageView) findViewById(R.id.genderPic);
+        if(LoggedIn.gender.equals("1")) {
+            genderPic.setBackgroundResource(R.drawable.ic_gender_male_grey600_36dp);
+            avatar.setImageDrawable(getDrawable(R.drawable.man));
+        } else {
+            genderPic.setBackgroundResource(R.drawable.ic_gender_female_grey600_36dp);
+            avatar.setImageDrawable(getDrawable(R.drawable.woman));
+        }
 
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
