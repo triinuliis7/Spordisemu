@@ -1,6 +1,7 @@
 package spordisemu.spordisemu.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,6 +23,7 @@ public class ProfileActivity extends NavigationActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        setTitle(LoggedIn.firstname + " " + LoggedIn.lastname);
 
         IntentId = R.id.profiil;
 
@@ -44,6 +46,10 @@ public class ProfileActivity extends NavigationActivity {
 
         RoundedImageView avatar = (RoundedImageView) findViewById(R.id.avatar_icon);
         avatar.setImageDrawable(getDrawable(R.drawable.woman));
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(LoggedIn.firstname + " " + LoggedIn.lastname);
 
         TextView name = (TextView) findViewById(R.id.profilename);
         name.setText(LoggedIn.firstname + " " + LoggedIn.lastname);

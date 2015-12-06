@@ -17,7 +17,7 @@
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/profile_backdrop_height"
-            android:background="#fff"
+            android:background="#FFF"
             android:fitsSystemWindows="true">
 
             <android.support.design.widget.CollapsingToolbarLayout
@@ -27,8 +27,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginStart="48dp"
-                app:expandedTitleMarginEnd="64dp">
+                app:expandedTitleTextAppearance="@style/TransparentText">
 
                 <ImageView
                     android:id="@+id/backdrop"
@@ -48,7 +47,19 @@
                     android:text=""
                     android:textColor="@color/headline"
                     android:textStyle="bold"
-                    android:textSize="@dimen/headline"/>
+                    android:textSize="@dimen/headline"
+                    android:fitsSystemWindows="true"/>
+
+                <spordisemu.spordisemu.widget.RoundedImageView
+                    android:id="@+id/avatar_icon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:padding="5dp"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:fitsSystemWindows="true"/>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -57,19 +68,11 @@
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                     app:layout_collapseMode="pin" />
 
+
+
             </android.support.design.widget.CollapsingToolbarLayout>
 
         </android.support.design.widget.AppBarLayout>
-
-        <spordisemu.spordisemu.widget.RoundedImageView
-        android:id="@+id/avatar_icon"
-        app:layout_anchor="@id/backdrop"
-        app:layout_anchorGravity="bottom|center"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="5dp"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentTop="true" />
 
         <android.support.design.widget.FloatingActionButton
             android:layout_height="wrap_content"
