@@ -28,29 +28,26 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     android:id="@+id/date"
-                    android:textColor="#000000"
                     android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     android:id="@+id/location"
-                    android:textColor="#000000"
                     android:layout_marginTop="5dp"
                     android:textSize="20sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text=""
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     android:id="@+id/user"
-                    android:textColor="#000000"
                     android:layout_marginTop="5dp"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -91,24 +88,24 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:textAppearance="@android:style/TextAppearance.Material.Body1"
                 android:id="@+id/levelText"
-                android:textColor="#000000"
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:textAppearance="@android:style/TextAppearance.Material.Body1"
                 android:id="@+id/attendeesText"
-                android:textColor="#000000"
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:textAppearance="@android:style/TextAppearance.Material.Body1"
                 android:id="@+id/genderText"
-                android:textColor="#000000"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -125,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/comments"
                 android:id="@+id/textView5"
-                android:textColor="#000000"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
                 android:textSize="24sp" />
 
             <ListView
@@ -168,7 +165,6 @@
                         android:inputType="textCapSentences|textMultiLine"
                         android:ems="10"
                         android:id="@+id/newComment"
-                        android:textColor="#000"
                         android:textColorHint="#82ffffff"
                         android:hint="@string/commentBtn"
                         android:layout_marginLeft="60dp"

@@ -1,13 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#40bf40</item>
         <item name="colorPrimaryDark">#339933</item>
         <item name="android:windowBackground">@color/window_background</item>
     </style>
 
-    <style name="AppThemeAction" parent="Theme.AppCompat">
+    <style name="AppThemeAction" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">#40bf40</item>
         <item name="colorPrimaryDark">#339933</item>
         <item name="android:windowBackground">@color/window_background</item>
@@ -31,7 +31,6 @@
 
     <style name="TransparentText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#00666666</item>
-        <item name="android:textAppearance">@android:style/Widget.ActionBar.TabText</item>
     </style>
 
 
