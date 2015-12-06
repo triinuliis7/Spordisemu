@@ -42,9 +42,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/profilename"
@@ -67,7 +67,7 @@
                     android:layout_alignParentStart="false"
                     android:layout_alignParentTop="true"
                     android:layout_gravity="center_vertical|center_horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:fitsSystemWindows="true"
                     android:padding="5dp" />
 
@@ -91,11 +91,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
+                
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="1dp">
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="1dp">
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
@@ -126,6 +127,14 @@
 
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </android.support.v7.widget.RecyclerView>
+
             </LinearLayout>
 
         </android.support.v4.widget.NestedScrollView>
