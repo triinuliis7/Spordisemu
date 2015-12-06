@@ -37,7 +37,7 @@ public class RegistrationActivityTest  extends ActivityInstrumentationTestCase2<
         registrationActivity = getActivity();
     }
 
-    public void testChangeTextEverythingOK() {
+    /*public void testChangeTextEverythingOK() {
         // Type text and then press the button.
         onView(withId(R.id.SignUpUserEdit))
                 .perform(typeText("Test"), closeSoftKeyboard());
@@ -70,7 +70,7 @@ public class RegistrationActivityTest  extends ActivityInstrumentationTestCase2<
 
         // Check if new activity is open
         onView(withId(R.id.textView3)).check(matches(isDisplayed()));
-    }
+    }*/
 
     public void testChangeTextNotFilled() {
 
