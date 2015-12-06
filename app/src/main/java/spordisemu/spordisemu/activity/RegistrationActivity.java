@@ -164,7 +164,9 @@ public class RegistrationActivity extends AppCompatActivity {
         if (nameNotCorrect("[^a-z]", signUpLastEdit)) {
             done = false;
         }
-        usernameUnique(signUpUserEdit);
+        if (done) {
+            usernameUnique(signUpUserEdit);
+        }
         return done;
     }
 
